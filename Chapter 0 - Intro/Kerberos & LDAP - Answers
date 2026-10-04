@@ -1,1 +1,11 @@
+### Kerberos core questions
+
+Q.1. What is Kerberos, what problem does it solve, and what are its core components?
+
+A: Kerberos is a network authentication protocol that gives steady authentication between a client and a server using encryption and hashes. 
+It solves the problem of authentication over an insecure network by implementing its own secure authentication. 
+Kerberos includes the Key Distribution Center (KDC) that has the Authentication Server (AS) and the Ticket Granting Service (TGS). 
+The client authentication itself is done to the AS infrequently, when logging in or when the ticket granting ticket expires.
+When the client needs to communicate with a server it does not have an active ticket with, it goes through communication with the TGS.
+
 
