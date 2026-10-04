@@ -51,3 +51,27 @@ There are some issues that can arise: Since the process is very time dependent f
 all components are in sync with each other clockwise. Since everything is in the KDC, it's a huge point of failure, if it falls, everything falls. It's hard to implement 
 Kerberos on other platforms which are not windows.
 
+
+
+### LDAP core questions
+
+Q.1.: How is LDAP used for authentication and authorization, and what is the difference between the two?
+
+Q.2.: What operations does LDAP support?
+
+LDAP Supports the following operations:
+Update - Modifying, adding or deleting directory information. 
+Authentication & Authorization - Authenticating and Authorizing users to resources.
+Query - Searching directory information and comparing it. 
+
+Q.3.: What is an LDAP schema and why is it important?
+
+Q.4.: What is LDAP and how is data structured within it?
+
+Q.5.: Why is LDAP important for security, and how is it used for authentication and identity management in real-world systems?
+
+Q.6.: How can Kerberos be integrated with LDAP or other directory services in a real deployment?
+
+
+
+
