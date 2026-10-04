@@ -9,9 +9,13 @@ The client authentication itself is done to the AS infrequently, when logging in
 When the client needs to communicate with a server it does not have an active ticket with, it goes through communication with the TGS.
 
 
-Q1.3. How does the Kerberos authentication flow work?
+Q.2. How is Kerberos configured and managed in production? Explain keytab files, service principals, ticket lifetimes, renewal policies, etc.
 
-Firstly the user enters the name and password to login. The client machine hashes the password with a known salt and hash that is used by Kerberos. 
+A:
+
+Q.3. How does the Kerberos authentication flow work?
+
+A: Firstly the user enters the name and password to login. The client machine hashes the password with a known salt and hash that is used by Kerberos. 
 The client sends the user ID to the AS. The AS sees if the user exists in its DB. If it does, then it returns
 1. TGS session key encrypted by the hashed password
 2. Ticket granting ticket which includes the client ID, client network address, validity period and the TGS session key, all of which encrypted using a secret
@@ -35,4 +39,15 @@ The server gets these, decrypts the client to server ticket since it knows the s
 compares both. If they're identical, the server trusts the client. It sends the client the timestamp found in the second message, encrypted using the server session key. 
 key, the client gets this, decrypts it and if its right it now trusts the server. Now the client sends the server the requests and the server acts upon them. 
 
+Q.4. Why is Kerberos considered secured? What potential issues could arise with this mechanism?
+
+A: Kerberos is considered secure since each step of the authorization process is built on top of earlier steps which are assumed to be secure, 
+the first authentication step is secure since the user needs to know the password, and it is harder to brute force than usual since you cannot
+take a given common password tool with a big database and immediately use it since there is a salt used. Also at the end the user itself gets verification from the 
+the server itself that it can trust it, so it goes both ways. To break the steps that are built on top of each other you need to decrypt something
+which is assumed to be hard due to using a hard encryption algorithm. 
+
+There are some issues that can arise: Since the process is very time dependent for verification, especially at end and start in modern versions, you have to make sure
+all components are in sync with each other clockwise. Since everything is in the KDC, it's a huge point of failure, if it falls, everything falls. It's hard to implement 
+Kerberos on other platforms which are not windows.
 
