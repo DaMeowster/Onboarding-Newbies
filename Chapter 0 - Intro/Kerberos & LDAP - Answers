@@ -9,3 +9,30 @@ The client authentication itself is done to the AS infrequently, when logging in
 When the client needs to communicate with a server it does not have an active ticket with, it goes through communication with the TGS.
 
 
+Q1.3. How does the Kerberos authentication flow work?
+
+Firstly the user enters the name and password to login. The client machine hashes the password with a known salt and hash that is used by Kerberos. 
+The client sends the user ID to the AS. The AS sees if the user exists in its DB. If it does, then it returns
+1. TGS session key encrypted by the hashed password
+2. Ticket granting ticket which includes the client ID, client network address, validity period and the TGS session key, all of which encrypted using a secret
+key the TGS knows. The client does not know this secret. 
+
+The client can now decrypt the TGS session key since it knows its password and the hash and salt used. It can't decrypt the Ticket granting ticket. It now sends
+the TGS two things:
+1. The ticket granting ticket as is
+2. Its client ID and timeframe encrypted by the TGS session key
+
+The TGS server gets the ticket granting ticket, decrypts it since it knows the secret key, then it gets the TGS session key from it and decrypts the client ID.
+It compares the client IDs of both. If they match, it sends the client two things:
+1. Client-to-server ticket (same as ticket granting ticket but includes the server session key instead) encrypted by a secret key the server knows.
+2. Server session key encrypted by the TGS session key
+
+Again, the client gets these, decrypts only the server session key since it knows the TGS session key, and it sends the server:
+1. The client to server ticket as is
+2. Its client ID and timestamp encrypted using the server session key
+
+The server gets these, decrypts the client to server ticket since it knows the secret, gets the ID and the server session key, decrypts the client ID using it,
+compares both. If they're identical, the server trusts the client. It sends the client the timestamp found in the second message, encrypted using the server session key. 
+key, the client gets this, decrypts it and if its right it now trusts the server. Now the client sends the server the requests and the server acts upon them. 
+
+
