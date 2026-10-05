@@ -31,6 +31,7 @@ Authentication & Directory Concepts:
 1. **What is Kerberos, what problem does it solve, and what are its core components?**  
 
 A: 
+קרברוס הוא פרוטוקול אות'נטיקציה רשתי שמאפשר אות'נטיקציה בין לקוח לשרת בעזרת הצפנות והאשים. הוא פותר את הבעיה של אות'נטיקציה מעל רשת לא מאובטחת בכך שהוא מבטיח את האבטחתיות בעצמו. קרברוס כולל את הKey Distribution Center (KDC) שמכיל את הAuthentication Server (AS) ואת הTicket Granting Service (TGS). האות'נטיקה עצמה של הלקוח לAS מתרחשת באופן לא תדיר, כשעושים log in בהתחלה או כשפג תוקפו של הTGT. כשהלקוח צריך לתקשר עם שרת שאין לו כרטיס session אקטיבי איתו, הוא מתקשר עם הTGS על מנת להשיג אחד, בעזרת הTGT.
 
 2. **How is Kerberos configured and managed in production? Explain keytab files, service principals, ticket lifetimes, renewal policies, etc.**  
 
@@ -59,14 +60,6 @@ A:
 ---
 
 ### Skila Questions
-
-
-
-Assignment: Compare two identity approaches:
-Assignment: Describe a simple real-world usage of authentication services.
-
-Deliverable (2 paragraphs):
-
-- Describe how a system verifies a user's identity using secure authentication  
+ 
 - Explain how user information is stored and accessed from a central directory  
 - Describe how this improves security and organization
