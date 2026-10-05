@@ -83,7 +83,7 @@ A:
 
 4. What is principal kerberos?
 A:
-
+זהות יחודית של אובייקט שמשתמש בקרברוס. איחוד של שם מזהה ביחד עם שם הrealm. אפשר שיהיו לך כמה principals, בין אם זה בגלל הרשאות שונות או כי אתה עובד בכמה realms שונים.
 
 5. What is realm kerberos?
 A:
