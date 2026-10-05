@@ -74,6 +74,7 @@ A:
 פקודת KLIST מציגה את הtickets בcredential cache, ניתן להשתמש בדגלים כדי לראות סוגים ספציפים עם תנאים שבוחרים. 
 פקודת KDESTROY מוחקת קובץ credentials cache, גם פה יש דגלים שונים שנותנים לנו למחוק בצורה חכמה ויעילה יותר, נגיד למחוק אוטומטית קבצים שמכילים רק TGTים פגי תוקף. 
 2. What is the Kerberos CLI?
+בWindows אפשר להריץ בCLI פקודות קרבוס שונות ושימושיות כמו אלו שהרגע דיברנו עליהם ועוד כגון KPASSWD, KSWITCH, KVNO ועוד.
 
 3. Where do the TGTs get stored in the client's computer?
 
