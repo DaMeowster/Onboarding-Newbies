@@ -63,6 +63,34 @@ A:
 קרברוס נחשב מאובטח כי כל שלב בתהליך האות'וריזציה בנוי על כך שהשלב הקודם התבצע באופן מאובטח, עם התחלה יחסית מאובטחת שדורשת לדעת את ההאשינג של הסיסמה. בזכות העובדה שיש האשינג עם salt זה גם מקל על מתקפות brute force קצת כי אי אפשר לקחת כלי תקיפה עם סיסמאות נפוצות לגמרי בפני עצמו, צריך לבצע שינוי בהתאם להרמה של הkerberos. עוד משהו משמעותי באבטחה בקרברוס הוא שהאימות הוא דו כיווני, בסוף תהליך האימות הלקוח מקבל אינדיקציה מהשרת עצמו שהוא יכול לסמוך עליו, תהליך אות'ינטקציה טוב צריך להיות דו צדדי. והדבר הכי חשוב, כל התקשורת בכל תהליך האימות (למעט הID בהתחלה) ולאחר מכן מוצפנת.
 
 בסוף שום פתרון לא מושלם, וגם לקרברוס יש חסרונות. הדבר הכי חשוב כנראה הוא שיש תלות ענקית בזמן, בעיקר בתחילת ובסוף תהליך האימות. לוקחים את הזמנים בשעונים במקום לעבוד עם counter בבדיקות אימות, לכן חשוב שכל השעונים בכל הרכיבים יהיו מתואמים. בגלל שהכל בKDC, אז הוא point of failure ענקי, אם הוא נופל, הכל נופל. לכן חשוב לוודא שתמיד יהיה גיבוי. לבסוף, הקונפיגורציה של קרברוס, בעיקר מחוץ לwindows היא די קשה ומסובכת ביחס לאלגוריתמי אימות אחרים. 
+
+### Skila Questions
+
+1. What are KINIT, KLIST, KDESTROY?
+
+A:
+
+פקודת KINIT הינה פקודה שבהרצתה מחדשת או יוצרת TGT, אם לא מסמנים איזה אחד בדגלים, אז זה נבחר לפי ההגדרות ששמורות בקובץ הקונפיגורציה kdf.conf
+פקודת KLIST מציגה את הtickets בcredential cache, ניתן להשתמש בדגלים כדי לראות סוגים ספציפים עם תנאים שבוחרים. 
+פקודת KDESTROY מוחקת קובץ credentials cache, גם פה יש דגלים שונים שנותנים לנו למחוק בצורה חכמה ויעילה יותר, נגיד למחוק אוטומטית קבצים שמכילים רק TGTים פגי תוקף. 
+2. What is the Kerberos CLI?
+
+3. Where do the TGTs get stored in the client's computer?
+
+A:
+הTGTS נשמרים במחשב של הלקוח בcredentials cache, יש כמה דרכים לעשות את זה אבל הדרך הכי נפוצה היא שכרטיסים נשמרים אחד אחרי השני בקובץ. 
+
+4. What is principal kerberos?
+
+5. What is realm kerberos?
+
+6. Why do you need keytab, how do you create it?
+
+7. Why do you need krbs.conf, how do you configure it?
+
+8. What is active active and what is active standby
+
+
 # LDAP Core Concept
 
 ### ❓ Guide Questions
@@ -82,6 +110,7 @@ A:
 ---
 
 ### Skila Questions
+
  
 - Explain how user information is stored and accessed from a central directory  
 - Describe how this improves security and organization
