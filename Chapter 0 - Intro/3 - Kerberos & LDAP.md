@@ -117,9 +117,10 @@ Bind, Search, Compare, Add, Delete, Modify, Modify DN, Unbind, Abandon, Extended
 פעולת Extended - ביצוע פעולות נוספות לא סטנדרטיות, לרוב כדאי לבדוק לפני כן האם השרת מאפשר אותן ויודע לטפל בהן לפני שמנסים.
 3. **What is an LDAP schema and why is it important?**  
 A:
-סכמת LDAP מגדירה את החוקים שקובעים מה בדיוק יכול להשמור בLDAP Directory ואיזה סוג של פעולות ניתן לעשות על המידע בהינתן מי שמנסה לעשות אותו. הסכמה הינה חיונית
-כדי שיהיה מבנה ברור לLDAP Directory שמותאם למטרות שלנו וכך גם ניתן לוודא שמשתמשים לא יעשו את הפעולות שהם לא רשאים לעשות.
+סכמת LDAP מגדירה את החוקים שקובעים מה בדיוק יכול להשמור בLDAP Directory ואת סוג פעולות ההשוואה שניתן לעשות על המידע. הסכמה הינה חיונית
+כדי שיהיה מבנה ברור לLDAP Directory שמותאם למטרות שלנו וכך.
 4. **What is LDAP and how is data structured within it?**
+A:
 
 5. **Why is LDAP important for security, and how is it used for authentication and identity management in real-world systems?**
 A:
