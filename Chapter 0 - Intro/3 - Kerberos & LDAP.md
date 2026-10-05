@@ -103,7 +103,9 @@ A:
 ### ❓ Guide Questions
 
 1. **How is LDAP used for authentication and authorization, and what is the difference between the two?**
-
+A:
+הפרוטקול LDAP יכול להיות משומש לauthentication בכך שמשתמש יצטרך להזדהות עם שם משתמש וסיסמה לפני שהוא יוכל לגשת למידע בצורה כלשהי. ניתן להשתמש בLDAP לauthorization בכך שניתן למשתמשים שונים דרגות שונות של הרשאות שנשמור וכל פעם שתהיה גישה של משתמש כלשהי למידע נסתכל על ההרשאות שלו ובאיזה אזור מידע הוא מנסה לגעת והאם הוא רשאי לעשות זאת. 
+ההבדל הוא שבauthentication בודקים מי אני, בauthorization בודקים האם אני רשאי לבצע פעולה.
 2. **What operations does LDAP support?**  
 
 3. **What is an LDAP schema and why is it important?**  
