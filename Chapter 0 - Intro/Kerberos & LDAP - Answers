@@ -59,12 +59,15 @@ Q.1.: How is LDAP used for authentication and authorization, and what is the dif
 
 Q.2.: What operations does LDAP support?
 
-LDAP Supports the following operations:
+A: LDAP Supports the following operations:
 Update - Modifying, adding or deleting directory information. 
 Authentication & Authorization - Authenticating and Authorizing users to resources.
 Query - Searching directory information and comparing it. 
 
 Q.3.: What is an LDAP schema and why is it important?
+
+A: An LDAP schema is the rules that determine what exactly can be stored in the LDAP directory and what sort of comparisons we can do on the LDAP data.
+This schema is important so there is clear structure to the LDAP directory which fits our goals and it makes sure users do not do comparisons they shouldn't be able to.
 
 Q.4.: What is LDAP and how is data structured within it?
 
