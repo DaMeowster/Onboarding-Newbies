@@ -55,7 +55,7 @@ A:
 השרת מקבל את שניהם, מפענח את השני, בעזרת הserver session key שעכשיו השיג מפענח את הראשון, משווה את הIDים. אם הם שווים, הוא שולח ללקוח את הtimestamp מההודעה שהוא הראשונה שהוא שלח עכשיו מוצפנת בעזרת הserver session key, כדי שהוא יוכל לסמוך עליו שזה אכן השרת. מפה הלקוח והשרת מתקשרים בעזרת הserver session key באופן מוצפן.
 
 
-5. **Why is Kerberos considered secured? What potential issues could arise with this mechanism?**
+4. **Why is Kerberos considered secured? What potential issues could arise with this mechanism?**
 
 
 A:
