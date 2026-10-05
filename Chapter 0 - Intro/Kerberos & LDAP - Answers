@@ -79,6 +79,10 @@ Q.5.: Why is LDAP important for security, and how is it used for authentication 
 
 Q.6.: How can Kerberos be integrated with LDAP or other directory services in a real deployment?
 
+You can combine the two by using Kerberos for the authentication and LDAP for the authorization. Kerberos is more thorough and more secure than LDAP,
+since LDAP does not encrypt and is weak to man in the middle attack. So if we use Kerberos for the authentication process and then LDAP to check authorization,
+its a great combination.
+
 
 
 
