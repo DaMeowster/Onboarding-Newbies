@@ -57,6 +57,10 @@ Kerberos on other platforms which are not windows.
 
 Q.1.: How is LDAP used for authentication and authorization, and what is the difference between the two?
 
+LDAP can be used for authentication by asking for a username and password before you access any data, and it can be used for authorization by
+giving different users different permissions and storing these mappings, then whenever you have a data access, it checks if you have those permissions before 
+allowing it. The difference is authentication is finding out who you are, authorization is determining if you can do an action.
+
 Q.2.: What operations does LDAP support?
 
 A: LDAP Supports the following operations:
