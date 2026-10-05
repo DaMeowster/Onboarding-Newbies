@@ -30,6 +30,8 @@ Authentication & Directory Concepts:
 
 1. **What is Kerberos, what problem does it solve, and what are its core components?**  
 
+A: 
+
 2. **How is Kerberos configured and managed in production? Explain keytab files, service principals, ticket lifetimes, renewal policies, etc.**  
 
 3. **How does the Kerberos authentication flow work?**  
@@ -56,19 +58,11 @@ Authentication & Directory Concepts:
 
 ---
 
-### 🔄 Alternatives
+### Skila Questions
+
+
+
 Assignment: Compare two identity approaches:
-
-- Kerberos vs JWT
-
-Deliverable:
-- 2–4 sentences comparison  
-- Include a simple use case for each  
-
----
-
-### 🎯 User Story & Scenario
-
 Assignment: Describe a simple real-world usage of authentication services.
 
 Deliverable (2 paragraphs):
