@@ -82,9 +82,12 @@ A:
 הTGTS נשמרים במחשב של הלקוח בcredentials cache, יש כמה דרכים לעשות את זה אבל הדרך הכי נפוצה היא שכרטיסים נשמרים אחד אחרי השני בקובץ. 
 
 4. What is principal kerberos?
+A:
+
 
 5. What is realm kerberos?
-
+A:
+אתר או אוסף אתרים שמאוגדים ביחד שיש להם שרת Kerberos שמכיל מידע על המשתמשים והserviceים של האיגוד.
 6. Why do you need keytab, how do you create it?
 
 7. Why do you need krbs.conf, how do you configure it?
