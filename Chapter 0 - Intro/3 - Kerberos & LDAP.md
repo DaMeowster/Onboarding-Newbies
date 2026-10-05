@@ -133,6 +133,29 @@ A:
 
 ### Skila Questions
 
+1. What's stored in the directory?
+A:
+הDirectory שומר entries של דברים שונים. זה יכול להיות הכל, שמות של חתולים, מיקומים של נסיכות, סיסמאות, לוחיות רישוי ועוד.
+
+2. What is the bind operation?
+
+A:
+הוסבר בשאלה 2 בGuiding Questions. 
+
+3. What is SSSD?
+A:
+
+4. What are CN, OU?
+
+A: 
+OU - Organization Unit
+מתאר קבוצה של CNים
+CN - Common Name
+שם של איבר כלשהו
+כלומר לפי ההיררכיה הזו יכול להיות
+cn=gal, ou=students
+
+
  
 - Explain how user information is stored and accessed from a central directory  
 - Describe how this improves security and organization
