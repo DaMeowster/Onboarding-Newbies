@@ -77,9 +77,15 @@ Q.4.: What is LDAP and how is data structured within it?
 
 Q.5.: Why is LDAP important for security, and how is it used for authentication and identity management in real-world systems?
 
+A: LDAP is important for security since we want to verify the user is who he claims he is before allowing him to access the data. It is used for authentication
+and identity management in real-world systems by receiving the binding request from the user's client, finding the password from the distinguished name stored
+inside the tree, then comparing passwords. If it matches, then it establishes a session from the user. From now on, there is identity management which
+gives us authorization, whenever a user tries to access something, it checks if its identity is authorized to do so, to make sure the user only does what it's
+allowed to do.
+
 Q.6.: How can Kerberos be integrated with LDAP or other directory services in a real deployment?
 
-You can combine the two by using Kerberos for the authentication and LDAP for the authorization. Kerberos is more thorough and more secure than LDAP,
+A: You can combine the two by using Kerberos for the authentication and LDAP for the authorization. Kerberos is more thorough and more secure than LDAP,
 since LDAP does not encrypt and is weak to man in the middle attack. So if we use Kerberos for the authentication process and then LDAP to check authorization,
 its a great combination.
 
