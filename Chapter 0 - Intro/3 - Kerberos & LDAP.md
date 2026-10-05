@@ -116,11 +116,14 @@ Bind, Search, Compare, Add, Delete, Modify, Modify DN, Unbind, Abandon, Extended
 פעולת Abandon מבקשת מהשרת לעצור פעולה שנשלחה, אפשרי כי LDAP אסינכרוני אז פעולות יכולות לרוץ במקביל ולא חוסמות כתיבת פעולה חדשה. 
 פעולת Extended - ביצוע פעולות נוספות לא סטנדרטיות, לרוב כדאי לבדוק לפני כן האם השרת מאפשר אותן ויודע לטפל בהן לפני שמנסים.
 3. **What is an LDAP schema and why is it important?**  
-
+A:
+סכמת LDAP מגדירה את החוקים שקובעים מה בדיוק יכול להשמור בLDAP Directory ואיזה סוג של פעולות ניתן לעשות על המידע בהינתן מי שמנסה לעשות אותו. הסכמה הינה חיונית
+כדי שיהיה מבנה ברור לLDAP Directory שמותאם למטרות שלנו וכך גם ניתן לוודא שמשתמשים לא יעשו את הפעולות שהם לא רשאים לעשות.
 4. **What is LDAP and how is data structured within it?**
 
 5. **Why is LDAP important for security, and how is it used for authentication and identity management in real-world systems?**
-
+A:
+פרוטוקול LDAP הינו חשוב לאבטחה כי אנחנו רוצים לוודא שמשתמש הוא מי שהוא טוען שהוא לפני שהוא רשאי לעשות פעולה, הוא משומש לאימות וניהול זהויות במערכות בעולם האמיתי על ידי כך שהוא מקבל פעולת binding מהלקוח, מוצא את הסיסמה של הלקוח במידע ומשווה אותה לאחת שהוא קיבל. אם יש התאמה, הוא יוצר חיבור עם המשתמש. מפה והלאה יש לנו גם זהות של המשתמש כך שאם הוא מנסה לעשות פעולה עתידית, אנחנו יודעים לייחס אותה אליו ולהרשאות שלו ולהכריע האם הוא רשאי לעשות אותה.
 6. **How can Kerberos be integrated with LDAP or other directory services in a real deployment?**  
 
 ---
