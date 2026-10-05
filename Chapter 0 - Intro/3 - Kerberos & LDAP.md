@@ -34,7 +34,9 @@ A:
 קרברוס הוא פרוטוקול אות'נטיקציה רשתי שמאפשר אות'נטיקציה בין לקוח לשרת בעזרת הצפנות והאשים. הוא פותר את הבעיה של אות'נטיקציה מעל רשת לא מאובטחת בכך שהוא מבטיח את האבטחתיות בעצמו. קרברוס כולל את הKey Distribution Center (KDC) שמכיל את הAuthentication Server (AS) ואת הTicket Granting Service (TGS). האות'נטיקה עצמה של הלקוח לAS מתרחשת באופן לא תדיר, כשעושים log in בהתחלה או כשפג תוקפו של הTGT. כשהלקוח צריך לתקשר עם שרת שאין לו כרטיס session אקטיבי איתו, הוא מתקשר עם הTGS על מנת להשיג אחד, בעזרת הTGT.
 
 2. **How is Kerberos configured and managed in production? Explain keytab files, service principals, ticket lifetimes, renewal policies, etc.**  
+A:
 
+יש הסבר יותר ספציפי על המונחים בשאלות סקילה, אבל בקבצי הkeytab שמורים הkeys שמפיקים מלהפעיל את כל פעולות הhashing על הסיסמה של הprincipals, וכך אפשר לנצל SSO בזה שלא צריך כל פעם להתחבר מחדש כשהTGT נהיה פג תוקף. בנוסף ללהשיג TGT חדש, יש גם את האופציה של לחדש TGT קיים ולהמשיך להשתמש בו. גם קובץ krb5.conf זה חיוני וצריך למלא בו חלק מהפרמטרים שמדובר עליהם למטה בשאלות סקילה.
 3. **How does the Kerberos authentication flow work?**  
 
 
