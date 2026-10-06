@@ -1,3 +1,4 @@
+MAMAS EMPIRE
 # Linux & Infrastructure Foundations 💻💾
 
 Linux is the foundation of modern infrastructure, servers, cloud platforms, containers, and distributed systems.
@@ -134,6 +135,11 @@ nsenter
    * Permissions, ownership, and the Linux permission model (`rwx` for user/group/others)
    * Special permissions such as the sticky bit, setuid, and setgid
    * Basic commands such as `mount`, `df`, `stat`, `chmod`, and `chown`
+A:
+ניתן כמה סוגי Filesystems
+FAT - 
+יש טבלת FAT אחת עבור כל הקבצים. כל איבר בטבלה מסמן בלוק ומשם ניתן לראות את האינדקס של הבלוק הבא של הקובץ. אם זה הבלוק האחרון של הקובץ, יהיה כתוב שהבא באינדקס -1. יש גם את הdirectory file שמראה איפה הבלוק ההתחלתי עבור כל קובץ כדי שנדע להתחיל את הגישה. הטבלת FAT שמורה בדיסק אבל בנוסף לכך היא גם cached בזיכרון. בזכות העבודה עם הפוינטרים האלו, אין פרגמנטציה חיצונית בFAT. אפשר להמשיך להרחיב את הקבצים כל עוד יש מקום, לא חייבים להקצות מקום מראש והמימוש של FAT יחסית פשוט. מצד שני, כן יש את החסרונות שמאבדים את הגישה הסדרתית וצריך לעבור כל פעם בטבלה ולהמשיך לפי הפוינטר הבא. 
+
 
 5. **What are the essential Linux commands for everyday system management and basic navigation?**
 
