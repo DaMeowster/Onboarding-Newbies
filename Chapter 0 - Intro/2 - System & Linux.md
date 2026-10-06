@@ -46,6 +46,15 @@ Linux & Infrastructure Core Concepts:
    * What the kernel does and why it is the core of the OS
    * The difference between system services and applications
    * The role of kernel modules and device drivers
+A:
+
+בשכבה הכי נמוכה יש לנו את החומרה עצמה. מעליה יש את מערכת ההפעלה שמכילה את הkernerl space ואת הuser space, שבתוך הuser space התהליכים שלנו רצים. 
+השכבות עובדות ביחד כל הזמן. נגיד אם אני מריץ קוד בuser space, מקבל פסיקה של חלוקה ב0, עובר למצב גרעין כדי לטפל בה, המעבד בחומרה מטפל בפסיקה לפי שגרת הטיפול. 
+המטרה של הקרנל זה לחבר בין החומרה לתהליכים שאנחנו מריצים, הוא אחראי על ניהול הזיכרון, שליטה ותזמון בתהליכים, עבודה עם התקנים חיצוניים, ניהול פעולות I/O, אבטחה וסינכרון. בגלל שהוא מחבר בין הuser space אל החומרה, הוא ממש הלב של מערכת ההפעלה, הוא מאפשר את הקישוריות הזאת בין איפה שהתליכים שלנו רצים לחומרה. 
+בנוגע לsystem service, 
+
+
+
 
 2. **How do processes and daemons work in Linux, and how do threads fit into this model?**
 
