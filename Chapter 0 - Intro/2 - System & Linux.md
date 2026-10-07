@@ -168,7 +168,7 @@ VFAT -
 ניתן להדליק sticky bit בתיקייה ובכך לגרום שהיחידים שיוכלו למחוק קבצים בתיקייה או לשנות את השם של הקבצים בתיקייה הם בעל הקובץ הספציפי, בעל התיקייה ומשתמש root. ניתן לעשות זאת בעזרת chmod +t. בדומה, setuid זה ביט שניתן להדליק שגורם לכך שניתן להריץ קובץ עם הרשאות של בעל הקובץ במקום ההרשאות של המריץ, מאוד שימושי אם אנחנו צריכים חד פעמית להריץ תוכנה בהרשאות גבוהות אבל לא רוצים לעבור לטווח הארוך להרשאות גבוהות. בsetgid זה אותו דבר רק עם הקבוצה במקום הבעלים של הקובץ. כשעושים setgid על תיקייה זה גורם לכך שכל התיקיות והקבצים שיווצרו החל מעכשיו בתוך התיקייה יהיו עם אותו הgroup ownership שהיה לתיקייה, זה נגיד נחמד עבור עבודה משותפת בקבוצה בתיקייה כשמתחילים פרויקט ולא מאוד רלוונטי שהאנשים יגעו במה שהיה קודם. 
 
 הפקודה mount באופן מפתיע עושה mount למערכת קבצים אל תוך תיקייה כלשהי. 
-הפקודה df אומרת כמה מקום פנוי יש במערכות הקבצים שמכילות קבצים הם השמות שמתקבלים. אם לא מתקבלים כאלו, אז מקבלים את הפרטים הללו על כל מערכות הקבצים. 
+הפקודה df אומרת כמה מקום פנוי יש במערכות הקבצים שמכילות קבצים עם השמות שמתקבלים. אם לא מתקבלים כאלו, אז מקבלים את הפרטים הללו על כל מערכות הקבצים. 
 הפקודה stat נותנת מידע על קובץ. מה הגודל שלו, הInode, איזה סוג קובץ זה וכמה קישורים קשיחים יש לו. 
 פקודת chmod נותנת לשנות את ההגדרות של קבצים או תיקיות, פקודת chown נותנת לשנות את הuser או group ownership של הקובץ/תיקייה.
 
@@ -207,7 +207,15 @@ VFAT -
    uniq - מוחק שורות עוקבות שהן זהות בקובץ ומדפיס את התוצאה
 
 
-   
+   systemctl - 
+   כבר הסברתי מה זה, זה מאפשר לנו לשלוט ולכתוב פקודות אל הsystemd שהוא daemon. 
+   journalctl -
+   מדפיס את הלוגים של systemd ששמורים בjournal.
+   ps - וואלה גם זה היה כבר, נותן מידע על תהליכים
+   top - מוזמנים לקרוא שוב את שורה 93
+   df - שורה 171
+   du - 
+   אומרת כמה מקום התיקייה תופסת ועושה את זה בעזרת חישוב רקורסיבי אל תוך תת תיקיות. אחלה פקודה, קצת משחיר למממש אותה אם מכריחים אתכם להשתמש בsystem calls שכתוב בman אל תשתמשו בזה זה מיושן. חשוב להגיד שdu לא עוקב אחרי symlinks ברקורסיה שלו. 
    
 
    
@@ -226,19 +234,7 @@ VFAT -
    * How system calls bridge user-space and kernel-space
    * The role of interrupts, context switches, and scheduling
    * Real examples using tools like `strace`, `ltrace`, or `perf` to trace the flow
-   * Why this interaction pattern matters for system performance and reliability
-
-2. **How do processes and daemons work in Linux, and how do threads fit into this model?**
-
-   Explain:
-   * Processes vs daemons
-   * Process lifecycle and basic process attributes such as PID and PPID
-   * Privileges, the root user, and why permissions matter
-   * Threads and how they differ from processes
-   * Signals such as `SIGTERM`, `SIGKILL`, and `SIGHUP`
-   * How to inspect processes with `ps`, `top`, `htop`, and `pstree`
-   * How services are started and managed with `systemd` and `systemctl`
-     
+   * Why this interaction pattern matters for system performance and reliability     
 ---
 > ⚠️ The lab should be done after answering the Guide Questions
 
