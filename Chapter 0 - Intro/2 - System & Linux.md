@@ -195,9 +195,23 @@ VFAT -
    מאחורי הקלעים זה פשוט משתמש בקריאת המערכת שמורידה את הhard link הספציפי, אז אם יש עוד hard links הקובץ נשאר. 
    touch - מאפשר ליצור קובץ חדש או לעדכן את זמן הגישה האחרון לקובץ קיים
    cat - לכתוב את התוכן של קובץ ביעד
+
+
+   head - מדפיס את ה10 שורות הראשונות של קובץ, אם מדובר בכמה קבצים הוא יכתוב את השם של הקובץ לפני כל אחד
+   tail - אותו דבר אבל עם ה10 שורות האחרונות
+   grep - מחפש חוקיות בקובץ ומדפיס את השורות שמתאימות לחוקיות
+   sed - עורך טקסטים נוח, אפשר להשתמש ברגקס
+   awk -
+   מריץ תוכנית שכתובה בשפת awk שמאפשרת עיבוד טקסט וחישובים על המידע בו. 
+   sort - מדפיס את השורות לפי הסדר בקבצים שהוא מקבל, אם יש כמה אז השורות מסודרות לפי הסדר (אלפתי דיפולטית) בלי חשיבות לסדר הקבצים
+   uniq - מוחק שורות עוקבות שהן זהות בקובץ ומדפיס את התוצאה
+
+
+   
    
 
-6. **Bonus Question:** Choose a Linux topic from this chapter that interests you most, research it deeply, and explain how an application request becomes a kernel action and translates back to an application response.
+   
+7. **Bonus Question:** Choose a Linux topic from this chapter that interests you most, research it deeply, and explain how an application request becomes a kernel action and translates back to an application response.
 
    Possible topics to explore:
    * Filesystems and I/O operations
