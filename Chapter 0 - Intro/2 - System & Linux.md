@@ -283,12 +283,13 @@ A:
 
 רשימה של directories שיש בהם executables. כשמריצים פקודה אז מחפשים את הexecutable שמתאים לפקודה בdirectories האלו ומריצים אותה. 
 12. What are ACLs in filesystems?
-
+בסופו של דבר הpermissions הדיפולטיים די מקבעים אותך. סבבה יש לי group וowner, אבל ברגע שאני בחברה בחיים האמיתיים ועובד עם הרבה אנשים שונים או שפשוט יש לי המון serviceים שונים שלוגית צריכה להיות להם הרשאה שונה, אז די נדפקתי ואני מאוד מסתבך. דרך פשוטה לפתור את זה זה ACLs שנותן לעשות מיפוי הרשאות של המשתמשים על הקובץ.
 
 13. What are sudo-er files, what do they allow?
 
+מנגנון אבטחתי שדורש שמשתמשים יזדהו לפני שימוש בsudo, ואז אחרי זה בעזרת קריאה מהקובץ sudoers ניתן לבדוק אם יש להם הרשאות לפקודה הזו שהם רוצים להריץ עם sudo.
 14. What is VM-SwapINS?
-
+העברת מידע מהswap space לזיכרון. 
 
 6. **Bonus Question:** Choose a Linux topic from this chapter that interests you most, research it deeply, and explain how an application request becomes a kernel action and translates back to an application response.
 
