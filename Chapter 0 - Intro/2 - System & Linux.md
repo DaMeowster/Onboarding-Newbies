@@ -231,6 +231,9 @@ yum -
 די אותו רעיון אבל להפצות מבוססות Red hat.
 dnf - 
 היום כשמשתמשים בyum זה פשוט מקשר את זה לdnf. בגדול זה yum שהוסיפו כלים חדשים ושינו קצת דברים, אבל המטרה זהה. לרוב dnf יותר יעיל. 
+
+
+
 <img width="412" height="496" alt="image" src="https://github.com/user-attachments/assets/57beddad-a512-4925-bd1d-5f8957addebb" />
 
 
