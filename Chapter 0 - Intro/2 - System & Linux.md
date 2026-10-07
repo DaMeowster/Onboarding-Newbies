@@ -184,6 +184,19 @@ VFAT -
    * Basic shell concepts such as piping, redirection, environment variables, and simple scripting
    * Text editing basics: compare `vim` and `nano`, including when to use each one
 
+
+   ls - מראה מידע על הקבצים בתיקייה, אפשר להשתמש בדגלים שיראה תיקיות בתיקייה
+   cd - להחליף את תיקיית העבודה בתיקייה אחרת
+   pwd - לקבל את המסלול של תיקיית העבודה
+   mkdir - ליצור תיקיות
+   cp - להעתיק קבצים או תיקיות ולשמור אותן ביעד
+   mv - מזיז או משנה את השם של קובץ/תיקייה
+   rm - מוחקת קובץ או תיקייה
+   מאחורי הקלעים זה פשוט משתמש בקריאת המערכת שמורידה את הhard link הספציפי, אז אם יש עוד hard links הקובץ נשאר. 
+   touch - מאפשר ליצור קובץ חדש או לעדכן את זמן הגישה האחרון לקובץ קיים
+   cat - לכתוב את התוכן של קובץ ביעד
+   
+
 6. **Bonus Question:** Choose a Linux topic from this chapter that interests you most, research it deeply, and explain how an application request becomes a kernel action and translates back to an application response.
 
    Possible topics to explore:
