@@ -247,24 +247,37 @@ environmental variables - משתנים ששומרים מידע שמשומש על
 ### Skila Questions
 
 1. What is the idea behind runlevels?
+A:
+רמות שונות שקובעות איזה תהליכים יכולים לרוץ בכל רמה. יש רמות שבהם המשתמשים רצים, יש רמות שעדיף לסרברים לרוץ בהם כדי לחסוך משאבים. והכי חשוב, יש רמה שמאוד עוזרת בלתקן בעיות מהותיות במערכת.
 
 2. What is sh?
+הsh הוא shell שפותח בשנות השבעים שפותח לUnix 7. כיום כל קובץ sh ירוץ תחת bash בגלל שהקומפטביליות לסטנדרט נשארה. טכנית sh היא לא ממש שפת תכנות עצמה, אלא bash ועוד shellים אחרים הם מימוש שלה, אבל כשמדברים על sh כן חושבים על זה גם כשפות השונות. 
 
 3. What's the difference between du and df?
 
+
+
 4. What is locate?
+פקודה שמוצאת קובץ בfilesystem ומחפשת בעזרת DB שמנוהל. מצד אחד הפקודה הרבה יותר מהירה מfind, מצד שני צריך לנהל את הDB ולוודא שהוא עדכני.
 
 5. How do you search for a process by name?
 
+אפשר להשתמש בפקודה pidof שתתן לנו את הPID של התהליך בעזרת השם.
 6. Can you have different filesystems under the same directory?
+כן, יכול להיות לי directory שיש בו שני directories בלבד ובכל אחד מהן יש mount לfilesystem שונה.
 
 7. What are attributes of files?
+מתארים שאפשר לתת למסמך. read-only, hidden, system, directory, archive. דברים שמערכת ההפעלה ותוכנות צריכות לדעת על הקובץ כדי לדעת איך לעבוד איתו אם בכלל.
 
 8. What is bindmount?
 
+פעולה שממש עושה mount לdirectory לdirectory אחר. ומעכשיו כל הmountים על הdirectories יהיו זהים. כל התוכן שהיה לפני כן בdirectory יעד בפעולה הולך לאיבוד.
+
 9. What is lsblk in context of mounting?
 
+פקודה שנותנת מידע על block devices, אפשר גם כאלו רק זמינים. זה מאפשר לנו לראות מכשירים עם mount points ולקבל עוד מידע על מערכת הקבצים ואיך המכשירים מתבטאים בה.
 10. What is NFS?
+
 
 11. What is the ENV VAR named PATH?
 
