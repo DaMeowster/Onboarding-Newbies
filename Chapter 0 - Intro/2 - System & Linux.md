@@ -235,6 +235,10 @@ dnf -
 
 
 
+כשמשתמשים בpiping זה כדי להעביר פלט אל תוכנה, כשמשתמשים בredirection זה כדי להעביר פלט אל תוך קובץ. 
+environmental variables - משתנים ששומרים מידע שמשומש על ידי תוכנה או כמה תוכנות. ככה תוכנות יכולות לחלוק מידע בלי הצורך לכתוב אחד לשני או להשתמש ברכיב אמצע
+אפשר להשתמש בפקודות bash האלו כדי לכתוב בshell פקודות יותר מסובכות ולשרשר אותן. אפשר גם לכתוב בקלות קוד bash ולהריץ אותו בshell, בעיקר נוח לכתיבת טסטים ולPOCים.
+
 7. **Bonus Question:** Choose a Linux topic from this chapter that interests you most, research it deeply, and explain how an application request becomes a kernel action and translates back to an application response.
 
    Possible topics to explore:
