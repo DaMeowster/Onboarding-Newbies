@@ -244,8 +244,35 @@ environmental variables - משתנים ששומרים מידע שמשומש על
 
 גם vim וגם nano הם כלים לעריכת קבצי טקסט. היתרון של nano זה שהוא קל יותר במשקלו והוא יותר פשוט ונוח לעריכות קטנות פשוטות ומהירות. מצד שני, לvim יש הרבה יותר פיצ'רים ויכולות, אבל יותר קשה להכנס אליו כמתחיל. 
 
+### Skila Questions
 
+1. What is the idea behind runlevels?
 
+2. What is sh?
+
+3. What's the difference between du and df?
+
+4. What is locate?
+
+5. How do you search for a process by name?
+
+6. Can you have different filesystems under the same directory?
+
+7. What are attributes of files?
+
+8. What is bindmount?
+
+9. What is lsblk in context of mounting?
+
+10. What is NFS?
+
+11. What is the ENV VAR named PATH?
+
+12. What are ACLs in filesystems?
+
+13. What are sudo-er files, what do they allow?
+
+14. What is VM-SwapINS?
 
 
 6. **Bonus Question:** Choose a Linux topic from this chapter that interests you most, research it deeply, and explain how an application request becomes a kernel action and translates back to an application response.
