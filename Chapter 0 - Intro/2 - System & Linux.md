@@ -239,7 +239,13 @@ dnf -
 environmental variables - משתנים ששומרים מידע שמשומש על ידי תוכנה או כמה תוכנות. ככה תוכנות יכולות לחלוק מידע בלי הצורך לכתוב אחד לשני או להשתמש ברכיב אמצע
 אפשר להשתמש בפקודות bash האלו כדי לכתוב בshell פקודות יותר מסובכות ולשרשר אותן. אפשר גם לכתוב בקלות קוד bash ולהריץ אותו בshell, בעיקר נוח לכתיבת טסטים ולPOCים.
 
-7. **Bonus Question:** Choose a Linux topic from this chapter that interests you most, research it deeply, and explain how an application request becomes a kernel action and translates back to an application response.
+גם vim וגם nano הם כלים לעריכת קבצי טקסט. היתרון של nano זה שהוא קל יותר במשקלו והוא יותר פשוט ונוח לעריכות קטנות פשוטות ומהירות. מצד שני, לvim יש הרבה יותר פיצ'רים ויכולות, אבל יותר קשה להכנס אליו כמתחיל. 
+
+
+
+
+
+6. **Bonus Question:** Choose a Linux topic from this chapter that interests you most, research it deeply, and explain how an application request becomes a kernel action and translates back to an application response.
 
    Possible topics to explore:
    * Filesystems and I/O operations
