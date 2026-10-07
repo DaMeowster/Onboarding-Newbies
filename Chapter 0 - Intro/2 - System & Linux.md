@@ -1,4 +1,4 @@
-MAMAS EMPIRE
+<img width="892" height="120" alt="image" src="https://github.com/user-attachments/assets/0580d1a0-6beb-4350-996b-3a65e93f8fd9" />MAMAS EMPIRE
 # Linux & Infrastructure Foundations 💻💾
 
 Linux is the foundation of modern infrastructure, servers, cloud platforms, containers, and distributed systems.
@@ -225,6 +225,14 @@ rsync - מסנכרת קבצים בין שני המחשבים המרוחקים, �
 יש גם הרבה פיצ'רים שמאפטמים עוד יותר כמו כיווץ לפני התקשורת הרשתית.
 curl -
 נותן להעביר מידע לסרבר או לקבל מידע ממנו, עובד עם URLים ותומך בפרוטוקולים כמו HTTPS, SCP, LDAP ועוד. השימוש העיקרי של זה הוא בתוך קוד, ככה אפשר להוריד קבצים בתוך script אוטומטית.
+
+apt - תוכנה אינטרקטיבית שמאפשרת התקנה עדכון או מחיקה של ספריות. מתאים להפצות מבוססות דביאן
+yum - 
+די אותו רעיון אבל להפצות מבוססות Red hat.
+dnf - 
+היום כשמשתמשים בyum זה פשוט מקשר את זה לdnf. בגדול זה yum שהוסיפו כלים חדשים ושינו קצת דברים, אבל המטרה זהה. לרוב dnf יותר יעיל. 
+<img width="412" height="496" alt="image" src="https://github.com/user-attachments/assets/57beddad-a512-4925-bd1d-5f8957addebb" />
+
 
 
 7. **Bonus Question:** Choose a Linux topic from this chapter that interests you most, research it deeply, and explain how an application request becomes a kernel action and translates back to an application response.
