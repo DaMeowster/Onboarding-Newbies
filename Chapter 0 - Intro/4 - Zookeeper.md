@@ -31,6 +31,8 @@ Zookeeper Core Concepts:
 
 1. **What is Zookeeper, and how does its architecture organized?**  
 תוכנת zookeeper היא תוכנה לסינכרון בין מערכות מבוזרות. היא מאפשרת fault tolerance ומהווה חלק משמעותי מHbase. הארכיטקטורה מסודרת בצורה הבאה:
+יש לנו את האפליקציה שלנו וכל לקוח מתחבר ללקוח zookeeper שמאפשר לו לדבר עם שרתי הzookeeper. אם zookeeper בשרת אחת ולא מבוזר אז יש לנו point of failure מאוד גדול לכן לרוב יש ביזור. האוסף ביחד נקרא zookeeper ensemble. כחלק מהביזור יש גם רפלקציה של המידע בשביל fault tolerance, ואם עכשיו לקוח יבקש לכתוב משהו לznode וירצה fault tolerance של עותק נוסף בשרת אחר, אז הוא יקבל קונפירמציה שהכתיבה נעשתה רק אחרי שבאמת נעשו כל הכתיבות, כולל העותקים הנוספים באופן מבוזר.
+
 
 2. **How does Zookeeper handle consistency and notifications?**  
    Explain:
