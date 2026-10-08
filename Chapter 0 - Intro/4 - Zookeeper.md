@@ -30,6 +30,7 @@ Zookeeper Core Concepts:
 ### ❓ Guide Questions
 
 1. **What is Zookeeper, and how does its architecture organized?**  
+תוכנת zookeeper היא תוכנה לסינכרון בין מערכות מבוזרות. היא מאפשרת fault tolerance ומהווה חלק משמעותי מHbase. הארכיטקטורה מסודרת בצורה הבאה:
 
 2. **How does Zookeeper handle consistency and notifications?**  
    Explain:
@@ -40,6 +41,7 @@ Zookeeper Core Concepts:
 
 3. **What are Znodes and what types of Znodes exists?**
 
+הznodes הם האיברים בעץ הzookeeper. הם מכילים מידע ומנהלים stat שמכיל מידע תאורטי כגון גרסת המידע מבחינת שינויים עם פרטים על הזמנים. יש שני סוגים של znodes. יש persistent znodes שנשארים שמורים עד שמוחקים אותם באופן מפורש ויש ephemeral znodes שנמחקים אם הלקוח שיצר אותם מאבד חיבור עם הzookeeper.
 4. **What are sessions, and how does Zookeeper handle failures and node lifecycle?**  
    Explain:
    - Session lifecycle  
