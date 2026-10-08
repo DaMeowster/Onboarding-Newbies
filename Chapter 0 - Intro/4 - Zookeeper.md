@@ -40,9 +40,8 @@ Zookeeper Core Concepts:
    - Watches  
    - One-time triggers  
    - How clients use watches
-Zookeeper handles consistency and notifications in a smart matter. Regarding notifications, a client can register for notifications on a znode using 'watches'. This saves the client from continuously asking about the znode and checking its state.
-Zookeeper promises sequential consistency, meaning, if a client does actions in some order the orders will be applied by that order. 
-When using watches in zookeeper in general, they are one time triggers. Meaning you will get notified, but then the watch ends. To get a notification in the future you must apply it again. 
+
+התוכנה zookeeper מטפלת בעקביות ובהתרעות בצורה חכמה. בנוגע להתרעות, יכול להרשם להתרעות על znode בעזרת watches. זה חוסך ללקוח את העבודה של כל הזמן לבדוק את הznode ואת המצב שלו. zookeeper מבטיח sequential consistency, שזה אומר שאם לקוח מבקש לעשות פעולות בסדר כלשהו אז הן יקרו בסדר הזה. כשמשתמשים בשעונים בzookeeper בכלליות חשוב לזכור שהם one time triggers, יעני ברגע שהשעון פועל ומתקבלת התרעה, אז זהו, לא יהיו עוד התרעות. אם מעוניינים בלקבל התרעות על עוד שינויים צריך לשים שעון חדש. כן יש חסרונות שבגלל התקורה הזו יכולים לפספס דברים שנרצה לקבל עליהם התרעות בזמן הזה.
 
 3. **What are Znodes and what types of Znodes exists?**
 
