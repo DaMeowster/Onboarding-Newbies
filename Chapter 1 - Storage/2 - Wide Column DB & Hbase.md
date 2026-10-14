@@ -55,6 +55,10 @@ Answer these five questions to cover HBase’s major areas:
 1. **Architecture & Data Model:**  
    Describe the overall architecture of Apache HBase, including tables, rows keyed by row key, column families, region servers, regions, and the storage format (HFile). How do these elements differ from a traditional relational database, and why is schema design driven by access patterns?
 
+A:
+
+בHbase יש לנו טבלאות שמורכבות מעמודות ושורות. שורות מאונדקסות לפי הrow key, עמודות מאוחדות ביחד כcolumn families. אוסף עמודות שמתארים איברים דומים ושמורים באותו אזור במערכת הקבצים. טבלאות מחולקות לregions, אוסף שורות רציפות מהטבלה. אם טבלה ממש גדולה אז אנחנו לא נרצה שכל הregions ירוצו על אותו שרת ולכן הם מבוזרים ורצים על region servers שונים. HFile הוא פורמט הקובץ שHbase משתמשת בו על מנת לשמור את המידע באחסון. ההבדל הוא שבDB רלציוני רגיל אנחנו עובדים לפי שורות ועמודות בצורה קבועה וכאן יש בחירה של איזה עמודות נמצאים בכל שורה ויכולים להיות שינויים, זה מתאים לדפוסי גישה כי ככה אנחנו אם יש מידע שמעניין אותנו פר שורה אנחנו יכולים לשמור רק אותו ולעבור עליו וגם להתאים את הcolumn families שלנו בהתאם לסוגי הגישות הרלוונטיות שאנחנו יודעים שיהיו לנו. אחרת היינו צריכים לעבור על הכל שורה שורה שהיה לוקח יותר זמן, וגם היינו שומרים מידע שלא לצורך אולי כblank. 
+
 2. **Components & Storage Flow:**  
    Explain the roles of RegionServers, Regions, MemStore, HFiles, block cache, and the Write-Ahead Log (WAL). How does data flow from a client write to durable storage, and how are reads served from memory and disk structures? Understand what is the actual role of each component and its purpose. In addition, understand the formats of these components.
 
