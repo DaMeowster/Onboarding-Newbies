@@ -32,6 +32,10 @@ Answer these questions to understand the fundamentals of wide-column databases b
 
 1. **Data Model & Structure:**  
    What is a wide-column database, and how does its data model work? Explain the concepts of rows, column families, and flexible schemas. How does this model differ from traditional relational databases and key-value stores?
+A:
+בwide column database יש לנו טבלאות של שורות ועמודות כך שבכל שורה יכולות להיות לי עמודות שונות בניגוד לrelational databases שזה קבוע באותה שורה. אוסף של עמודות ביחד יכולים להשמר כcolumn family, שנשמרים ביחד פיזית בדיסק. כפי שאמרנו העמודות בכל שורה יכולות להשתנות באותה טבלה ולכן אין סכמה קבועה של איך שורה נראית, מה שמאפשר יותר גמישות בסכמה בניגוד לrelational databases שבכל שורה יש את אותן עמודות בטבלה. 
+
+
 
 2. **Use Cases & Motivation:**  
    Why do wide-column databases exist? In what scenarios are they most useful (for example: large-scale datasets, time-series data, sparse data, or systems requiring high write throughput)?
