@@ -61,6 +61,9 @@ A:
 
 2. **Components & Storage Flow:**  
    Explain the roles of RegionServers, Regions, MemStore, HFiles, block cache, and the Write-Ahead Log (WAL). How does data flow from a client write to durable storage, and how are reads served from memory and disk structures? Understand what is the actual role of each component and its purpose. In addition, understand the formats of these components.
+A:
+המטרה של region servers היא להיות אחראים על הregions שנתנו להם ולהיות אחראים על פעולות הקריאה והכתיבה לregions. כשיש כתיבות הן בהתחלה מגיעות לWAL ומתווספות לסופו. זה הכל בדיסק, אבל בגלל שהכתיבה היא סדרתית ולא דורסנית זה יחסית מהיר. ככה שאם בשלבים הבאים תהיה קריסה כשהמידע בזיכרון, יהיה ניתן לחלץ אותו מאיפשהו. כעת המידע נשמר בMemstore,
+בזיכרון. כשהMemStore מתמלא הוא עובר לדיסק כHfile שאינו ניתן לשינוי. בזכותו ניתן לגשת למידע שרק כרגע נכתב בלי הצורך להתעסק עם הדיסק. ניתן לשמור חלק מהבלוקים שניגשים אליהם הרבה (בלוקים "חמים") בזיכרון, באזור שנקרא הblock cache. 
 
 3. **Performance & Maintenance:**  
    What are minor and major compactions, MOB storage, Bloom filters, and caching? How do they affect read/write latency, storage efficiency, and amplification? Discuss the importance of row-key design and hotspot avoidance.
