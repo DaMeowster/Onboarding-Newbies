@@ -39,6 +39,9 @@ A:
 
 2. **Use Cases & Motivation:**  
    Why do wide-column databases exist? In what scenarios are they most useful (for example: large-scale datasets, time-series data, sparse data, or systems requiring high write throughput)?
+A:
+הסיבה שwide column databases קיימים זה מקרים שבהם שמירת המידע בצורה הזו יכולה להיות טובה יותר. לדוגמה, אם יש לנו מידע שכל שורה נותנת מידע על משתמש כלשהו ונוח לשמור את זה ככה, אבל לכל משתמש רלוונטי רק מספר כלשהו של פרמטרים מתוך רשימה ארוכה, אין טעם שנשמור בכל שורה את הפרטים של המשתמש בכל פרמטר אם לא נצטרך אותם, ובמקום להשאיר את האזורים האלו ריקים הרבה יותר אופטימלי שמלכתחילה יהיה משוייך רק את הדברים הרלוונטים. אז דוגמה אמיתית בה זה יכול להיות טוב זה שמירת metadata דינאמית. גם אם יש לי מערכת עם המון כתיבות עדיף לי להשתמש בwide column database כי זה יותר אופטימלי כי בrelational database המבנה ההיררכי של הb trees מגביל אותי. 
+
 
 3. **Distributed Design:**  
    How do wide-column databases distribute data across clusters? Explain concepts such as partitioning, replication, and horizontal scalability.
