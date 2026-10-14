@@ -68,6 +68,11 @@ A:
 
 3. **Performance & Maintenance:**  
    What are minor and major compactions, MOB storage, Bloom filters, and caching? How do they affect read/write latency, storage efficiency, and amplification? Discuss the importance of row-key design and hotspot avoidance.
+A:
+כפי שהסברנו יש את הקונספט של compactions. כשמדובר על minor compaction הכוונה לאיחוד כמה Hfiles לHfile. בmajor compaction זה דומה אבל אותם column families נשמרים ביחד בקובץ החדש וכל הcells שסומנו כdeleted נמחקים. 
+
+
+
 
 4. **Fault Tolerance & Coordination:**  
    How does HBase use WAL replay, region reassignment, and coordination via ZooKeeper to handle failures and maintain availability? What happens when a RegionServer crashes?
