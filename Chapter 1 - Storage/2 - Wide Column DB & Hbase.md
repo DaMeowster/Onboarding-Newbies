@@ -45,6 +45,10 @@ A:
 
 3. **Distributed Design:**  
    How do wide-column databases distribute data across clusters? Explain concepts such as partitioning, replication, and horizontal scalability.
+A:
+
+
+
 
 ---
 
@@ -79,7 +83,8 @@ A:
 
 5. **Scalability & Operations:**  
    Discuss how HBase scales horizontally through region splitting and balancing, how it relies on HDFS for durability, and what administrative actions (snapshots, backups, schema changes, recovery) operators perform in production environments.
-
+A:
+בזכות region splitting ואיזון hbase מסוגל לhorizontal scaling, המידע מתפצל לעוד regions שמחולקים לregion servers שונים וככל שיש יותר מידע יש יותר פיצולים ויותר שרתים. בזכות שHDFS נחשב מאוד סולידי לשמירת מידע ומבצע גיבויים רבים hbase מסתמך על שרידות המידע אצלו על מנת לתפקד. ניתן לבצע snapshot על טבלה, שזה תמונת מצב של הטבלה, כולל המידע בה והmetadata. ניתן לחזור לsnapshotים שנוצרו. חשוב להגיד שמבחינת מידע, כשיוצרים snapshot וחוזרים אליו אין צורך להעתיק מידע, כי כל המידע במצב הנוכחי כבר שמור או בתהליך של שמירה בHDFS באופן שלא ניתן לדריסה. לרוב עושים flush לדיסק כדי שלא נאבד את מה שעדיין לא בHDFS ובזיכרון, אבל אפשר גם בלי אם לא דחוף לנו מה שבזיכרון. ניתן לבצע גם backup שבו מכבים את כל הcluster. בנוגע לschema changes, הHmaster אחראי על כך, כשיש שינויים כאלו, אז הם מתבטאים כשיש major compaction מבחינת המידע שנשמר כבר, המידע נבנה מחדש בהתאם לכך.
 ### 🔄 Alternatives
 Assignment: You are required to research and write a comparative analysis between HBase and an industry alternative.
 - Deliverable: A written summary (minimum 1 or 2 sentences).
