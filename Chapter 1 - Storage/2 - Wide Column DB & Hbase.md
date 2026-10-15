@@ -74,6 +74,8 @@ A:
 
 4. **Fault Tolerance & Coordination:**  
    How does HBase use WAL replay, region reassignment, and coordination via ZooKeeper to handle failures and maintain availability? What happens when a RegionServer crashes?
+A:
+אם יש לנו קריסה, אז אפשר להשתמש בWAL replay בכדי לראות מה הפעולות שהיו צריכות להתבצע וקרסו ולבצע אותן. אם region server קורס, zookeeper יזהה את כי יפסיק לקבל את הheartbeats שלו. הHMaster יקבל התרעה שהregion server נפל, ויתן את האחריות על הregions שלו לregion servers אחרים. עכשיו יש שאלה, איך נשיג את המידע שהיה בmemstore שעדיין לא היה בדיסק וכביכול נדיף והלך לאיבוד. אז הוא לא הלך לאיבוד, בזכות הWAL. הוא מחלק את הWAL של הregion server שקרס בין הregion servers החדשים בהתאם למה שהם קיבלו, ואז הם יוכלו לעשות לו replay. ואז אתם אומרים, מה אם Hmaster נופל? אז יש עוד כמה ממתינים שיחליפו אותו כי הzookeeper יזהה שהוא נפל, וזה לא הכי בעייתי שיש קצת downtime כי הלקוחות מתקשרים ישירות עם הregion servers.
 
 5. **Scalability & Operations:**  
    Discuss how HBase scales horizontally through region splitting and balancing, how it relies on HDFS for durability, and what administrative actions (snapshots, backups, schema changes, recovery) operators perform in production environments.
