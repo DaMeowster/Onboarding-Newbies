@@ -69,9 +69,7 @@ A:
 3. **Performance & Maintenance:**  
    What are minor and major compactions, MOB storage, Bloom filters, and caching? How do they affect read/write latency, storage efficiency, and amplification? Discuss the importance of row-key design and hotspot avoidance.
 A:
-כפי שהסברנו יש את הקונספט של compactions. כשמדובר על minor compaction הכוונה לאיחוד כמה Hfiles לHfile. בmajor compaction זה דומה אבל אותם column families נשמרים ביחד בקובץ החדש וכל הcells שסומנו כdeleted נמחקים. 
-
-
+כפי שהסברנו יש את הקונספט של compactions. כשמדובר על minor compaction הכוונה לאיחוד כמה Hfiles לHfile. בmajor compaction זה דומה אבל אותם column families נשמרים ביחד בקובץ החדש וכל הcells שסומנו כdeleted נמחקים. ברגע שקובץ הוא מעל 100KB, זה כבר דיפולטית לא מתאים לאפטום הרגיל של hbase. קבצים שגדולים מכך, שנקראים medium sized objects, או MOBS, פוגעים בביצועים. הוסיפו דרך ספציפית אל תוך Hbase 2 שיודעת להתמודד יותר טוב עם MOBs, צריך להשתמש בHFile בגרסה 3, ניתן לקנפג עמודות ספציפיות שיחזיקו מידע MOB. מבחינת המשתמש הוא לא יודע על זה, הכל שקוף עבורו. הרעיון של bloom filters הוא הסתברותי, כל פעם שמוסיפים key אנחנו מדליקים את הביטים שיוצאים מההאשים עליו. זה חוסך לנו משמעותית זמן בדיקה, כי במקום להכנס לכל Hfile בקריאה בחיפוש, אני בודק בעזרת הbloom filter כמה ביטים דלוקים מאלו של הkey על ההאשים. אם חלק לא דלוקים ברור שהוא לא שם, אחרת כן נבדוק. כמו שאמרנו caching מאפשר לנו לשמור בלוקים בזיכרון הנדיף למקרה שניגשים אליהם הרבה, כל הדברים האלו חוסכים משמעותית ומשפרים את הביצועים של קריאה וכתיבה, לוקחים בעיות שנוצרות באופן טבעי מהארכיטקטורה הכללית של Hbase ומוצאים להן פתרונות. הכוונה בhotspot זה שקריאות וכתיבות הן ממוקדות מאוד על region ספציפי, זה כמובן לא דבר טוב כי זה הופך את הregionserver הרלוונטי לbottleneck. יש כמה דרכים לזיהוי, לבדוק מי מקבל הכי הרבה בקשות לדוגמה, ויש דרכים שונות לחלק את הregions על מנת לפתור זאת. 
 
 
 4. **Fault Tolerance & Coordination:**  
