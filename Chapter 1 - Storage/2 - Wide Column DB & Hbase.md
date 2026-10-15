@@ -85,6 +85,60 @@ A:
    Discuss how HBase scales horizontally through region splitting and balancing, how it relies on HDFS for durability, and what administrative actions (snapshots, backups, schema changes, recovery) operators perform in production environments.
 A:
 בזכות region splitting ואיזון hbase מסוגל לhorizontal scaling, המידע מתפצל לעוד regions שמחולקים לregion servers שונים וככל שיש יותר מידע יש יותר פיצולים ויותר שרתים. בזכות שHDFS נחשב מאוד סולידי לשמירת מידע ומבצע גיבויים רבים hbase מסתמך על שרידות המידע אצלו על מנת לתפקד. ניתן לבצע snapshot על טבלה, שזה תמונת מצב של הטבלה, כולל המידע בה והmetadata. ניתן לחזור לsnapshotים שנוצרו. חשוב להגיד שמבחינת מידע, כשיוצרים snapshot וחוזרים אליו אין צורך להעתיק מידע, כי כל המידע במצב הנוכחי כבר שמור או בתהליך של שמירה בHDFS באופן שלא ניתן לדריסה. לרוב עושים flush לדיסק כדי שלא נאבד את מה שעדיין לא בHDFS ובזיכרון, אבל אפשר גם בלי אם לא דחוף לנו מה שבזיכרון. ניתן לבצע גם backup שבו מכבים את כל הcluster. בנוגע לschema changes, הHmaster אחראי על כך, כשיש שינויים כאלו, אז הם מתבטאים כשיש major compaction מבחינת המידע שנשמר כבר, המידע נבנה מחדש בהתאם לכך.
+
+### Skila Questions
+
+1. What is the order of rows in hbase or bigtable?
+
+2. What are the data types in hbase, row keys and more. Who enforces the schema?
+
+3. What has several tables together in hbase, logical thing the client sees.
+
+4. How do you know what's the most updated version of a cell, or another specific version of the cell if they're in the same hfile.
+
+5. What is stored in the cell except the data itself? What metadata is stored? Related to the last question
+
+6. Are there heartbeats in Hbase from the region servers and how does the Hmaster know a region server fell? Through zookeeper or the region server itself?
+
+7. What are snapshots in hbase? How do they compare to snapshots in hdfs?
+
+8. What is a meta table. Hbase::meta.
+
+9. How does a client know which regionserver it should talk to for the specific cell or cells? What is Connection:Registry/
+
+10. In read, do you check the block cache first or the memstore? *I think cache unless NO_FLUSH cause race condition.
+
+11. What triggers minor and major compaction?
+
+12. What are their results? Is minor compaction on only 2 files or more? What does major do that is more? Can you store several versions back with major?
+
+13. On what can you apply TTLs except cells?
+
+14. What is data locality and how do you earn and lose it, in Hbase?
+
+15. In which protocols and ways do you talk to Hbase as a client?
+
+16. What is region in transition?
+
+17. How is a region split done? Who triggers it?
+
+18. What is HStore?
+
+19. What does it mean column families are stored closely in the disk? Same datanode in HDFS?
+
+20. What is the cost of adding column families? What's the max amount?
+
+21. Same thing about column qualifiers, adding columns to a column family.
+
+22. Can you dynamically add columns to a column family?
+
+23. How is the optimization of MOB done?
+
+24. Is HBase a DB?
+
+
+
+
 ### 🔄 Alternatives
 Assignment: You are required to research and write a comparative analysis between HBase and an industry alternative.
 - Deliverable: A written summary (minimum 1 or 2 sentences).
