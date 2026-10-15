@@ -46,7 +46,7 @@ A:
 3. **Distributed Design:**  
    How do wide-column databases distribute data across clusters? Explain concepts such as partitioning, replication, and horizontal scalability.
 A:
-
+חלוקה זה לחלק את המידע לחלקים שונים, תתי חלקים של המידע המקורי. את המידע גם חשוב לשכפל כדי שלא ילך לאיבוד למקרה שנאבד עותק שלו. מעבר לכך, אנחנו מבזרים את המידע על שרתים שונים כך שמבחינת ביצועים העומס מתחלק בין שרתים שונים ואין bottleneck וגם אם שרת אחד נופל אז שרת אחר יכול לקחת את האחריות שלו. זה בדיוק הרעיון של horizontal scalability, להוסיף עוד nodes. 
 
 
 
