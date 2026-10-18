@@ -98,19 +98,20 @@ A:
 מה שמאחד כמה טבלאות יחדיו הוא namespace. 
 
 4. How do you know what's the most updated version of a cell, or another specific version of the cell if they're in the same hfile.
-
+אפשר בעזרת הtimestamp ששמור בcell. 
 
 5. What is stored in the cell except the data itself? What metadata is stored? Related to the last question
+בcell שמור בנוסף למידע גם את הrow key, column family, column qualifier, timestamp.
 
 6. Are there heartbeats in Hbase from the region servers and how does the Hmaster know a region server fell? Through zookeeper or the region server itself?
 
 7. What are snapshots in hbase? How do they compare to snapshots in hdfs?
 
-8. What is a meta table. Hbase::meta.
+8. What is a meta table. Hbase::meta?
+טבלה ששומרת רשימה של כל הregions במערכת, המיקום שלה שמור בZookeeper. 
 
-9. How does a client know which regionserver it should talk to for the specific cell or cells? What is Connection:Registry/
-A:
-
+9. How does a client know which regionserver it should talk to for the specific cell or cells? What is Connection:Registry?
+הלקוח פונה לZookeeper ואז פונה לmeta table ושם מגלה מה הregion והregionserver הרלוונטים, ואז פונה לregionserver ישירות. הלקוח שומר אצלו בcache את המידע על לפנות לregionserver ואת הregion על מנת שלא יצטרך לעשות את זה בכל פנייה מעכשיו. 
 
 10. In read, do you check the block cache first or the memstore? *I think cache unless NO_FLUSH cause race condition.
 
