@@ -128,20 +128,26 @@ A:
 
 אפשר לשים TTLs גם על שורות וsnapshotים. נראה שכן הוסיפו את האופציה לעשות TTL על column ב2008. 
 14. What is data locality and how do you earn and lose it, in Hbase?
+המונח data locality מתאר את כך שהמידע קרוב לאיפה שצריכים אותו. יכול להיות שיש לנו data locality כשהdatanode של הregion שלנו היה מאוד קרוב לregion server, אבל איבדנו אותו עכשיו כשהregion server נפל והregion עבר לregion server אחר שיותר מרוחק ממנו. 
 
 15. In which protocols and ways do you talk to Hbase as a client?
-
+פרוטוקול RPC וprotocol buffers. יש גם שכבת הצפנת TLS בתקשורת. יש גם API שניתן להשתמש בו. ניתן לפנות באופן אסינכרוני החל מגרסה 2. 
 16. What is region in transition?
-
+בעיה שקוראת בזמן הפיצול של הregion שהפעולה נכשלת והregions נשארים במצב של מעבר מה שלא אפשר פעולות על הregion.
 17. How is a region split done? Who triggers it?
+אפשר לקנפג שאם region מגיע לגודל כלשהו זה מתבצע אוטומטי, ניתן לעשות split לregion באופן ידני. מבחינת איך הsplit עצמו מתבצע, גם את זה ניתן לקנפג או לעשות בצורה ידנית. 
 
 18. What is HStore?
+הmemstore ואוסף כלשהו של Hfiles שמחזיקים column family של region. 
 
 19. What does it mean column families are stored closely in the disk? Same datanode in HDFS?
+זה אומר שהמידע של כולם נשמר באותו הHfile. 
 
 20. What is the cost of adding column families? What's the max amount?
-
+יש כמה הגבלות:
+מבחינת קבצים בHDFS, לכל column family יש תיקייה בHDFS עם קבצים כלשהם, לכן יש גבול מבחינת קבצי HDFS. מבחינת ביצועים, זה לא הכי אידיאלי, יש סיבה לאיך שמשתמשים בcolumn families לאימפטום קריאות וכתיבות ואם נשתמש בהן באופן מופרז זה יאבד את היתרון.
 21. Same thing about column qualifiers, adding columns to a column family.
+גם פה אין ממש הגבלה, מעבר לאחת החומרתית. כמובן שכן יש לכך חסרונות, מבחינת העובדה שהמקום בMemstore שמוקצה לcolumn family יתמלא מאוד מהר. 
 
 22. Can you dynamically add columns to a column family?
 כן, כל עוד המשפחה כבר קיימת בטבלה, ניתן להוסיף אליה עמודות חדשות. 
