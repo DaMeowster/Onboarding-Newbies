@@ -104,9 +104,10 @@ A:
 בcell שמור בנוסף למידע גם את הrow key, column family, column qualifier, timestamp.
 
 6. Are there heartbeats in Hbase from the region servers and how does the Hmaster know a region server fell? Through zookeeper or the region server itself?
-
+זה מתבצע דרך הzookeeper, ששולח heartbeats לregion server.
 7. What are snapshots in hbase? How do they compare to snapshots in hdfs?
 
+בhbase הsnapshot מאפשר לנו לקחת תמונת מצב של הטבלה ברגע מסוים. לאחר מכן, ניתן לטעון את תמונת המצב הזו. בhdfs זה יותר ברמה הנמוכה של הfilesystem עצמו ומאפשר להשוות שניים שונים באופן גולמי. בhbase יש לנו פעולות מעל כמו האפשרות לטעון snapshot שהוא כביכול read only בhdfs לטבלה חדשה. כמובן שזה בסדר בhbase כי הכתיבות מעל יהיו לHfiles שונים בעת כתיבה, ואנחנו לא דורסים מידע.
 8. What is a meta table. Hbase::meta?
 טבלה ששומרת רשימה של כל הregions במערכת, המיקום שלה שמור בZookeeper. 
 
@@ -114,8 +115,10 @@ A:
 הלקוח פונה לZookeeper ואז פונה לmeta table ושם מגלה מה הregion והregionserver הרלוונטים, ואז פונה לregionserver ישירות. הלקוח שומר אצלו בcache את המידע על לפנות לregionserver ואת הregion על מנת שלא יצטרך לעשות את זה בכל פנייה מעכשיו. 
 
 10. In read, do you check the block cache first or the memstore? *I think cache unless NO_FLUSH cause race condition.
+הבדיקה היא בmemstore לפני הcache, כדי להבטיח שהשינויים הכי עדכניים באמת ישפיעו בקריאה.
 
 11. What triggers minor and major compaction?
+
 
 12. What are their results? Is minor compaction on only 2 files or more? What does major do that is more? Can you store several versions back with major?
 
