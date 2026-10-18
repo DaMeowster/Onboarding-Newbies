@@ -160,6 +160,46 @@ A:
 יש לי טבלאות עם מידע שמסודר בהן. אם תשאל את האחראים על HBase הם יגידו שכן. 
 
 
+### 2nd Skila Questions
+
+
+1. Is there data enforcement in read or write?
+
+2. How do namespaces work?
+
+3. What can you replace zookeeper with to find the meta table?
+
+4. How do snapshots in HBase store the data?
+
+5. How does LRU algorithm work in HBase?
+
+6. What is the third method of triggering minor compaction except manual and HFile count?
+
+7. What is the thrift protocol in communication through the CLI?
+
+8. What are the states of a region?
+
+9. What exactly is a schema in HBase?
+
+10. What is HBCK and the difference between 1 and 2?
+
+11. What is the Connection Registry?
+
+12. What is the Assignment manager?
+
+13. What is Procedure store?
+
+14. What is bulk load?
+
+15. Do you need to config the HBase to reach it with HTTP?
+
+16. Is there federation in HBase?
+
+17. What are OLD-WALs? What is it used for?
+
+
+
+
 
 ### 🔄 Alternatives
 Assignment: You are required to research and write a comparative analysis between HBase and an industry alternative.
