@@ -89,12 +89,16 @@ A:
 ### Skila Questions
 
 1. What is the order of rows in hbase or bigtable?
+הrow key הוא מערך ביטים והיחס סדר ביניהם הוא לקסיקוגרפי על פי הביטים. 
 
 2. What are the data types in hbase, row keys and more. Who enforces the schema?
+הrow key הוא מערך ביטים. הcolumn qualifier הוא מחרוזת, השם של הcolumn family הוא מחרוזת. האכיפה היא בעזרת מימוש של ממשקים כגון ColumnTracker ועוד.
 
 3. What has several tables together in hbase, logical thing the client sees.
+מה שמאחד כמה טבלאות יחדיו הוא namespace. 
 
 4. How do you know what's the most updated version of a cell, or another specific version of the cell if they're in the same hfile.
+
 
 5. What is stored in the cell except the data itself? What metadata is stored? Related to the last question
 
@@ -105,6 +109,8 @@ A:
 8. What is a meta table. Hbase::meta.
 
 9. How does a client know which regionserver it should talk to for the specific cell or cells? What is Connection:Registry/
+A:
+
 
 10. In read, do you check the block cache first or the memstore? *I think cache unless NO_FLUSH cause race condition.
 
@@ -131,7 +137,7 @@ A:
 21. Same thing about column qualifiers, adding columns to a column family.
 
 22. Can you dynamically add columns to a column family?
-
+כן, כל עוד המשפחה כבר קיימת בטבלה, ניתן להוסיף אליה עמודות חדשות. 
 23. How is the optimization of MOB done?
 
 24. Is HBase a DB?
