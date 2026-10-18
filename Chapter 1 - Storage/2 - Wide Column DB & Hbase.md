@@ -165,13 +165,18 @@ A:
 
 1. Is there data enforcement in read or write?
 
+אין את שניהם
 2. How do namespaces work?
 
+איגוד של טבלאות. ככה ניתן לעשות על אוסף טבלאות ביחד דברים כמו ניהול משאבים, שכבת אבטחה, התאמה לregion servers ספציפיים. חשוב להכיר שיש אחד דיפולטי ויש אחד מיוחד בשם hbase שהוא עבור המערכת ומכיל את הטבלאות הפנימיות של Hbase.
 3. What can you replace zookeeper with to find the meta table?
+אפשר שהפוינטר לmeta table יהיה שמור אצל הHMaster, או על רכיב נפרד שידע לעבוד עם כל הבקשות האלו במקביל, ככה שלא נעמיס על הHMaster שיש לו עבודה חשובה מעבר לכך ואנחנו לא רוצים שיהיה bottle neck. 
 
 4. How do snapshots in HBase store the data?
 
+מזיזים את הHFiles של המידע אל אזור מיוחד שהם ישמרו בו כל עוד הsnapshot יהיה קיים, ובתוך הcluster עצמו נוסף עוד metadata של פוינטרים למידע. 
 5. How does LRU algorithm work in HBase?
+
 
 6. What is the third method of triggering minor compaction except manual and HFile count?
 
