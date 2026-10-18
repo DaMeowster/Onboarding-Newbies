@@ -118,12 +118,15 @@ A:
 הבדיקה היא בmemstore לפני הcache, כדי להבטיח שהשינויים הכי עדכניים באמת ישפיעו בקריאה.
 
 11. What triggers minor and major compaction?
-
+אם יש לנו מספר גבוה כלשהו של Hfiles אז יש טריגור של minor compaction, פעולת הMajor compaction מתרחשת כשניצול הביצועים נמוך כי היא דורשת המון כוח ביצועי על מנת לפעול.
 
 12. What are their results? Is minor compaction on only 2 files or more? What does major do that is more? Can you store several versions back with major?
 
+הminor compaction הוא על מספר קטן של Hfiles, לא בהכרח 2. נותן לנו Hfile מאוחד. הmajor compaction מאחדת את כל הHfiles בregion, מוחקת cells שסומנו כexpired או deleted. אפשר לשמור כמה גרסאות אחורה עם major, זה ימחק רק את הגרסאות שסומנו כלא רלוונטיות. 
+
 13. On what can you apply TTLs except cells?
 
+אפשר לשים TTLs גם על שורות וsnapshotים. נראה שכן הוסיפו את האופציה לעשות TTL על column ב2008. 
 14. What is data locality and how do you earn and lose it, in Hbase?
 
 15. In which protocols and ways do you talk to Hbase as a client?
