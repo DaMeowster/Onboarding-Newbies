@@ -208,9 +208,9 @@ CLOSED, CLOSING, MERGED, MERGING, OFFLINE, OPEN, OPENING, SPLIT, SPLITTING
 לא, באופן דיפולטי אפשר. כן ניתן לקנפג כדי להגביל הרבה מהבקשות HTTP. 
 
 17. Is there federation in HBase?
-
+נראה שאין קונספט לוגי שמעל namespaces שאחד מכיל אוסף כאלו. כן יש לי באופן דיפולטי כמה namespaces בHBase, אבל אין משהו מוצהר כזה בHBase.
 18. What are OLD-WALs? What is it used for?
-
+קבצי WAL ישנים של region servers עוברים archive אל תוך תיקייה בשם oldWALS. 
 
 
 
