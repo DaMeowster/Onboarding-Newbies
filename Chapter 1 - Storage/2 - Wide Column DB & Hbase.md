@@ -179,28 +179,34 @@ A:
 
 יש 3 שכבות של עדיפות, single access, multiplt access, in-memory. אם הוספנו בלוק לblock cache בsingle acccess אז כשנקרא ממנה זה יעבור לmultiple access. כשצריך לפנות עוברים על הכל ורואים למי ניגשו הכי פחות לאחרונה ומי המינימום שצריך לפנות בצורה הוגנת לפי גודל ושימוש. 
 6. What is the third method of triggering minor compaction except manual and HFile count?
+על ידי אלגוריתם הExploringCompactionPolicy.
 
 7. What is the thrift protocol in communication through the CLI?
+פרוטוקול תקשורת בינארי שממומש מעל RPC. הוא מאפשר שכבת אבסטרקציה בקצוות שנותנת לתוכנות בשפות שונות לתקשר אחת עם השנייה, מה שמאפשר לנו cross platforming.
 
 8. What are the states of a region?
+מתאר את המצב של הregion, משפיע על האם ניתן לגשת אליו או לא. יש את 
+CLOSED, CLOSING, MERGED, MERGING, OFFLINE, OPEN, OPENING, SPLIT, SPLITTING
+ועוד
 
-9. What exactly is a schema in HBase?
+10. What exactly is a schema in HBase?
 
-10. What is HBCK and the difference between 1 and 2?
+המבנה של הrow keys, columns, column families. איך מנהלים אותם וקובעים אותם לפי מה שנרצה לשמור ואילו פעולות נרצה לעשות בטבלה כדי לאפטם ביצועים.
+11. What is HBCK and the difference between 1 and 2?
 
-11. What is the Connection Registry?
+12. What is the Connection Registry?
 
-12. What is the Assignment manager?
+13. What is the Assignment manager?
 
-13. What is Procedure store?
+14. What is Procedure store?
 
-14. What is bulk load?
+15. What is bulk load?
 
-15. Do you need to config the HBase to reach it with HTTP?
+16. Do you need to config the HBase to reach it with HTTP?
 
-16. Is there federation in HBase?
+17. Is there federation in HBase?
 
-17. What are OLD-WALs? What is it used for?
+18. What are OLD-WALs? What is it used for?
 
 
 
