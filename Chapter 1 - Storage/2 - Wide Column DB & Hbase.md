@@ -199,10 +199,13 @@ CLOSED, CLOSING, MERGED, MERGING, OFFLINE, OPEN, OPENING, SPLIT, SPLITTING
 13. What is the Assignment manager?
 הדבר שהHMaster קורא לו על מנת שינהל את הregions ויחלק regions מחדש בהתאם הצורך, לדוגמה אם region server נפל.
 14. What is Procedure store?
+הרעיון של לשמור את המצבים של הרצת הבקשות, ככה שנוכל להמשיך בקשות שרצות או ממתינות במקרה של קריסה. 
 
 15. What is bulk load?
+הגישה של בשביל להכניס מידע רב לטבלה, קודם תהיה הכנסה של המידע אל תוך המידע הפנימי של HBase כHFiles שכל אחד מהן קטן מגודל של region, ורק לאחר שסיימנו עם כולם נעלה אותם לcluster. 
 
 16. Do you need to config the HBase to reach it with HTTP?
+לא, באופן דיפולטי אפשר. כן ניתן לקנפג כדי להגביל הרבה מהבקשות HTTP. 
 
 17. Is there federation in HBase?
 
