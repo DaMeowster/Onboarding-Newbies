@@ -177,7 +177,7 @@ A:
 מזיזים את הHFiles של המידע אל אזור מיוחד שהם ישמרו בו כל עוד הsnapshot יהיה קיים, ובתוך הcluster עצמו נוסף עוד metadata של פוינטרים למידע. 
 5. How does LRU algorithm work in HBase?
 
-
+יש 3 שכבות של עדיפות, single access, multiplt access, in-memory. אם הוספנו בלוק לblock cache בsingle acccess אז כשנקרא ממנה זה יעבור לmultiple access. כשצריך לפנות עוברים על הכל ורואים למי ניגשו הכי פחות לאחרונה ומי המינימום שצריך לפנות בצורה הוגנת לפי גודל ושימוש. 
 6. What is the third method of triggering minor compaction except manual and HFile count?
 
 7. What is the thrift protocol in communication through the CLI?
