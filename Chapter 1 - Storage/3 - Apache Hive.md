@@ -16,9 +16,9 @@ Complete the research assignments, record the sources you used and the questions
 ### 1. Hive's Purpose and Place in the Ecosystem
 
 Research why Apache Hive was created and where it fits in the Hadoop ecosystem. Explain the types of workloads it is designed for, the abstractions it adds above distributed storage, and how its approach differs from traditional database systems.
-A:
-הסיבה שפיתחו את Hive זה לפתור את הבעיה הבאה: נניח אני רוצה להשתמש בMapReduce כדי לבצע פעולות בHDFS, אז אני צריך לכתוב קוד Java מתאים עבור זה, גם עבור דברים פשוטים שבSQL זה יכל להיות ממש פשוט וקל. פייסבוק רצו שהעובדים שלהם שידעו לעבוד טוב עם SQL יוכלו לעבוד עם HDFS, ולכן Hive הומצא כדי לאפשר את הגוף האמצעי הזה. מבחינת הecosystem, זה לא DB, כי Hive שומר אצלו רק metadata המידע עצמו נשמר בHDFS. כשמדברים על Hive זה יותר שייך לdata processing, לעבד את המידע עצמו, לתשאל אותו ולהפיק דברים. 
 
+A:
+הסיבה שפיתחו את Hive זה לפתור את הבעיה הבאה: נניח אני רוצה להשתמש בMapReduce כדי לבצע פעולות בHDFS, אז אני צריך לכתוב קוד Java מתאים עבור זה, גם עבור דברים פשוטים שבSQL זה יכל להיות ממש פשוט וקל. פייסבוק רצו שהעובדים שלהם שידעו לעבוד טוב עם SQL יוכלו לעבוד עם HDFS, ולכן Hive הומצא כדי לאפשר את הגוף האמצעי הזה. מבחינת הecosystem, זה לא DB, כי Hive שומר אצלו רק metadata המידע עצמו נשמר בHDFS. כשמדברים על Hive זה יותר שייך לdata processing, לעבד את המידע עצמו, לתשאל אותו ולהפיק דברים. מותאם לעבודה עם כמות מאוד גדולה של מידע ומייעל בעצמו את הפעולות שנשלחות. מאפשר ממשק SQLי לעבוד איתו של טבלאות ושפה SQLית. שוב מה שמפריד אותו מDB זה שהמידע עצמו לא נשמר אצלו, אלא בHDFS. 
 
 ### 2. Hive Architecture
 
