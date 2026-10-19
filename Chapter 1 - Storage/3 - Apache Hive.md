@@ -28,6 +28,10 @@ Your explanation should make clear which responsibilities belong to the catalog,
 
 - Pay particular attention to **decoupling** in Hive's architecture. Explain which responsibilities can operate independently and why separating metadata management from query execution is useful.
 
+A:
+נדבר על כל חלק לוגי בארכיטקטורה של Hive. בקצה אחד יש את הלקוח, Hive תומכת בפניה אל Hive מכמעט כל שפה ודרך Thrift מה שמאפשר גמישות רבה. את הפעולות עצמן אנחנו יכולים לעשות בBeeline שהוא shell, שמגיעות לHive Server 2 וכך הן בעצם מגיעות אל תוך הHive. אחרי זה יש את הHive Driver שמקבל את הבקשות של המשתמש ויוצר טיפול חדש עבורן. 
+יש את הHive compiler 
+
 ### 3. Hive Tables and Storage
 
 Choose one Hive table and investigate its complete lifecycle: definition, schema, storage location, file format, data loading, schema changes, querying, and deletion. Demonstrate how its logical definition relates to the files and directories in storage, and explain the important design choices at each stage.
