@@ -170,8 +170,7 @@ A:
 
 איגוד של טבלאות. ככה ניתן לעשות על אוסף טבלאות ביחד דברים כמו ניהול משאבים, שכבת אבטחה, התאמה לregion servers ספציפיים. חשוב להכיר שיש אחד דיפולטי ויש אחד מיוחד בשם hbase שהוא עבור המערכת ומכיל את הטבלאות הפנימיות של Hbase.
 3. What can you replace zookeeper with to find the meta table?
-אפשר שהפוינטר לmeta table יהיה שמור אצל הHMaster, או על רכיב נפרד שידע לעבוד עם כל הבקשות האלו במקביל, ככה שלא נעמיס על הHMaster שיש לו עבודה חשובה מעבר לכך ואנחנו לא רוצים שיהיה bottle neck. 
-
+יש את הConnection Registry.
 4. How do snapshots in HBase store the data?
 
 מזיזים את הHFiles של המידע אל אזור מיוחד שהם ישמרו בו כל עוד הsnapshot יהיה קיים, ובתוך הcluster עצמו נוסף עוד metadata של פוינטרים למידע. 
@@ -193,11 +192,12 @@ CLOSED, CLOSING, MERGED, MERGING, OFFLINE, OPEN, OPENING, SPLIT, SPLITTING
 
 המבנה של הrow keys, columns, column families. איך מנהלים אותם וקובעים אותם לפי מה שנרצה לשמור ואילו פעולות נרצה לעשות בטבלה כדי לאפטם ביצועים.
 11. What is HBCK and the difference between 1 and 2?
+כלי לטיפול קלאסטרים בHBase. בHBCK1 היה את הגישה של כלי כל יכול, אתה מריץ אותו והוא מזהה את כל הבעיות ופותר אותן בעצמו. בHBCK2 יש את הגישה של כלי עוזר נקודתי, אתה מריץ אותו בשביל משימה אחת וכשהוא מזהה את הבעיה הוא גם לא מנסה לתקן אותה בעצמו, אלא מדווח לMaster שיעשה זאת. 
 
 12. What is the Connection Registry?
-
+מקום ששמור בו מידע metadataי שצריך על מנת ליצור חיבור עם הHBase cluster. שומר את הid שלו, מיקום של hbase::meta ועוד.
 13. What is the Assignment manager?
-
+הדבר שהHMaster קורא לו על מנת שינהל את הregions ויחלק regions מחדש בהתאם הצורך, לדוגמה אם region server נפל.
 14. What is Procedure store?
 
 15. What is bulk load?
