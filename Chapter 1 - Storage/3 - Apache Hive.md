@@ -50,6 +50,9 @@ A:
 
 Explain how the classic MapReduce WordCount program works from input to final output. Describe the mapper input and output, shuffle and sort, reducer input and output, and which operations run in parallel. Use concrete key/value pairs in your explanation. Then explain why executing a multi-stage Hive query with MapReduce can be expensive and how Tez differs.
 
+A:
+
+בתור קלט אנחנו מקבלים המון קבצים מבוזרים שמכילים מילים שונות, אנחנו רוצים בסופו של דבר להכריע מה מספר המופעים של כל מילה. כל פונקציית מיפוי על אוסף של קבצים בשרת מבוזר סופרת את המופעים של כל המילים שם ופולטת key value pair של המילה ומספר המופעים שלה. התוצאות של כל המיפויים עוברים ערבוב כך שהזוגות שחולקים את אותו המפתח ביחד. פונקציות הreduce עוברות על כל אוסף כזה וסוכמות את מספר המופעים עבור כל אחד בכך שהן סוכמות את המספרים עבור כל key ספציפי. לבסוף כל התוצאות האלו ממופות לקובץ אחד. פעולות הmapper ופעולות הreducer מתרחשות באופן מקבילי מכיוון שהן עובדות על קבצים שונים בשרתים שונים. בTez עובדים עם DAGים כאשר המשימות הם קודקודים שמחוברים בקשתות. ככה ניתן לייצג את הפעולות שצריך לבצע בצורה יותר יעילה וניתן להסתכל בפרספקטיבה יותר מורחבת שמאפשרת אופטימיזציות באיחוד פעולות. 
 ### 6. Fault Tolerance
 
 Research fault tolerance in Hive. Consider failures in the services involved in metadata management, query coordination, distributed execution, and storage. Explain which failures a query can recover from, which failures cause it to fail, and what makes recovery possible.
