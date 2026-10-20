@@ -34,6 +34,11 @@ A:
 
 Choose one Hive table and investigate its complete lifecycle: definition, schema, storage location, file format, data loading, schema changes, querying, and deletion. Demonstrate how its logical definition relates to the files and directories in storage, and explain the important design choices at each stage.
 
+A:
+נתרכז בexternal tables. הרעיון בexternal tables זה שניהול המידע עצמו מתרחש בHDFS והHive אחראי רק על ניהול הmetadata, לא ניהול המידע עצמו. אם אני מפיל את הטבלה, אז רק הmetadata נופל, המידע הHDFSי עצמו נשאר שם. מבחינת המיקום, נותנים אותו בעת יצירת הטבלה תחת המשתנה LOCATION. הסכמה מתקבלת גם בעת יצירה. בניגוד לmanaged tables, המידע לא שמור בתיקייה של הwarehouse, אלא במקום חיצוני אחר. הלוגיקה פה מאוד מתאימה לאיך שהעניין מאוחסן, הרי אנחנו רוצים הפרדה בין המידע עצמו לHive, לכן המידע עצמו נשמר אם הטבלה נמחקת בHive והמידע לא נשמר תחת תיקייה של Hive, כך שמספר תוכנות יכולות לעבוד על המידע בלי לפגוע בתפקוד של Hive. אנחנו יוצרים הפרדה בין הcompute לstorage כך שלא יהיה לנו coupling. אפשר להריץ MSCK REPAIR TABLE כדי לעדכן לhive את הmetadata במקרה שתוכנה אחרת שינתה את המבנה של הטבלה. 
+
+
+
 ### 4. Hive Partitioning
 
 Research partitioning in Hive and how Hive implements it. Explain how a partitioned table is defined, how partitions affect the filesystem directory structure, and how partitioning can improve or harm query performance. Include the trade-offs involved in choosing partition columns.
