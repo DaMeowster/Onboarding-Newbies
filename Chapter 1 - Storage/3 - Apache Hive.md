@@ -29,9 +29,7 @@ Your explanation should make clear which responsibilities belong to the catalog,
 - Pay particular attention to **decoupling** in Hive's architecture. Explain which responsibilities can operate independently and why separating metadata management from query execution is useful.
 
 A:
-נדבר על כל חלק לוגי בארכיטקטורה של Hive. בקצה אחד יש את הלקוח, Hive תומכת בפניה אל Hive מכמעט כל שפה ודרך Thrift מה שמאפשר גמישות רבה. את הפעולות עצמן אנחנו יכולים לעשות בBeeline שהוא shell, שמגיעות לHive Server 2 וכך הן בעצם מגיעות אל תוך הHive. אחרי זה יש את הHive Driver שמקבל את הבקשות של המשתמש ויוצר טיפול חדש עבורן. 
-יש את הHive compiler 
-
+נדבר על כל חלק לוגי בארכיטקטורה של Hive. בקצה אחד יש את הלקוח, Hive תומכת בפניה אל Hive מכמעט כל שפה ודרך Thrift מה שמאפשר גמישות רבה. את הפעולות עצמן אנחנו יכולים לעשות בBeeline שהוא shell, שמגיעות לHive Server 2 וכך הן בעצם מגיעות אל תוך הHive. אחרי זה יש את הHive Driver שמקבל את הבקשות של המשתמש ויוצר טיפול חדש עבורן, הוא מוודא שהבקשות יסתיימו ומחזיר לך את המידע בסוף. הוא מורכב מכמה חלקים, יש את הparser שמוודא שהסינטקס הSQLי חוקי, יש את הקומפיילר שממיר את הקוד הSQLי לתוכנית תכנון עבור הmapreduce, הOptimizer ישכתב את התוכנית ויחפש אפשרים לייעל אותה, משם זה מגיע לexecutor, נגיד mapreduce שיעשה את הפעולות שאנחנו רוצים. בנוסף לדרייבר, יש את הmetastore שמכיל סכמות של טבלאות, הגדרות של חלוקות, סוגי עמודות, מיקומים של אחסון בתוך HDFS, סטטיסטיקות ועוד. יכול לרוץ לגמרי בנפרד, המידע מגובה באופן לא נדיף בrelational database. הרעיון של להפריד את הmetadata הוא שימושי כי כך ניתן לגשת לmetadata גם באופן נפרד ללא צורך לעבור בflow המלא. זה בסיוק תומך ברעיון של decoupling, הרכיב שמתרגם את הSQL להנחיות יודע לעבוד בפני עצמו, הרכיב שמייעל הנחיות יודע לעבוד בפני עצמו והmapreduce יודע לבצע את הפעולות בפני עצמו. ביחד הם נותנים לנו את הflow של העבודה. 
 ### 3. Hive Tables and Storage
 
 Choose one Hive table and investigate its complete lifecycle: definition, schema, storage location, file format, data loading, schema changes, querying, and deletion. Demonstrate how its logical definition relates to the files and directories in storage, and explain the important design choices at each stage.
