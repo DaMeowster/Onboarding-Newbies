@@ -43,6 +43,9 @@ A:
 
 Research partitioning in Hive and how Hive implements it. Explain how a partitioned table is defined, how partitions affect the filesystem directory structure, and how partitioning can improve or harm query performance. Include the trade-offs involved in choosing partition columns.
 
+A:
+הרעיון הוא לחלק את הטבלה לכמה חלקים לפי פרמטרים. מבחינת המימוש, בHDFS יווצרו תיקיות לכל חלק בחלוקה. כשנריץ אחרי זה WHERE שרלוונטי לדברים שחילקנו, אז Hive יקרא את המידע רק בתיקייה הרלוונטית, ובכך אנחנו חוסכים חיפוש ארוך במערכת הקבצים. יש שני סוגים של חלוקה, סטטית ודינמית. בסטטית אנחנו אומרים במפורש את החלוקה ובדינמית Hive מבין לבד לפי המידע. גם מבחינת ניהול המידע זה נותן לנו את היתרון שמעבר למהירות המידע מסודר יותר בHDFS עם היררכיה מתאימה. בכל זאת יש תקורה שערכים שונים על הפרמטר נשלחים לתיקיות שונות, מה שיוכיל להוביל להמון קבצים מעבר מה שצריך שאת זה אנחנו מאוד לא אוהבים בHDFS, לכן לרוב נרצה לעשות את זה כשמספר הערכים האפשריים עבור הפרמטר הוא לא גדול מדי. 
+
 ### 5. Dedicated MapReduce Exercise: WordCount
 
 Explain how the classic MapReduce WordCount program works from input to final output. Describe the mapper input and output, shuffle and sort, reducer input and output, and which operations run in parallel. Use concrete key/value pairs in your explanation. Then explain why executing a multi-stage Hive query with MapReduce can be expensive and how Tez differs.
