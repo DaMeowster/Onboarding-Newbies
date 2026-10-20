@@ -65,11 +65,13 @@ A:
 זה הHive meta store
 
 2. What is DDL and DML?
+  שפת DDL, שהיא Data Definition Language היא שפה שמכילה פקודות SQL שקובעות את המבנה של הDB, לדוגמה ליצור טבלה, ליצור עמודה וכו'. לעומת זאת, שפת DML, שהיא Data Manipulation Language היא שפה שמכילה פקודות SQL שמשפיעה על האיברים בתוך המבנה. כמו לערוך איבר בתוך הטבלה, להוסיף שורה חדשה. 
 
 3. What is required in OLTP and OLAP and what keeps Hive from being OLTP?
-
+בOLTP חשוב שיהיה לנו פעולות real time ותמיכה בכמות גדולה מאוד של פעולות קטנות. לעומת זאת, בOLTP חשוב שתהיה לנו תמיכה בשאילתות מסובכות עם המון מידע. יש בעיה שHive לא יכול לתמוך בOLTP כי הוא לא real time, הוא לא מותאם לקבל כמות גבוהה של כתיבות ולבצע אותן בזמן מהיר. 
 4. Does Hive support transactions? Is Hive ACID?
 
+יש בHive אופציה לtransactions, והtransactions בHIVE הן עוקבות אחרי ACID. על מנת לבצע אותן, צריך שהטבלה תהיה bucketed ולהדליק את האופציה לtransactions.
 5. Is Thrift implemented upon RPC?
 
 6. What is the difference between Hiveshell and Beeline?
