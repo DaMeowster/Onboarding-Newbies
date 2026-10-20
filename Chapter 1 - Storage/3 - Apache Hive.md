@@ -56,7 +56,8 @@ A:
 ### 6. Fault Tolerance
 
 Research fault tolerance in Hive. Consider failures in the services involved in metadata management, query coordination, distributed execution, and storage. Explain which failures a query can recover from, which failures cause it to fail, and what makes recovery possible.
-
+A:
+מבחינת אחסון, אנחנו יודעים שהמידע מאוחסן בסופו של דבר בHDFS ובבחינה הזו הfault tolerance של HDFS מגן עלינן. כשמדובר בביצוע בקשות, בHive יש דרך כך שאם בקשה נכשלת אז היא מנוסה מחדש. בנוסף אמרנו כבר קודם שיש שכפול של הmetadata. בזכות העובדה שאנחנו יכולים לעבוד עם Tez ולא Mapreduce, אז אנחנו יכולים לבצע מספר פעולות כjob אחד שלא צריך לעבור רכיבים, מה שחוסך לנו את השמירת מידע באמצע. מצד אחד זה חוסך יותר זמן, אבל מצד שני זה גורם לכך שיש לנו פעולה אחת ארוכה לא מגובה ואז אם היא קורסת באמצע אנחנו חייבים להתחיל אותה מהתחלה מאשר אם היא הייתה מחולקת באופן ברור ל2 כמו בMapreduce שהחלקים בלתי תלויים ואין צורך לחזור על השלב הקודם. כשיש cell שמזוהה כבעייתי, מה שנעשה על ידי cells אחרים, הם צריכים להסכים שהוא בעייתי ולאתחל אותו. עוד עניין חשוב הוא שבזכות העובדה שכל הרכיבים מאוד מופרדים בHive אז נפילה זמנית של רכיב אחד לא בהכרח עוצרת את הכל כי יש רכיבים שמסוגלים לתפקד באופן עצמאי, כך שיכולה להווצר המתנה לרכיב הקריטי אבל זה לא שלא תתבצע עבודה בזמן הזה. 
 ## Optional Hands-On
 
 Complete the [Docker Compose lab](./Hive%20Hand%20On%20(optional)/README.md) to inspect catalog and query services separately, create an external table, run `EXPLAIN`, and observe metadata and data lifecycles.
