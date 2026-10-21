@@ -102,6 +102,44 @@ A:
 היום פחות משתמשים בhive כquery engine, אבל בhive metastore משתמשים והוא עדיין נחשב מאוד טוב בימינו. 
 16. How do I connect to Hive meta store?
 אפשר להתחבר לMetastore באופן חיצוני בעזרת הThrift Network API. עובד רק בRemote Metastore. 
+### Skila 2
+
+1. What are the conditions in Hive to declare a table ACID?
+
+2. What is the security difference between Hiveshell and Beeline?
+
+3. What is missing in HTTP that is in RPC based protocols?
+
+4. Who uses JDBC and who uses ODBC?
+
+5. What is the main difference between ORC, Avro and Parquet?
+
+6. What is serdes in Hive?
+
+7. What is the name of the optimization in the optimizator that is about partitions?
+
+8. In what levels do statistics exist about tables, are all of them important and are they automatic?
+
+9. What is the difference between table format, catalog, compute layer?
+
+10. What is an entity precisely in ERD?
+
+11. What is the purpose of hive compared to the purpose of impala?
+
+12. What is Hive-site?
+
+13. What is special about Derby?
+
+14. What is the second requirement for being a meta store DB except of being RDBMS?
+
+15. Why do you need a second component that is not a DB in the metastore, so the process doesn't access the DB directly, except for security?
+
+
+
+
+
+
+
 ## Optional Hands-On
 
 Complete the [Docker Compose lab](./Hive%20Hand%20On%20(optional)/README.md) to inspect catalog and query services separately, create an external table, run `EXPLAIN`, and observe metadata and data lifecycles.
