@@ -94,15 +94,14 @@ A:
 12. What is the lifecycle of a job managed by YARN, what is the fault tolerance?
 לקוח מציע job לresource manager, הresource manager נותן את הjob לApplication master שמתקמח על המשאבים שצריך ומבקש קונטיינרים. אחרי זה הקונטיינרים עולים על node managers, הapplication master בודק את המצב של הפעולות ומתזמן אותן מחדש במקרה שהן נכשלות. כשכולן מסתיימות, הוא מדווח לresource manager שמשחרר את המשאבים.
 13. What is a table format?
-
+טבלה של שורות ועמודות שמידע מסודר בה. כשיוצרים טבלה בHive על מידע קיים, צריך להגיד לו מה הפורמט של הקבצים שקיימים.
 14. What is ERD? What is the ERD of Hive meta store?
+מודל שלפיו מציגים תכנון של מערכות עם יחסים. התכנון והישיות שמקושרות הן נטו לוגיות, לא מתחשבים בדברים ברמה הנמוכה ועל ארכיטקטורה פנימית שנובעת מדברים פיזיים, אלא רק ברמה הhigh level, חשוב לשמור על הפשטות. יש לנו ישויות שונות עם תכונות שונות שיש ביניהם קשרים. גם לHive meta store יש ERD מאוד מפורט שמכיל את החלקים הלוגים השונים שלה, סטטיסטיקות, מפתחות חלוקות וכו'.
 
 15. What is Hive used for today?
-
+היום פחות משתמשים בhive כquery engine, אבל בhive metastore משתמשים והוא עדיין נחשב מאוד טוב בימינו. 
 16. How do I connect to Hive meta store?
-
-
-
+אפשר להתחבר לMetastore באופן חיצוני בעזרת הThrift Network API. עובד רק בRemote Metastore. 
 ## Optional Hands-On
 
 Complete the [Docker Compose lab](./Hive%20Hand%20On%20(optional)/README.md) to inspect catalog and query services separately, create an external table, run `EXPLAIN`, and observe metadata and data lifecycles.
