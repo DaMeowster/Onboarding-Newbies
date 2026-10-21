@@ -73,12 +73,16 @@ A:
 
 יש בHive אופציה לtransactions, והtransactions בHIVE הן עוקבות אחרי ACID. על מנת לבצע אותן, צריך שהטבלה תהיה bucketed ולהדליק את האופציה לtransactions.
 5. Is Thrift implemented upon RPC?
+לא, Thrift מהווה ממשק ליצירת שרתי ולקוחות RPC, התקשורת ביניהם מתקיימת באופן חופשי בין שפות תכנות שופות. 
 
 6. What is the difference between Hiveshell and Beeline?
 
+בHiveshell מתחברים לHiveServer1 בעזרת Thrift, בBeeline מתחברים לHiveServer2 בעזרת JDBC. 
 7. Why did Hadoop choose Thrift and not REST?
+מצד אחד יותר קשה לעבוד עם REST כי צריך ליצור את הקוד לקוח והוא פחות קריא, אבל Thrift הרבה יותר מתאים לקריאות RPC הרבות שיש בHadoop ומביא ביצועים טובים יותר כשיש עומס גדול.
 
 8. What are the two ways with 4 letter names to connect to Hive?
+
 
 9. What is the output of the parser, what does it change in its input after it verifies it's correct?
 
