@@ -92,7 +92,7 @@ A:
 11. What is the redundancy and what are the extra steps in mapreduce hurting it?
 מעבר לכך שיש כתיבות באמצע וI/O כבד, הMaster צריך לדווח על המיקום של המידע אמצע הזה. עוד חסרונות זה שאף פעולת Reduce לא יכולה להתחיל עד שכל פעולות הMap מסיימות מה שלוקח זמן. 
 12. What is the lifecycle of a job managed by YARN, what is the fault tolerance?
-
+לקוח מציע job לresource manager, הresource manager נותן את הjob לApplication master שמתקמח על המשאבים שצריך ומבקש קונטיינרים. אחרי זה הקונטיינרים עולים על node managers, הapplication master בודק את המצב של הפעולות ומתזמן אותן מחדש במקרה שהן נכשלות. כשכולן מסתיימות, הוא מדווח לresource manager שמשחרר את המשאבים.
 13. What is a table format?
 
 14. What is ERD? What is the ERD of Hive meta store?
