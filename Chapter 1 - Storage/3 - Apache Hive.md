@@ -81,15 +81,16 @@ A:
 7. Why did Hadoop choose Thrift and not REST?
 מצד אחד יותר קשה לעבוד עם REST כי צריך ליצור את הקוד לקוח והוא פחות קריא, אבל Thrift הרבה יותר מתאים לקריאות RPC הרבות שיש בHadoop ומביא ביצועים טובים יותר כשיש עומס גדול.
 
-8. What are the two ways with 4 letter names to connect to Hive?
-
+8. What is a way with a 4 letter name to connect to Hive?
+הHive JDBC הוא דרייבר שמחבר את הלקוח לHiveServer2. 
 
 9. What is the output of the parser, what does it change in its input after it verifies it's correct?
+הפלט הוא בייצוג של parse tree. 
 
 10. What type of optimizations can the optimizer do?
-
+הוא מסוגל לבצע column pruning, שזה לקרוא רק את העמודות הרלוונטיות לבקשה. יש גם את הרעיון של predicate pushdown שזה אומר להפעיל פילטרים על המידע עוד לפני שקוראים אותו וכך לחסוך קריאות, לדוגמה, להשתמש בpartitions על מנת להבין איפה רלוונטי שנקרא לפי ההגדרות שלהן ובכך לחסוך קריאות. 
 11. What is the redundancy and what are the extra steps in mapreduce hurting it?
-
+מעבר לכך שיש כתיבות באמצע וI/O כבד, הMaster צריך לדווח על המיקום של המידע אמצע הזה. עוד חסרונות זה שאף פעולת Reduce לא יכולה להתחיל עד שכל פעולות הMap מסיימות מה שלוקח זמן. 
 12. What is the lifecycle of a job managed by YARN, what is the fault tolerance?
 
 13. What is a table format?
