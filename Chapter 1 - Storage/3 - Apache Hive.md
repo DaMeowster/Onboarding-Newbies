@@ -114,13 +114,16 @@ A:
 בRPC אפשר לממש load balancing יותר טוב וגמיש מאשר בHTTP עבור מערכות מבוזרות. במקרה שלנו שאנחנו עובדים עם ביזור, זה יותר מתאים לנו.
 
 4. Who uses JDBC and who uses ODBC?
-
+משתמשים בODBC אם חשוב לנו מהירות בהכנסת והוצאת מידע בנוסף לאינטנסיביות בפעולות אלו. לעומת זאת, אם יותר חשוב לנו חופש של לעבוד עם פלטפורמות שונות, כל מערכות ההפעלה וכלים נוספים, עדיף לנו להשתמש בJDBC. 
 5. What is the main difference between ORC, Avro and Parquet?
-
+נעבור על כל אחד
+יתרונות של Avro - יש לו פורמט בינארי קומפקטי שמיועד לאחסון והעברות מידע יעילות, הסכמה יכולה להשתנות באופן דינאמי, מופרדת בין הקורא והכותב, תומכת בהרבה טייפים ונתמכת בהמון שפות. 
+יתרונות של Parquet - בניגוד לAvro שהמידע שמור שם בשורות, פה הוא לפי עמודות. זה מאפשר כיווץ טוב ופעולות פר עמודה ביעילות גבוהה. אפשר לבצע predicate pushdown וcolumn pruning מה שחוסך לנו קריאות. Parque הוא גם מאוד מוכר ונתמך בהרבה מערכות ביג דאטאיות. 
+יתרונות של ORC - גם עמודות, נועד ספציפית לHadoop ופותח כחלק מHive. מאפשר כיווץ טוב וpredicate pushdown באופן יעיל. יש גם אינדקסים וסטטיסטיקות שלא שוקלים הרבה שמאפשרים חיפוש יעיל יותר, ומן הסתם יש כבר אינטגרציה בהמון פרויקטים של Hadoop. 
 6. What is serdes in Hive?
-
+כשאומרים serdes הכוונה לSerialize/Deserialize בHive, אם יש לי מידע בפורמט לא סטנדרטי ששמור בHDFS שרציתי לשמור שם, אז אני מסרלז אותו לפורמט הזה ובעת קריאה אני עושה לו deserialize על מנת שHive יוכל לקרוא אותו.
 7. What is the name of the optimization in the optimizator that is about partitions?
-
+   זה נקרא partition pruning
 8. In what levels do statistics exist about tables, are all of them important and are they automatic?
 
 9. What is the difference between table format, catalog, compute layer?
