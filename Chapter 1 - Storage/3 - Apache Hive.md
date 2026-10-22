@@ -125,6 +125,7 @@ A:
 7. What is the name of the optimization in the optimizator that is about partitions?
    זה נקרא partition pruning
 8. In what levels do statistics exist about tables, are all of them important and are they automatic?
+יש סטטיסטיקות בכמה שכבות, גם יותר בשכבה הגבוהה כמו מספר עמודות ומספר שורות וגם ברמה הנמוכה יותר כמו גודל בבייטים. הסטטיסטיקות האלו תקפות גם על טבלאות וגם על חלוקות, ובתוך טבלאות יש גם את הסטטיסטיקה של כמה חלוקות יש. יש גם סטטיסטיקות ברמת העמודה. זה מתבצע אוטומטית בזמן הMap בMapreduce, הוא רואה את הסטטיסטיקות של מה שהוא קורא ושומר אותן בDB. הסטטיסטיקות האלו הן חיוניות בשביל שיפור ביצועים של פעולות. 
 
 9. What is the difference between table format, catalog, compute layer?
 
