@@ -140,8 +140,9 @@ A:
 הוא אחד מהDBים הכי קלים שקיימים ומאוד קל להורדה. 
 14. What is the second requirement for being a meta store DB except of being RDBMS?
 
+צריך להתמך על ידי Data Nucleus. 
 15. Why do you need a second component that is not a DB in the metastore, so the process doesn't access the DB directly, except for security?
-
+מעבר לעניין שאפשר לשים firewall, זה יכול לאפשר ביזור יותר טוב ולמנוע עומס ישיר על הDB. 
 
 
 
