@@ -105,10 +105,13 @@ A:
 ### Skila 2
 
 1. What are the conditions in Hive to declare a table ACID?
+הקבצים חייבים להיות בפורמט ORC, צריך לקנפג ערכים, הטבלה חייבת להיות internal, צריך לעשות bucket לטבל. אי אפשר לעשות Begin, Commit, Rollback, Load Data.
 
 2. What is the security difference between Hiveshell and Beeline?
+בHiveshell מי שיש לו גישה אליו נחשב משתמש עם הרשאות admin, מה שיכול להיות בעייתי מבחינת ניהול הרשאות נכון. 
 
 3. What is missing in HTTP that is in RPC based protocols?
+בRPC אפשר לממש load balancing יותר טוב וגמיש מאשר בHTTP עבור מערכות מבוזרות. במקרה שלנו שאנחנו עובדים עם ביזור, זה יותר מתאים לנו.
 
 4. Who uses JDBC and who uses ODBC?
 
