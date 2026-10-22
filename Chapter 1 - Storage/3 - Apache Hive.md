@@ -127,16 +127,17 @@ A:
 8. In what levels do statistics exist about tables, are all of them important and are they automatic?
 יש סטטיסטיקות בכמה שכבות, גם יותר בשכבה הגבוהה כמו מספר עמודות ומספר שורות וגם ברמה הנמוכה יותר כמו גודל בבייטים. הסטטיסטיקות האלו תקפות גם על טבלאות וגם על חלוקות, ובתוך טבלאות יש גם את הסטטיסטיקה של כמה חלוקות יש. יש גם סטטיסטיקות ברמת העמודה. זה מתבצע אוטומטית בזמן הMap בMapreduce, הוא רואה את הסטטיסטיקות של מה שהוא קורא ושומר אותן בDB. הסטטיסטיקות האלו הן חיוניות בשביל שיפור ביצועים של פעולות. 
 
-9. What is the difference between table format, catalog, compute layer?
+9. What is the difference between table format, catalog, compute laye?
+המשמעות של table format זה רשימת חוקים שעונים על השאלה של איזה קבצים שייכים לטבלה כלשהי. שכבת מטאדאטא שמכילה איזה קבצים שייכים לטבלה, איך הסכמה נראית ואיך הטבלה נראית. המונח data catalog מתאר מאגר שיש לחברה כלשהי שמכיל מטאדאטא שעוזר להבין מידע בסיסי על מידע אחר ולהבין מה הוא. לעומת זאת, הcompute layer היא השכבה שמנהלת את הבקשות שמתקבלות מבחוץ.
 
 10. What is an entity precisely in ERD?
-
+משהו שקיים או פיזית או לוגית. יכול להחזיק מידע, להתקיים לבד ולהיות מזוהה.
 11. What is the purpose of hive compared to the purpose of impala?
-
+לשתיהן יש מטרות דומות אבל Impala יותר מתאימה בInteractive computing כשHive פחות מתאימה וזה יותר בראש של להריץ את הפקודה הכבדה שתתחיל מחדש במקרה שהיא תקרוס וללכת. 
 12. What is Hive-site?
-
+קובץ הxml שמכיל את הקונפיגורציות הדיפולטיות לHive. 
 13. What is special about Derby?
-
+הוא אחד מהDBים הכי קלים שקיימים ומאוד קל להורדה. 
 14. What is the second requirement for being a meta store DB except of being RDBMS?
 
 15. Why do you need a second component that is not a DB in the metastore, so the process doesn't access the DB directly, except for security?
