@@ -17,6 +17,9 @@ Complete the research assignments, record the sources you used and the questions
 
 Research why Apache Hive was created and where it fits in the Hadoop ecosystem. Explain the types of workloads it is designed for, the abstractions it adds above distributed storage, and how its approach differs from traditional database systems.
 
+A:
+הסיבה שפיתחו את Hive זה לפתור את הבעיה הבאה: נניח אני רוצה להשתמש בMapReduce כדי לבצע פעולות בHDFS, אז אני צריך לכתוב קוד Java מתאים עבור זה, גם עבור דברים פשוטים שבSQL זה יכל להיות ממש פשוט וקל. פייסבוק רצו שהעובדים שלהם שידעו לעבוד טוב עם SQL יוכלו לעבוד עם HDFS, ולכן Hive הומצא כדי לאפשר את הגוף האמצעי הזה. מבחינת הecosystem, זה לא DB, כי Hive שומר אצלו רק metadata המידע עצמו נשמר בHDFS. כשמדברים על Hive זה יותר שייך לdata processing, לעבד את המידע עצמו, לתשאל אותו ולהפיק דברים. מותאם לעבודה עם כמות מאוד גדולה של מידע ומייעל בעצמו את הפעולות שנשלחות. מאפשר ממשק SQLי לעבוד איתו של טבלאות ושפה SQLית. שוב מה שמפריד אותו מDB זה שהמידע עצמו לא נשמר אצלו, אלא בHDFS. 
+
 ### 2. Hive Architecture
 
 Draw the architecture of a production-style Hive environment. Include every component required for a client to submit a query, obtain metadata, execute distributed work, and access table data. Explain the responsibility of each component as well as every connection, protocol, deployment boundary, and important failure scenario.
@@ -25,21 +28,126 @@ Your explanation should make clear which responsibilities belong to the catalog,
 
 - Pay particular attention to **decoupling** in Hive's architecture. Explain which responsibilities can operate independently and why separating metadata management from query execution is useful.
 
+A:
+נדבר על כל חלק לוגי בארכיטקטורה של Hive. בקצה אחד יש את הלקוח, Hive תומכת בפניה אל Hive מכמעט כל שפה ודרך Thrift מה שמאפשר גמישות רבה. את הפעולות עצמן אנחנו יכולים לעשות בBeeline שהוא shell, שמגיעות לHive Server 2 וכך הן בעצם מגיעות אל תוך הHive. אחרי זה יש את הHive Driver שמקבל את הבקשות של המשתמש ויוצר טיפול חדש עבורן, הוא מוודא שהבקשות יסתיימו ומחזיר לך את המידע בסוף. הוא מורכב מכמה חלקים, יש את הparser שמוודא שהסינטקס הSQLי חוקי, יש את הקומפיילר שממיר את הקוד הSQLי לתוכנית תכנון עבור הmapreduce, הOptimizer ישכתב את התוכנית ויחפש אפשרים לייעל אותה, משם זה מגיע לexecutor, נגיד mapreduce שיעשה את הפעולות שאנחנו רוצים. בנוסף לדרייבר, יש את הmetastore שמכיל סכמות של טבלאות, הגדרות של חלוקות, סוגי עמודות, מיקומים של אחסון בתוך HDFS, סטטיסטיקות ועוד. יכול לרוץ לגמרי בנפרד, המידע מגובה באופן לא נדיף בrelational database. הרעיון של להפריד את הmetadata הוא שימושי כי כך ניתן לגשת לmetadata גם באופן נפרד ללא צורך לעבור בflow המלא. זה בסיוק תומך ברעיון של decoupling, הרכיב שמתרגם את הSQL להנחיות יודע לעבוד בפני עצמו, הרכיב שמייעל הנחיות יודע לעבוד בפני עצמו והmapreduce יודע לבצע את הפעולות בפני עצמו. ביחד הם נותנים לנו את הflow של העבודה. 
 ### 3. Hive Tables and Storage
 
 Choose one Hive table and investigate its complete lifecycle: definition, schema, storage location, file format, data loading, schema changes, querying, and deletion. Demonstrate how its logical definition relates to the files and directories in storage, and explain the important design choices at each stage.
+
+A:
+נתרכז בexternal tables. הרעיון בexternal tables זה שניהול המידע עצמו מתרחש בHDFS והHive אחראי רק על ניהול הmetadata, לא ניהול המידע עצמו. אם אני מפיל את הטבלה, אז רק הmetadata נופל, המידע הHDFSי עצמו נשאר שם. מבחינת המיקום, נותנים אותו בעת יצירת הטבלה תחת המשתנה LOCATION. הסכמה מתקבלת גם בעת יצירה. בניגוד לmanaged tables, המידע לא שמור בתיקייה של הwarehouse, אלא במקום חיצוני אחר. הלוגיקה פה מאוד מתאימה לאיך שהעניין מאוחסן, הרי אנחנו רוצים הפרדה בין המידע עצמו לHive, לכן המידע עצמו נשמר אם הטבלה נמחקת בHive והמידע לא נשמר תחת תיקייה של Hive, כך שמספר תוכנות יכולות לעבוד על המידע בלי לפגוע בתפקוד של Hive. אנחנו יוצרים הפרדה בין הcompute לstorage כך שלא יהיה לנו coupling. אפשר להריץ MSCK REPAIR TABLE כדי לעדכן לhive את הmetadata במקרה שתוכנה אחרת שינתה את המבנה של הטבלה. 
+
+
 
 ### 4. Hive Partitioning
 
 Research partitioning in Hive and how Hive implements it. Explain how a partitioned table is defined, how partitions affect the filesystem directory structure, and how partitioning can improve or harm query performance. Include the trade-offs involved in choosing partition columns.
 
+A:
+הרעיון הוא לחלק את הטבלה לכמה חלקים לפי פרמטרים. מבחינת המימוש, בHDFS יווצרו תיקיות לכל חלק בחלוקה. כשנריץ אחרי זה WHERE שרלוונטי לדברים שחילקנו, אז Hive יקרא את המידע רק בתיקייה הרלוונטית, ובכך אנחנו חוסכים חיפוש ארוך במערכת הקבצים. יש שני סוגים של חלוקה, סטטית ודינמית. בסטטית אנחנו אומרים במפורש את החלוקה ובדינמית Hive מבין לבד לפי המידע. גם מבחינת ניהול המידע זה נותן לנו את היתרון שמעבר למהירות המידע מסודר יותר בHDFS עם היררכיה מתאימה. בכל זאת יש תקורה שערכים שונים על הפרמטר נשלחים לתיקיות שונות, מה שיוכיל להוביל להמון קבצים מעבר מה שצריך שאת זה אנחנו מאוד לא אוהבים בHDFS, לכן לרוב נרצה לעשות את זה כשמספר הערכים האפשריים עבור הפרמטר הוא לא גדול מדי. 
+
 ### 5. Dedicated MapReduce Exercise: WordCount
 
 Explain how the classic MapReduce WordCount program works from input to final output. Describe the mapper input and output, shuffle and sort, reducer input and output, and which operations run in parallel. Use concrete key/value pairs in your explanation. Then explain why executing a multi-stage Hive query with MapReduce can be expensive and how Tez differs.
 
+A:
+
+בתור קלט אנחנו מקבלים המון קבצים מבוזרים שמכילים מילים שונות, אנחנו רוצים בסופו של דבר להכריע מה מספר המופעים של כל מילה. כל פונקציית מיפוי על אוסף של קבצים בשרת מבוזר סופרת את המופעים של כל המילים שם ופולטת key value pair של המילה ומספר המופעים שלה. התוצאות של כל המיפויים עוברים ערבוב כך שהזוגות שחולקים את אותו המפתח ביחד. פונקציות הreduce עוברות על כל אוסף כזה וסוכמות את מספר המופעים עבור כל אחד בכך שהן סוכמות את המספרים עבור כל key ספציפי. לבסוף כל התוצאות האלו ממופות לקובץ אחד. פעולות הmapper ופעולות הreducer מתרחשות באופן מקבילי מכיוון שהן עובדות על קבצים שונים בשרתים שונים. בTez עובדים עם DAGים כאשר המשימות הם קודקודים שמחוברים בקשתות. ככה ניתן לייצג את הפעולות שצריך לבצע בצורה יותר יעילה וניתן להסתכל בפרספקטיבה יותר מורחבת שמאפשרת אופטימיזציות באיחוד פעולות. 
 ### 6. Fault Tolerance
 
 Research fault tolerance in Hive. Consider failures in the services involved in metadata management, query coordination, distributed execution, and storage. Explain which failures a query can recover from, which failures cause it to fail, and what makes recovery possible.
+A:
+מבחינת אחסון, אנחנו יודעים שהמידע מאוחסן בסופו של דבר בHDFS ובבחינה הזו הfault tolerance של HDFS מגן עלינן. כשמדובר בביצוע בקשות, בHive יש דרך כך שאם בקשה נכשלת אז היא מנוסה מחדש. בנוסף אמרנו כבר קודם שיש שכפול של הmetadata. בזכות העובדה שאנחנו יכולים לעבוד עם Tez ולא Mapreduce, אז אנחנו יכולים לבצע מספר פעולות כjob אחד שלא צריך לעבור רכיבים, מה שחוסך לנו את השמירת מידע באמצע. מצד אחד זה חוסך יותר זמן, אבל מצד שני זה גורם לכך שיש לנו פעולה אחת ארוכה לא מגובה ואז אם היא קורסת באמצע אנחנו חייבים להתחיל אותה מהתחלה מאשר אם היא הייתה מחולקת באופן ברור ל2 כמו בMapreduce שהחלקים בלתי תלויים ואין צורך לחזור על השלב הקודם. כשיש cell שמזוהה כבעייתי, מה שנעשה על ידי cells אחרים, הם צריכים להסכים שהוא בעייתי ולאתחל אותו. עוד עניין חשוב הוא שבזכות העובדה שכל הרכיבים מאוד מופרדים בHive אז נפילה זמנית של רכיב אחד לא בהכרח עוצרת את הכל כי יש רכיבים שמסוגלים לתפקד באופן עצמאי, כך שיכולה להווצר המתנה לרכיב הקריטי אבל זה לא שלא תתבצע עבודה בזמן הזה. 
+
+### Skila questions
+
+1. What is the name of the service that keeps the meta in hive?
+זה הHive meta store
+
+2. What is DDL and DML?
+  שפת DDL, שהיא Data Definition Language היא שפה שמכילה פקודות SQL שקובעות את המבנה של הDB, לדוגמה ליצור טבלה, ליצור עמודה וכו'. לעומת זאת, שפת DML, שהיא Data Manipulation Language היא שפה שמכילה פקודות SQL שמשפיעה על האיברים בתוך המבנה. כמו לערוך איבר בתוך הטבלה, להוסיף שורה חדשה. 
+
+3. What is required in OLTP and OLAP and what keeps Hive from being OLTP?
+בOLTP חשוב שיהיה לנו פעולות real time ותמיכה בכמות גדולה מאוד של פעולות קטנות. לעומת זאת, בOLTP חשוב שתהיה לנו תמיכה בשאילתות מסובכות עם המון מידע. יש בעיה שHive לא יכול לתמוך בOLTP כי הוא לא real time, הוא לא מותאם לקבל כמות גבוהה של כתיבות ולבצע אותן בזמן מהיר. 
+4. Does Hive support transactions? Is Hive ACID?
+
+יש בHive אופציה לtransactions, והtransactions בHIVE הן עוקבות אחרי ACID. על מנת לבצע אותן, צריך שהטבלה תהיה bucketed ולהדליק את האופציה לtransactions.
+5. Is Thrift implemented upon RPC?
+לא, Thrift מהווה ממשק ליצירת שרתי ולקוחות RPC, התקשורת ביניהם מתקיימת באופן חופשי בין שפות תכנות שופות. 
+
+6. What is the difference between Hiveshell and Beeline?
+
+בHiveshell מתחברים לHiveServer1 בעזרת Thrift, בBeeline מתחברים לHiveServer2 בעזרת JDBC. 
+7. Why did Hadoop choose Thrift and not REST?
+מצד אחד יותר קשה לעבוד עם REST כי צריך ליצור את הקוד לקוח והוא פחות קריא, אבל Thrift הרבה יותר מתאים לקריאות RPC הרבות שיש בHadoop ומביא ביצועים טובים יותר כשיש עומס גדול.
+
+8. What is a way with a 4 letter name to connect to Hive?
+הHive JDBC הוא דרייבר שמחבר את הלקוח לHiveServer2. 
+
+9. What is the output of the parser, what does it change in its input after it verifies it's correct?
+הפלט הוא בייצוג של parse tree. 
+
+10. What type of optimizations can the optimizer do?
+הוא מסוגל לבצע column pruning, שזה לקרוא רק את העמודות הרלוונטיות לבקשה. יש גם את הרעיון של predicate pushdown שזה אומר להפעיל פילטרים על המידע עוד לפני שקוראים אותו וכך לחסוך קריאות, לדוגמה, להשתמש בpartitions על מנת להבין איפה רלוונטי שנקרא לפי ההגדרות שלהן ובכך לחסוך קריאות. 
+11. What is the redundancy and what are the extra steps in mapreduce hurting it?
+מעבר לכך שיש כתיבות באמצע וI/O כבד, הMaster צריך לדווח על המיקום של המידע אמצע הזה. עוד חסרונות זה שאף פעולת Reduce לא יכולה להתחיל עד שכל פעולות הMap מסיימות מה שלוקח זמן. 
+12. What is the lifecycle of a job managed by YARN, what is the fault tolerance?
+לקוח מציע job לresource manager, הresource manager נותן את הjob לApplication master שמתקמח על המשאבים שצריך ומבקש קונטיינרים. אחרי זה הקונטיינרים עולים על node managers, הapplication master בודק את המצב של הפעולות ומתזמן אותן מחדש במקרה שהן נכשלות. כשכולן מסתיימות, הוא מדווח לresource manager שמשחרר את המשאבים.
+13. What is a table format?
+טבלה של שורות ועמודות שמידע מסודר בה. כשיוצרים טבלה בHive על מידע קיים, צריך להגיד לו מה הפורמט של הקבצים שקיימים.
+14. What is ERD? What is the ERD of Hive meta store?
+מודל שלפיו מציגים תכנון של מערכות עם יחסים. התכנון והישיות שמקושרות הן נטו לוגיות, לא מתחשבים בדברים ברמה הנמוכה ועל ארכיטקטורה פנימית שנובעת מדברים פיזיים, אלא רק ברמה הhigh level, חשוב לשמור על הפשטות. יש לנו ישויות שונות עם תכונות שונות שיש ביניהם קשרים. גם לHive meta store יש ERD מאוד מפורט שמכיל את החלקים הלוגים השונים שלה, סטטיסטיקות, מפתחות חלוקות וכו'.
+
+15. What is Hive used for today?
+היום פחות משתמשים בhive כquery engine, אבל בhive metastore משתמשים והוא עדיין נחשב מאוד טוב בימינו. 
+16. How do I connect to Hive meta store?
+אפשר להתחבר לMetastore באופן חיצוני בעזרת הThrift Network API. עובד רק בRemote Metastore. 
+### Skila 2
+
+1. What are the conditions in Hive to declare a table ACID?
+הקבצים חייבים להיות בפורמט ORC, צריך לקנפג ערכים, הטבלה חייבת להיות internal, צריך לעשות bucket לטבל. אי אפשר לעשות Begin, Commit, Rollback, Load Data.
+
+2. What is the security difference between Hiveshell and Beeline?
+בHiveshell מי שיש לו גישה אליו נחשב משתמש עם הרשאות admin, מה שיכול להיות בעייתי מבחינת ניהול הרשאות נכון. 
+
+3. What is missing in HTTP that is in RPC based protocols?
+בRPC אפשר לממש load balancing יותר טוב וגמיש מאשר בHTTP עבור מערכות מבוזרות. במקרה שלנו שאנחנו עובדים עם ביזור, זה יותר מתאים לנו.
+
+4. Who uses JDBC and who uses ODBC?
+משתמשים בODBC אם חשוב לנו מהירות בהכנסת והוצאת מידע בנוסף לאינטנסיביות בפעולות אלו. לעומת זאת, אם יותר חשוב לנו חופש של לעבוד עם פלטפורמות שונות, כל מערכות ההפעלה וכלים נוספים, עדיף לנו להשתמש בJDBC. 
+5. What is the main difference between ORC, Avro and Parquet?
+נעבור על כל אחד
+יתרונות של Avro - יש לו פורמט בינארי קומפקטי שמיועד לאחסון והעברות מידע יעילות, הסכמה יכולה להשתנות באופן דינאמי, מופרדת בין הקורא והכותב, תומכת בהרבה טייפים ונתמכת בהמון שפות. 
+יתרונות של Parquet - בניגוד לAvro שהמידע שמור שם בשורות, פה הוא לפי עמודות. זה מאפשר כיווץ טוב ופעולות פר עמודה ביעילות גבוהה. אפשר לבצע predicate pushdown וcolumn pruning מה שחוסך לנו קריאות. Parque הוא גם מאוד מוכר ונתמך בהרבה מערכות ביג דאטאיות. 
+יתרונות של ORC - גם עמודות, נועד ספציפית לHadoop ופותח כחלק מHive. מאפשר כיווץ טוב וpredicate pushdown באופן יעיל. יש גם אינדקסים וסטטיסטיקות שלא שוקלים הרבה שמאפשרים חיפוש יעיל יותר, ומן הסתם יש כבר אינטגרציה בהמון פרויקטים של Hadoop. 
+6. What is serdes in Hive?
+כשאומרים serdes הכוונה לSerialize/Deserialize בHive, אם יש לי מידע בפורמט לא סטנדרטי ששמור בHDFS שרציתי לשמור שם, אז אני מסרלז אותו לפורמט הזה ובעת קריאה אני עושה לו deserialize על מנת שHive יוכל לקרוא אותו.
+7. What is the name of the optimization in the optimizator that is about partitions?
+   זה נקרא partition pruning
+8. In what levels do statistics exist about tables, are all of them important and are they automatic?
+יש סטטיסטיקות בכמה שכבות, גם יותר בשכבה הגבוהה כמו מספר עמודות ומספר שורות וגם ברמה הנמוכה יותר כמו גודל בבייטים. הסטטיסטיקות האלו תקפות גם על טבלאות וגם על חלוקות, ובתוך טבלאות יש גם את הסטטיסטיקה של כמה חלוקות יש. יש גם סטטיסטיקות ברמת העמודה. זה מתבצע אוטומטית בזמן הMap בMapreduce, הוא רואה את הסטטיסטיקות של מה שהוא קורא ושומר אותן בDB. הסטטיסטיקות האלו הן חיוניות בשביל שיפור ביצועים של פעולות. 
+
+9. What is the difference between table format, catalog, compute laye?
+המשמעות של table format זה רשימת חוקים שעונים על השאלה של איזה קבצים שייכים לטבלה כלשהי. שכבת מטאדאטא שמכילה איזה קבצים שייכים לטבלה, איך הסכמה נראית ואיך הטבלה נראית. המונח data catalog מתאר מאגר שיש לחברה כלשהי שמכיל מטאדאטא שעוזר להבין מידע בסיסי על מידע אחר ולהבין מה הוא. לעומת זאת, הcompute layer היא השכבה שמנהלת את הבקשות שמתקבלות מבחוץ.
+
+10. What is an entity precisely in ERD?
+משהו שקיים או פיזית או לוגית. יכול להחזיק מידע, להתקיים לבד ולהיות מזוהה.
+11. What is the purpose of hive compared to the purpose of impala?
+לשתיהן יש מטרות דומות אבל Impala יותר מתאימה בInteractive computing כשHive פחות מתאימה וזה יותר בראש של להריץ את הפקודה הכבדה שתתחיל מחדש במקרה שהיא תקרוס וללכת. 
+12. What is Hive-site?
+קובץ הxml שמכיל את הקונפיגורציות הדיפולטיות לHive. 
+13. What is special about Derby?
+הוא אחד מהDBים הכי קלים שקיימים ומאוד קל להורדה. 
+14. What is the second requirement for being a meta store DB except of being RDBMS?
+
+צריך להתמך על ידי Data Nucleus. 
+15. Why do you need a second component that is not a DB in the metastore, so the process doesn't access the DB directly, except for security?
+מעבר לעניין שאפשר לשים firewall, זה יכול לאפשר ביזור יותר טוב ולמנוע עומס ישיר על הDB. 
+
+
+
+
+
 
 ## Optional Hands-On
 
