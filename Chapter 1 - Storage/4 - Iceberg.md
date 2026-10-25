@@ -34,7 +34,7 @@ Please use these questions as a guide for your research, dive in, and deepen you
 
 3. What is an Iceberg catalog, and what is its role? Explain what a catalog manages (table namespace, metadata pointers, commits), why it’s required, mention common catalog implementations, and explain how it differs from the Hive Metastore implementation. Describe how catalogs and formats enable multiple compute engines to work on the same data.
 
-
+הCatalog מחזיק פוינטרים לקבצי הmetadata העדכניים לכל טבלה. כל פעם שיש שינוי במידע, commit, יש שינוי בmetadata ולכן משתנה הפוינטר בקטלוג. ככה כשיש פנייה מהquery engine, היא עוברת דרך הקטלוג ואין צורך שהquery engine ידע את המיקום עצמו של הmetadata. עניין חשוב בקטלוג זה האטומיות. אם יש לי שני commits, רק אחד מהם מתבצע בזמן מסוים, החלפות הפוינטר מתבצעות באופן אטומי, הכותב השני יצטרך להמתין עד שהפוינטר יתעדכן לכתיבה שלו. חשוב להבהיר שהקטלוג עצמו לא כותב קבצים, הquery engines עושים את זה, הוא רק מוודא איזו גרסה עדכנית ומוודא שאין התנגשויות בקומיטים. יש מימושים כגון REST, boring, glue ועוד. המימוש של הHive metastore מניח שהquery engine מניח שהquery engine השולט יהיה Hive בעצמו, בניגוד לIceberg שתומך באופן מלא בהמון שונים, בזכות הרעיון של table formats שיוצרים את ההפרדה הזאת מהstorage לcompute. למרות שכן הוסיפו בסוף עוד query engines לHive, החיבור לא כזה טבעי כמו בIceberg. 
 4. How does Iceberg handle concurrent reads and writes? 
   Explain snapshot isolation, atomic commits, optimistic concurrency control, and conflict detection.
 
