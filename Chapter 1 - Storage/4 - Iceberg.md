@@ -30,7 +30,7 @@ Please use these questions as a guide for your research, dive in, and deepen you
 
 2. Describe the Apache Iceberg table architecture. 
    Explain metadata files, manifest files, data files, and snapshots and how they relate to each other.
-
+יש לנו קבצי metadata, כל קובץ מותאם לטבלה אחת. הוא מכיל את הUUID שלה, את הסמכה, מידע על החלוקות, הID של הsnapshot הנוכחי ואוסף הsnapshotים שלה. עכשיו אוסף הsnapshotים מכיל פוינטרים, כשכל פוינטר מצביע לmanifest list. אפשר לחשוב על הmanifest list בתור תמונת מצב של טבלה בנקודת זמן כלשהי. הmanifest list מכיל רשימה של partitions והmanifest file שמותאם אליהן. מה שהmanifest file שומר זה את רשימת הpartitions והdata files הרלוונטים עם הפורמט שלהם ומטאדאטא שמאפשרת חיפוש מהיר יותר ופסילה של מקומות לא רלוונטים, כלומר Pruning ברמת הקובץ עצמו. 
 
 3. What is an Iceberg catalog, and what is its role? Explain what a catalog manages (table namespace, metadata pointers, commits), why it’s required, mention common catalog implementations, and explain how it differs from the Hive Metastore implementation. Describe how catalogs and formats enable multiple compute engines to work on the same data.
 
