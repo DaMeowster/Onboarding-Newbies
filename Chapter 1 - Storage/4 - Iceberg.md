@@ -42,6 +42,23 @@ Please use these questions as a guide for your research, dive in, and deepen you
 5. What maintenance operations does Iceberg require, and why? 
    Discuss compaction, snapshot expiration, orphan file cleanup, and metadata cleanup.
 
+
+
+### Skila
+
+1. What are the possible formats of metadata files, manifest files, data files?
+
+2. What do metadata files include except UUID and snapshots?
+
+3. How do I partition inside a partition if it's even possible?
+
+4. What is in a manifest list? How is it divided with manifest files?
+
+5. What are use cases for Iceberg? When would I prefer Hive?
+
+6. Do copy on write and merge on read happen every read/write? When is there a merge of files? When is a snapshot created and what exactly triggers it?
+
+
 ### 🔄 Alternatives
 Assignment: You are required to research and write a comparative analysis between Iceberg and an industry alternative.
 - Deliverable: A written summary (minimum 1 or 2 sentences).
