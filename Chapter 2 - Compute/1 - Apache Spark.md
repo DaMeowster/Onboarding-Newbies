@@ -26,6 +26,8 @@ The goal is not to memorize definitions. For each concept, aim to explain the **
 Think through the following. Treat them as a **rough map of the territory**, not a checklist — they point you at the areas to research, and in the oral exam the examiner will drill deeper into each. If you've truly done the research you'll be able to follow those deeper questions; if you only skimmed the outline, it will show.
 
 1. **Spark Architecture & Execution:** What are the main components of Spark, and what is the role of each? Where can the Driver and Executors run, and what does `spark-submit` do? What is the difference between a transformation and an action? What is lazy execution in Spark? What happens between calling an action and work running on the executors — how does the work break down, and what causes those boundaries? What is a DAG, and how does Spark use it, both to schedule work and to achieve fault tolerance? What is the difference between `SparkContext` and `SparkSession`? Go over [this file](assets/where_do_i_run.py) and, for each line, comment on where it runs.
+A:
+
 
 2. **Spark Planning & Optimization:** Logical vs. Physical Planning — walk through the transition from Logical Plan to Physical Plan. What is the fundamental difference between Rule-Based (RBO) and Cost-Based (CBO) optimization, and what are the common kinds of optimizations used? What is AQE? Why is running `ANALYZE TABLE` recommended for performant CBO? And what is whole-stage code generation?
 
