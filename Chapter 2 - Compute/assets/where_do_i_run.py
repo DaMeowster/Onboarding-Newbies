@@ -3,11 +3,14 @@ from pyspark.sql import SparkSession
 from pyspark.sql.functions import avg, col, udf
 
 # --- PHASE A ---
+# רץ בדרייבר
 spark = SparkSession.builder.appName("ComplexLogic").getOrCreate()
 lookup_table = {"A": 1.1, "B": 1.2, "C": 1.3}
 
 # --- PHASE B ---
+# executor
 raw_df = spark.read.parquet("s3://data/events/")
+# דרייבר
 meta_df = spark.createDataFrame([("A", "Premium"), ("B", "Standard")], ["code", "type"])
 
 
@@ -19,14 +22,17 @@ def calculate_markup(price, code):
 
 
 # --- PHASE D ---
+# executor
 joined_df = raw_df.join(meta_df, raw_df.event_code == meta_df.code)
 
 # --- PHASE E ---
+# executor
 final_df = joined_df.withColumn(
     "final_price", calculate_markup("price", "code")
 ).filter(col("type") == "Premium")
 
 # --- PHASE F ---
+# executor
 report = final_df.groupBy("type").agg(avg("final_price")).collect()
 
 # --- PHASE G ---
