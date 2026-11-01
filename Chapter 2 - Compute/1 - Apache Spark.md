@@ -49,7 +49,9 @@ A:
 
 A:
 
-הRDDs הם המבני נתונים הבסיסיים שהיו בSpark. הם בלתי ניתנים לעריכה, אפשר לשחזר אותם במקרה שאחד נופל ואפשר לבצע אותם באופן lazy. הם מחולקים בnodes שונים באופן מבוזר, אפשר לעבד אותם במקביל ואפשר לשמור אותם לטווח הארוך למקרה שנרצה לעבד אותם המון פעמים בזיכרון. 
+הRDDs הם המבני נתונים הבסיסיים שהיו בSpark. הם בלתי ניתנים לעריכה, אפשר לשחזר אותם במקרה שאחד נופל ואפשר לבצע אותם באופן lazy. הם מחולקים בnodes שונים באופן מבוזר, אפשר לעבד אותם במקביל ואפשר לשמור אותם לטווח הארוך למקרה שנרצה לעבד אותם המון פעמים בזיכרון. העבודה עם Dataframes היא יותר high level, נותן לנו לעבוד עם מידע מסודר ולאכוף סכמה ולאפטם ביצועים. אפשר עדיין להשתמש בRDDs אם בא לנו לעבוד בlow level, אבל הסיבה העיקרית למערב הייתה ביצועים. 
+
+
 
 5. **Spark Skew, Partitioning & Caching:** What is data skew, and how can it be solved? What is the difference between `repartition(n)` and `coalesce(n)`? What are the Spark `StorageLevel`s? What is the difference between `cache` and `persist`? Why are UDFs (especially in Python) bad, and how does Spark address the serde bottleneck with UDFs?
 
