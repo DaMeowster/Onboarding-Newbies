@@ -46,6 +46,11 @@ A:
 
 4. **Tungsten, Abstractions & Memory:** What is an RDD? Why did Spark move away from RDDs in favor of DataFrames/Datasets? Explain how Tungsten uses off-heap memory to avoid Garbage-Collection pauses. Why is it a bad idea to give one executor a lot of resources (the "Fat Executor" problem)? What is the difference between Execution/Storage memory and overhead memory, and what happens when a task exceeds its allotted execution memory? In PySpark specifically, where does the Python worker's memory live relative to the JVM heap — and why can heavy Python UDFs cause memory trouble the JVM heap won't show? On Kubernetes, how does all of this relate to `memoryOverhead` and to a pod being `OOMKilled`?
 
+
+A:
+
+הRDDs הם המבני נתונים הבסיסיים שהיו בSpark. הם בלתי ניתנים לעריכה, אפשר לשחזר אותם במקרה שאחד נופל ואפשר לבצע אותם באופן lazy. הם מחולקים בnodes שונים באופן מבוזר, אפשר לעבד אותם במקביל ואפשר לשמור אותם לטווח הארוך למקרה שנרצה לעבד אותם המון פעמים בזיכרון. 
+
 5. **Spark Skew, Partitioning & Caching:** What is data skew, and how can it be solved? What is the difference between `repartition(n)` and `coalesce(n)`? What are the Spark `StorageLevel`s? What is the difference between `cache` and `persist`? Why are UDFs (especially in Python) bad, and how does Spark address the serde bottleneck with UDFs?
 
 6. **Configuration & Tuning:** What configs would you expect to set for a typical job, and how do they shape its parallelism and memory? What is dynamic allocation, and what does it rely on (keeping in mind there is no external shuffle service on Kubernetes)? When the same setting is defined in more than one place — in the SparkSession, injected by Airflow, and in `spark-defaults` — how does Spark decide which one wins, and which settings can't be changed once the application has started? If a tenant sets a config and it seems to have no effect, how would you investigate — and how do you check what configuration a running application actually has?
