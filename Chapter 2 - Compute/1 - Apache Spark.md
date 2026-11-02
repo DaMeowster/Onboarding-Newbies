@@ -53,6 +53,10 @@ A:
 
 5. **Spark Skew, Partitioning & Caching:** What is data skew, and how can it be solved? What is the difference between `repartition(n)` and `coalesce(n)`? What are the Spark `StorageLevel`s? What is the difference between `cache` and `persist`? Why are UDFs (especially in Python) bad, and how does Spark address the serde bottleneck with UDFs?
 
+A:
+
+בSpark המונח data skew מתאר את זה שמטלה במשימה לוקחת הרבה יותר זמן מהאחרות וכך מאטה את הכל. אפשר לפתור את זה בכמה דרכים. או לעשות broadcast כשאפשר אם חלק מהjoin הוא קטן כדי לחסוך את הshuffle, או להוסיף עמודות דומה ולפיהן לעשות עוד תת חלוקה. הפונקציה repartition משנה את מספר הpartitions בDataframe, וישר עושה shuffle לאחר מכן. לעומת זאת הפונקציה coalsce משומשת על מנת להקטין את מסר הpartitions בלבד, ולא מבצעת shuffle לאחר הפעולה שלה בכך שהיא מאחדת את הpartitions באופן לוקאלי. בSpark הStorageLevels מאפשרים לנו לקנפג איפה אנחנו רוצים לשמור את הDataFrames שלנו על מנת למחזר אותם. ההבדלים זה שpersist זו פונקציה כללית שאיתה בוחרים את הStorageLevel וcache זו פונקציית קיצור שפשוט בוחרת לשמור בזיכרון ולזלוג לדיסק במקרה הצורך. הבעיה בUDFs זה שמבחינת Spark זו קופסה שחורה, הוא לא יכול לבצע את האפטום שהוא טוב בו לפונקציות האלו, בעיקר בפייתון שזו שפה די איטית. גם הSerde לוקח זמן כל פעם שמפעילים את הפונקציה ושומרים את התוצאה בחזרה. גם הרבה יותר קשה לדבג כי קשה להיות מודע למה שקורה בפנים עם הפונקציות האלו. בSpark 4 מתמודדים עם זה על ידי כך שבמקום שהUDF מקבל שורה שורה הוא מקבל אוסף ביחד ואיתם עובד כArrow table. 
+
 6. **Configuration & Tuning:** What configs would you expect to set for a typical job, and how do they shape its parallelism and memory? What is dynamic allocation, and what does it rely on (keeping in mind there is no external shuffle service on Kubernetes)? When the same setting is defined in more than one place — in the SparkSession, injected by Airflow, and in `spark-defaults` — how does Spark decide which one wins, and which settings can't be changed once the application has started? If a tenant sets a config and it seems to have no effect, how would you investigate — and how do you check what configuration a running application actually has?
 
 ### Real-World Context
