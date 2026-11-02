@@ -104,9 +104,13 @@ A:
 
 10. How do hive table formats allow Spark to do predicate pushdown on Parquet above HDFS? If HDFS isn't aware of the tabular structure of the file.
 
+
+
+
 11. What kind of joins are there in terms of algorithmic difference?
 
-יש את הbroadcast hash join, שבו יוצרים hash table שמכיל את המידע הקטן שרוצים לעשות לו join עם מידע אחר ועושים broadcast לכל הpartitionים שבהם המידע השני נמצא. הjoin קורה לוקאלית בכל node מה שחוסך לנו shuffle גדול. 
+יש את הbroadcast hash join, שבו יוצרים hash table שמכיל את המידע הקטן שרוצים לעשות לו join עם מידע אחר ועושים broadcast לכל הpartitionים שבהם המידע השני נמצא. הjoin קורה לוקאלית בכל node מה שחוסך לנו shuffle גדול. יש את shuffle sort merge join, בהתחלה יש לי shuffle, אחרי זה יש לי מיון בתוך הpartitions ולבסוף join יותר מאופטם בכך שהולכים על שני הdatasets. יש את הshuffle hash join שיוצרים hashtable עבור כל partition ועושים join לפי האם הערכים של הkeys שווים אחרי hash. יש גם את הsort-merge bucket join דומה לshuffle sort merge אבל קודם עושים bucket לפי הjoin key, מאופטם יותר לdatasets ענקיים. 
+
 
 12. What's the relation between task and partition? Something numerical.
 ממש יחס חח"ע, הtask הוא יחידת חישוב על partition אחד לכן מספר הtasks הוא לפי הpartitions שמטופלים. 
@@ -116,6 +120,8 @@ A:
 אם יש לי כמה פעולות transform ואז כמה actions, אני לא רוצה להריץ את הDAG מחדש כל פעם בשביל כל action. אני רוצה להרכיב הכל ואז לבצע את הactions, על פי המידע המורכב ששמרתי לפני הactions.
 
 14. What happens if I run spark-submit then control c?
+אז התהליך יפסיק לרוץ בspark, בין אם זה מרוחק או אצלי אחרי שהוא מקבל SIGINT.
+
 
 15. What is Arrow? What does it allow?
 הוא data format שמאפשר עבודה עם אותם מבני נתונים בשפות שונות בלי הצורך בסריאליזציה. 
