@@ -73,27 +73,41 @@ A:
 מבחינת פונקציונליות, בSpark מתאפשר למידת מכונה וgraphx שאין בTez. לSpark יש APIים ממש טובים שמפתחים יכולים להשתמש בהם שאין בTez. גם Spark יכול לעבוד עם YARN, Kubernetes ועוד המון cluster managers כשTez רק מעל YARN. בSpark הכל נעשה בתוך הזיכרון כשבTez רק חלק, וגם Tez הוא לא Query engine בפני עצמו. 
 
 2. What is SparkSession made up of and how does it differ from SparkContext?
+
 יש לו את הcatalog שדרכו המשתמש יכול ליצור לשנות או לחפש בטבלאות וכו'. יש את conf שמהווה ממשק הקונפיגורציה בזמן ריצה. יש את הsparkcontext שהוא מכיל, יש את הdataframereader שמאפשר לקרוא את המידע. ההבדל הוא שהSparkSession עוטף את הSparkContext ויש לו עוד אחריות. הAPI הוא לפי Dataframes וDatasets, יותר highlevel. יש לו אופטימיזציות של הCatalyst optimizer שמשתמש בכך שיש לנו סכמה. 
 
 3. Is there a line of code in the session, let's say python, which is spark-submmit?
 
-4. Is Tungsten on default or do you need to config something?
+לא, אבל כן יש ספרייה כזו בפייתון, spark_submit.
 
-5. What is special about a Dataset that is not in a Dataframe? Why don't we have dataframes in python?
+4. Is Tungsten on default or do you need to config something?
+כן הוא דיפולטי בגרסאות 3 ו4 העדכניות של Spark.
+
+5. What is special about a Dataset that is not in a Dataframe? Why don't we have datasets in python?
+בDatasets יש בדיקה של types בזמן קומפילציה וAPI דומה לשל RDDs שעדיין יש לו אופטימיזציות כמו של Dataframe. הסיבה שאין את זה בפייתון זה כי פייתון לא תומכת בבדיקת types בזמן קומפילציה. 
 
 6. What are some transformation operations?
 
+כמה דוגמאות הן map, filter, select.
+
 7. What do I have between a job and a task? What creates it?
+יש stage. מה שיוצר stage חדש זה wide transformation שיוצר shuffling. 
+
 
 8. Which operations will trigger a shuffle?
+הפעולות שיגרמו לshuffle הן wide transformations.
+
 
 9. On what do I have checkpoints? If not only RDDs.
+
+
 
 10. How do hive table formats allow Spark to do predicate pushdown on Parquet above HDFS? If HDFS isn't aware of the tabular structure of the file.
 
 11. What kind of joins are there in terms of algorithmic difference?
 
 12. What's the relation between task and partition? Something numerical.
+ממש יחס חח"ע, הtask הוא יחידת חישוב על partition אחד לכן מספר הtasks הוא לפי הpartitions שמטופלים. 
 
 13. Why do I even have persist and cache in Spark?
 
