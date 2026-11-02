@@ -66,6 +66,41 @@ A:
 הגיוני שיהיו קונפיגים על job שמאפשרים להגביל את כמות המשאבים שהוא משתמש בהם, זה ישפיע על המקביליות כי יהיו מקרים שיהיו התנגשויות בין דרישת המשאבים ולכן לא תהיה מקביליות מלאה, חלק מהדרישות יכולות להיות שימוש בזיכרון. בעזרת dynamic allocation בSpark האפליקציה יכולה לשנות את מספר הexecutors שלה בזמן ריצה. יש את הבעיה שיש להם shuffle data שאולי צריך. בגלל שבKubernetes אין external shuffling, אז מה שקורה זה שהדרייבר מעודכן באיזה executors יש מידע שהוא shuffle data של משימות שכרגע רצות, ויודע לשחרר רק את הexecutors שהם לא כאלו. כשיש הגדרות בכמה מקומות, יש היררכיה שקובעת מי מנצח: הSparkSession נדבק ראשון והכי מכריע, לאחר מכן קובץ הקונפיגורציה ולבסוף הגדרות גלובליות כמו מה שהוזרק על ידי Airflow. אפשר לדעת אם הגדרה ניתנת לעריכה או לא לפי המתודה IsModifiable. אם אני רואה שאין לכך השפעה הייתי בודק אם יש אולי הגדרה בשכבה חשובה יותר שדורסת אותה, ומה ההגדרות הרלוונטיות כרגע, שאת זה אפשר לבדוק עם spark.conf.get וגם בUI תחת הEnvironment. 
 
 
+## Skila Questions
+
+1. What's the difference between Spark and Tez?
+
+2. What is SparkSession made up of and how does it differ from SparkContext?
+
+3. Is there a line of code in the session, let's say python, which is spark-submmit?
+
+4. Is Tungsten on default or do you need to config something?
+
+5. What is special about a Dataset that is not in a Dataframe? Why don't we have dataframes in python?
+
+6. What are some transformation operations?
+
+7. What do I have between a job and a task? What creates it?
+
+8. Which operations will trigger a shuffle?
+
+9. On what do I have checkpoints? If not only RDDs.
+
+10. How do hive table formats allow Spark to do predicate pushdown on Parquet above HDFS? If HDFS isn't aware of the tabular structure of the file.
+
+11. What kind of joins are there in terms of algorithmic difference?
+
+12. What's the relation between task and partition? Something numerical.
+
+13. Why do I even have persist and cache in Spark?
+
+14. What happens if I run spark-submit then control c?
+
+15. What is Arrow? What does it allow?
+
+16. How does the work between python and scala work? 
+
+17. How does writing the configuration inside the source code fit into the configuration hierarchy? 
 
 ### Real-World Context
 Rather than focusing on one technology in isolation, think about how these ideas show up across distributed processing frameworks — how other engines handle the same problems, and what the *core concepts* of distributed processing are.
