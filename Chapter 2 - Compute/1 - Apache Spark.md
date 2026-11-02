@@ -59,6 +59,15 @@ A:
 
 6. **Configuration & Tuning:** What configs would you expect to set for a typical job, and how do they shape its parallelism and memory? What is dynamic allocation, and what does it rely on (keeping in mind there is no external shuffle service on Kubernetes)? When the same setting is defined in more than one place — in the SparkSession, injected by Airflow, and in `spark-defaults` — how does Spark decide which one wins, and which settings can't be changed once the application has started? If a tenant sets a config and it seems to have no effect, how would you investigate — and how do you check what configuration a running application actually has?
 
+
+A:
+
+
+הגיוני שיהיו קונפיגים על job שמאפשרים להגביל את כמות המשאבים שהוא משתמש בהם, זה ישפיע על המקביליות כי יהיו מקרים שיהיו התנגשויות בין דרישת המשאבים ולכן לא תהיה מקביליות מלאה, חלק מהדרישות יכולות להיות שימוש בזיכרון. בעזרת dynamic allocation בSpark האפליקציה יכולה לשנות את מספר הexecutors שלה בזמן ריצה. יש את הבעיה שיש להם shuffle data שאולי צריך. בגלל שבKubernetes אין external shuffling, אז מה שקורה זה שהדרייבר מעודכן באיזה executors יש מידע שהוא shuffle data של משימות שכרגע רצות, ויודע לשחרר רק את הexecutors שהם לא כאלו.
+
+
+
+
 ### Real-World Context
 Rather than focusing on one technology in isolation, think about how these ideas show up across distributed processing frameworks — how other engines handle the same problems, and what the *core concepts* of distributed processing are.
 
