@@ -99,7 +99,7 @@ A:
 
 
 9. On what do I have checkpoints? If not only RDDs.
-
+על RDDs וDataFrames. 
 
 
 10. How do hive table formats allow Spark to do predicate pushdown on Parquet above HDFS? If HDFS isn't aware of the tabular structure of the file.
@@ -111,11 +111,16 @@ A:
 
 13. Why do I even have persist and cache in Spark?
 
+אם יש לי כמה פעולות transform ואז כמה actions, אני לא רוצה להריץ את הDAG מחדש כל פעם בשביל כל action. אני רוצה להרכיב הכל ואז לבצע את הactions, על פי המידע המורכב ששמרתי לפני הactions.
+
 14. What happens if I run spark-submit then control c?
 
 15. What is Arrow? What does it allow?
+הוא data format שמאפשר עבודה עם אותם מבני נתונים בשפות שונות בלי הצורך בסריאליזציה. 
 
 16. How does the work between python and scala work? 
+
+הPy4J מתרגם את הקוד הפייתוני לפקודות JVM. 
 
 17. How does writing the configuration inside the source code fit into the configuration hierarchy? 
 
