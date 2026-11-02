@@ -106,6 +106,8 @@ A:
 
 11. What kind of joins are there in terms of algorithmic difference?
 
+יש את הbroadcast hash join, שבו יוצרים hash table שמכיל את המידע הקטן שרוצים לעשות לו join עם מידע אחר ועושים broadcast לכל הpartitionים שבהם המידע השני נמצא. הjoin קורה לוקאלית בכל node מה שחוסך לנו shuffle גדול. 
+
 12. What's the relation between task and partition? Something numerical.
 ממש יחס חח"ע, הtask הוא יחידת חישוב על partition אחד לכן מספר הtasks הוא לפי הpartitions שמטופלים. 
 
@@ -122,7 +124,9 @@ A:
 
 הPy4J מתרגם את הקוד הפייתוני לפקודות JVM. 
 
-17. How does writing the configuration inside the source code fit into the configuration hierarchy? 
+17. How does writing the configuration inside the source code fit into the configuration hierarchy?
+
+זה בראש ההיררכיה, אחרי זה מה שבsparks-default ואחרי זה הדבר הדיפולטי בסביבה.
 
 ### Real-World Context
 Rather than focusing on one technology in isolation, think about how these ideas show up across distributed processing frameworks — how other engines handle the same problems, and what the *core concepts* of distributed processing are.
