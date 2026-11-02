@@ -70,7 +70,10 @@ A:
 
 1. What's the difference between Spark and Tez?
 
+מבחינת פונקציונליות, בSpark מתאפשר למידת מכונה וgraphx שאין בTez. לSpark יש APIים ממש טובים שמפתחים יכולים להשתמש בהם שאין בTez. גם Spark יכול לעבוד עם YARN, Kubernetes ועוד המון cluster managers כשTez רק מעל YARN. בSpark הכל נעשה בתוך הזיכרון כשבTez רק חלק, וגם Tez הוא לא Query engine בפני עצמו. 
+
 2. What is SparkSession made up of and how does it differ from SparkContext?
+יש לו את הcatalog שדרכו המשתמש יכול ליצור לשנות או לחפש בטבלאות וכו'. יש את conf שמהווה ממשק הקונפיגורציה בזמן ריצה. יש את הsparkcontext שהוא מכיל, יש את הdataframereader שמאפשר לקרוא את המידע. ההבדל הוא שהSparkSession עוטף את הSparkContext ויש לו עוד אחריות. הAPI הוא לפי Dataframes וDatasets, יותר highlevel. יש לו אופטימיזציות של הCatalyst optimizer שמשתמש בכך שיש לנו סכמה. 
 
 3. Is there a line of code in the session, let's say python, which is spark-submmit?
 
