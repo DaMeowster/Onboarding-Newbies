@@ -34,6 +34,7 @@ Answer these questions to understand the broader category of distributed query e
 1. **Role in the Data Architecture:**  
    What is a distributed SQL query engine, and where does it sit in a modern data architecture? How does it differ from storage systems such as data lakes or databases?
 
+
 2. **Motivation & Use Cases:**  
    Why do organizations use distributed SQL engines? In what scenarios are they preferred (for example: interactive analytics on large datasets, federated queries across multiple systems, or querying data lakes)?
 
