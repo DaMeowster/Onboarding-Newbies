@@ -104,7 +104,7 @@ A:
 
 10. How do hive table formats allow Spark to do predicate pushdown on Parquet above HDFS? If HDFS isn't aware of the tabular structure of the file.
 
-
+בגלל שבקבצי Parquet יש metadata על הrow groups, כמו הערך המקסימלי והמינימלי של השורות בrow group עבור אותה עמודה. בעזרת זה spark יכול לבצע predicate pushdown ולפלטר ברמה הנמוכה, בלי הצורך שHDFS ידע על המבנה הטבלאי, רק צריך לגשת לmetadata. 
 
 
 11. What kind of joins are there in terms of algorithmic difference?
