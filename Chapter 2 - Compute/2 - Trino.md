@@ -57,6 +57,12 @@ A:
 2. **Architecture & Query Execution:**  
    How is Trino architected, and how does it execute queries in a distributed environment? Discuss the roles of the Coordinator and Workers, stages and tasks, data exchanges, and the execution model.
 
+A:
+
+מבחינת הארכיטקטורה, יש coordinator וworkers. המשתמש מתחבר לcoordinator והוא והworkers ניגשים למקורות המידע דרך הקטלוגים. העבודה של הworkerים היא להשיג מידע מהconnectors ולהחליף מידע ביניהם, לבסוף הcoordinator אחראי על להשיג מהם את המידע ולהפיק את התוצאה הסופית ללקוח. התקשורת בין הworkers לcoordinators היא עם REST API. כשTrino מריץ שאילתא, הוא מחלק אותה באופן היררכי לעץ של stageים שונים. תמיד יש שורש לעץ שהוא הstage שבו מאגדים את כל המידע מהstageים האחרים. מה שרץ על הworkerים זה לא stage, אלא taskים. כל stage מכיל מספר taskים שרצים באופן מבוזר על workerים שונים בcluster. כל task עובד על splits, שאלו חלוקות של המידע. ברגע נתון task עובד על split אחד אבל אפשר לתת לו כמה שהוא יעבוד עליהם באופן סדרתי. כלומר הכל מתחיל בזה שאני כותב שאילתות SQL שמגיעות לcoordinator, מפוצלות לstageים שמפוצלים לtaskים שרצים באופן מבוזר על workerים שונים, לבסוף המידע נאסף והstageים האחרונים מתאגדים והמידע נאסף על ידי הcoordinator וחוזר ללקוח. 
+
+
+
 3. **Connectors & Catalogs:**  
    How does Trino integrate with external systems through connectors and catalogs? Explain what connectors are responsible for, how catalogs are configured, and how Trino can federate queries across multiple data sources.
 
