@@ -34,7 +34,6 @@ Answer these questions to understand the broader category of distributed query e
 1. **Role in the Data Architecture:**  
    What is a distributed SQL query engine, and where does it sit in a modern data architecture? How does it differ from storage systems such as data lakes or databases?
 
-
 2. **Motivation & Use Cases:**  
    Why do organizations use distributed SQL engines? In what scenarios are they preferred (for example: interactive analytics on large datasets, federated queries across multiple systems, or querying data lakes)?
 
@@ -49,6 +48,11 @@ Answer these questions to cover Trino’s major architectural and operational co
 
 1. **Purpose & Position in the Data Stack:**  
    What is Trino, and where does it sit in the data architecture? Explain its role as a distributed MPP SQL engine, how it differs from storage systems, and when it should be used instead of other query engines.
+
+A:
+
+בליבו Trino הוא SQL Query Engine מבוזר מקבילי. Trino שונה מstorage system בכך שהוא לא מחזיק את המידע, הוא כלי שמשומש בשביל להריץ את שאילתות הSQL על המידע. אם המטרה שלי היא בעיקר אנאליטיקות כבדות מהירות כמה שיותר אז Trino מנצח. 
+
 
 2. **Architecture & Query Execution:**  
    How is Trino architected, and how does it execute queries in a distributed environment? Discuss the roles of the Coordinator and Workers, stages and tasks, data exchanges, and the execution model.
