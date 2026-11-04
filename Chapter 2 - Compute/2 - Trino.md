@@ -72,6 +72,11 @@ A:
 4. **Governance & Workload Management:**  
    How does Trino handle governance and workload management? Discuss resource groups, concurrency control, memory limits, access control (RBAC), and multi-tenant isolation.
 
+A:
+
+הרעיון של resource group זה להגביל את כמות המשאבים של קבוצת שאילתות. לresource group יכול להיות תת resource group או שהיה תהיה מסוגלת לקבל שאילתות, אבל לא שניהם, כך שתהיה לנו הפרדה ברורה של איזה משאבים אפשר לגשת אליהם ולא יהיה חיתוך. אם בresource group נגמרו המשאבים אז הqueries ששייכים אליה ולא רצים כרגע (נגיד בדיוק התווספו) נכנסים להמתנה. מי שאחראי על הקצאת המשאבים וחוקי החילוק זה הresource group manager, אפשר להוסיף אחד לדוגמה כקובץ ולקנפג אותו. יש אחד שמקבל את הקונפיגורציה שלו לא כקובץ אלא מDB רלציוני. לכל resource group ניתן להגביל את מספר השאילתות שיכולים לרוץ בה. יש גם את העניין של soft limits שזו מגבלה חלשה יותר שכן יעקפו אותה אם כל הresource groups הרלוונטים האחרים גם מעל הsoft limits שלהם. יש גם הגבלה לזיכרון מבוזר שקבוצה יכולה להכנס בו לפני ששאילתות מועברות להמתנה, יש 2 דרכים לתת אותו, או כגודל הזיכרון או כאחוז הזיכרון של הcluster. 
+
+
 5. **Query Optimization & Performance:**  
    How does Trino optimize query performance? Explain cost-based optimization, statistics usage, join strategies, predicate pushdown, partition pruning, spilling, and caching behavior.
 
