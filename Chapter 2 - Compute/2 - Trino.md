@@ -51,9 +51,7 @@ Answer these questions to cover Trino’s major architectural and operational co
 
 A:
 
-בליבו Trino הוא SQL Query Engine מבוזר מקבילי. Trino שונה מstorage system בכך שהוא לא מחזיק את המידע, הוא כלי שמשומש בשביל להריץ את שאילתות הSQL על המידע. אם המטרה שלי היא בעיקר אנאליטיקות כבדות מהירות כמה שיותר אז Trino מנצח. 
-
-
+בליבו Trino הוא SQL Query Engine מבוזר מקבילי. Trino שונה מstorage system בכך שהוא לא מחזיק את המידע, הוא כלי שמשומש בשביל להריץ את שאילתות הSQL על המידע. אם המטרה שלי היא בעיקר אנאליטיקות שכל query צריך להיות מהיר ולקחת דקות או שניות או אפילו מהר יותר, אז Trino הכי טוב עבורי. 
 2. **Architecture & Query Execution:**  
    How is Trino architected, and how does it execute queries in a distributed environment? Discuss the roles of the Coordinator and Workers, stages and tasks, data exchanges, and the execution model.
 
@@ -65,6 +63,11 @@ A:
 
 3. **Connectors & Catalogs:**  
    How does Trino integrate with external systems through connectors and catalogs? Explain what connectors are responsible for, how catalogs are configured, and how Trino can federate queries across multiple data sources.
+
+A:
+
+כפי שאמרנו הConnector הוא הכלי שמחבר את Trino למקור המידע בעזרת Hive או Iceberg. ברעיון הוא כמו דרייבר לDB, הוא מתרגם את השאילתות SQL למשהו שיכול לפעול על השכבה למטה. כל connector של Trino מממש את החלק הרלוונטי של הTrino SPI שמאפשר לנו לעבוד עם אותן יכולות SQL תחת כל data source שעבורו אנחנו מממשים את הconnector. הקטלוג מכיל את הconnector ועוד דברים רלוונטים להתחברות כגון פרטים להתחברות, הוא בעצם מהווה את הגישה למקור המידע. מבחינת קינפוג, צריך ליצור קובץ catalog properties. השם של הקובץ בעצם מהווה את שם הקטלוג. בTrino ניתן בשאילתאת SQL אחת לפנות לכמה טבלאות שונות מקטלוגים שונים באותו הזמן, כל קטלוג מכיל connector וכל connector מפנה לdatasource כפי שאמרנו.  
+
 
 4. **Governance & Workload Management:**  
    How does Trino handle governance and workload management? Discuss resource groups, concurrency control, memory limits, access control (RBAC), and multi-tenant isolation.
