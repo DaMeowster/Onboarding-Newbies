@@ -79,6 +79,12 @@ A:
 5. **Query Optimization & Performance:**  
    How does Trino optimize query performance? Explain cost-based optimization, statistics usage, join strategies, predicate pushdown, partition pruning, spilling, and caching behavior.
 
+A:
+
+בTrino יש יעיול של שאילתות בכמה שיטות. ראשית, יש את cost based optimization. העניין של cost based optimization זה לבצע יעיול של השאילתא לפי סטטיסטקות של טבלאות בשאילתא. הם מונגשים לquery planner על ידי הconnectors. יש סטטיסטיקות של טבלה כמו מספר השורות. פר עמודה יש סטטיסטיקות כמו מספר הערכים השונים, הערך הכי גבוה והכי נמוך בעמודה, אחוז ערכי הnull. סוגי האופימיזצה שנופלים תחת cost based optimization הם join enumeration, שזו הגישה שסדר הjoinים חשוב לנו כי אם נעשה את הjoinים הגדולים בסוף זה יחסוך לנו העברות מידע גדולות נוספות. ההערכה של הגודל של כל join והתקורה מתבצעת לפי הtable statistics. כשיש join, יש צד שtrino יוצר ממנו hash table וצד שני שtrino עובר עליו ומחפש שורות בhash table. יש שתי גישות, גישת partitioned שבה כל node שרלוונטי לשאילתא בונה hash table רק מחלק מהמידע והגישה broadcast שכל node בונה hash table מכל המידע והמידע משוכפל לnodes אחרים. כמובן שיש שיקולים, אם החלק שעושים עליו hash קטן מאוד אז עדיף broadcast כי זה יותר מהיר וחוסך את העברת הטבלאות, אבל הם דורשים שהכל יכנס בזיכרון של הnode במקום שיהיה מבוזר בין השונים. בTrino סוג הjoin distribution נבחר לפי הסטטיסטיקות. באופן דיפולטי זה ככה, אבל ידנית אפשר לקנפג שזה יהיה אחד מהם תמיד. 
+
+
+
 6. **High Availability & Multi-Cluster Routing:**  
    How does Trino Gateway enable high availability and workload isolation across multiple Trino clusters? Explain how it provides a single entry point, performs rule-based query routing and load balancing, monitors cluster health, and enables failover and multi-cluster isolation beyond what a single Trino coordinator can support.
 
