@@ -83,12 +83,14 @@ A:
 
 בTrino יש יעיול של שאילתות בכמה שיטות. ראשית, יש את cost based optimization. העניין של cost based optimization זה לבצע יעיול של השאילתא לפי סטטיסטקות של טבלאות בשאילתא. הם מונגשים לquery planner על ידי הconnectors. יש סטטיסטיקות של טבלה כמו מספר השורות. פר עמודה יש סטטיסטיקות כמו מספר הערכים השונים, הערך הכי גבוה והכי נמוך בעמודה, אחוז ערכי הnull. סוגי האופימיזצה שנופלים תחת cost based optimization הם join enumeration, שזו הגישה שסדר הjoinים חשוב לנו כי אם נעשה את הjoinים הגדולים בסוף זה יחסוך לנו העברות מידע גדולות נוספות. ההערכה של הגודל של כל join והתקורה מתבצעת לפי הtable statistics. כשיש join, יש צד שtrino יוצר ממנו hash table וצד שני שtrino עובר עליו ומחפש שורות בhash table. יש שתי גישות, גישת partitioned שבה כל node שרלוונטי לשאילתא בונה hash table רק מחלק מהמידע והגישה broadcast שכל node בונה hash table מכל המידע והמידע משוכפל לnodes אחרים. כמובן שיש שיקולים, אם החלק שעושים עליו hash קטן מאוד אז עדיף broadcast כי זה יותר מהיר וחוסך את העברת הטבלאות, אבל הם דורשים שהכל יכנס בזיכרון של הnode במקום שיהיה מבוזר בין השונים. בTrino סוג הjoin distribution נבחר לפי הסטטיסטיקות. באופן דיפולטי זה ככה, אבל ידנית אפשר לקנפג שזה יהיה אחד מהם תמיד. בTrino מתאפשר predicate pushdown שמעביר את התנאי סינון אל מקור המידע דרך הconnector והוא מתבצע שם ברמה הנמוכה. בעזרת partition pruning אנחנו יכולים לקרוא בשאילתא רק את המידע שרלוונטי לחלוקה הרלוונטית במקום לקרוא הכל ואז לזרוק את המידע הלא רלוונטי, נעשה על ידי הקורדינטור שמחליט על מה לדלג. העקרון של spilling מאפשר לנו לעבד שאילתות שצורכות הרבה זיכרון ומקסימום להעביר חלק מהזיכרון כדי לא לחרוג מהמקסימום. ניתן לקנפג לאיפה בדיסק המידע יעבור, להגביל כמות spill, לnode, וspill מקסימלי לquery לnode. בTrino אפשר לעשות cache לקבצים, יש שני סוגים של cache managers. יש את alluxio שעושה cache בדיסק לוקאלי ושם שומרים מידע טבלאי, ויש את הmemory שעושה cache בjava heap ומשומש על ידי הcoordinator כדי לשמור את הmetadata שהוא קורא בזמן שהוא מתכנן את השאילתא. 
 
-
-
-
-
 6. **High Availability & Multi-Cluster Routing:**  
    How does Trino Gateway enable high availability and workload isolation across multiple Trino clusters? Explain how it provides a single entry point, performs rule-based query routing and load balancing, monitors cluster health, and enables failover and multi-cluster isolation beyond what a single Trino coordinator can support.
+
+A:
+
+הכלי Trino gateway מאפשר לבצע load balancing בין clusterים שונים של Trino. הוא מאפשר 3 דברים מרכזיים: העברת שאילתות לclusterים שונים לפי תנאים, לוודא שclusterים הם בריאים ולא לכלול כאלו שהם לא, לבזר את השאילתות לפי מספר השאילתות בכל cluster. מבחינת הלקוח, יש לו endpoint אחד שהוא שולח לו שאילתות, הכל קורה מאחורי הקלעים. יש גם חלוקה לקבוצות clusterים שונות עם מטרה שונה. בזכות העובדה שיש כמה clusterים בקבוצה ניתן להחליף אחד באופן חלק, אך בכל זמן נתון רק cluster אחד רץ בgroup. רק בזמן הroll שניהם רצים במקביל. השאילתות מגיעות לcluster group לפי המקור, הgateway בודק את הHTTP header שהלקוחות של Trino שלחו. 
+
+
 
 ---
 
