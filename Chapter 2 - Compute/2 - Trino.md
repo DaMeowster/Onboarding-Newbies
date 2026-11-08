@@ -90,6 +90,53 @@ A:
 
 הכלי Trino gateway מאפשר לבצע load balancing בין clusterים שונים של Trino. הוא מאפשר 3 דברים מרכזיים: העברת שאילתות לclusterים שונים לפי תנאים, לוודא שclusterים הם בריאים ולא לכלול כאלו שהם לא, לבזר את השאילתות לפי מספר השאילתות בכל cluster. מבחינת הלקוח, יש לו endpoint אחד שהוא שולח לו שאילתות, הכל קורה מאחורי הקלעים. יש גם חלוקה לקבוצות clusterים שונות עם מטרה שונה. בזכות העובדה שיש כמה clusterים בקבוצה ניתן להחליף אחד באופן חלק, אך בכל זמן נתון רק cluster אחד רץ בgroup. רק בזמן הroll שניהם רצים במקביל. השאילתות מגיעות לcluster group לפי המקור, הgateway בודק את הHTTP header שהלקוחות של Trino שלחו. 
 
+### Skila Questions
+
+1. What is the SQL language of Trino?
+
+2. Can you turn Trino into a DB?
+
+3. What's the name of queries you run interactively and of ones you run in the background?
+
+4. Is Trino fit for ETL?
+
+5. What clients do I have to connect to Trino?
+
+6. What's the difference between a query and a statement?
+
+7. What are the subcomponents of the coordinator?
+
+8. What is the meaning of a stage? and of a task? Are tasks divided to things?
+
+9. How do coordinators know workers exist?
+
+10. How does a message in the response of the worker node to the coordinator with the result look like?
+
+11. How does the message the coordinator returns to the client look like? What are the two methods and pros and cons?
+
+12. What's the name of the standard connector that needs to be implemented?
+
+13. What option do I have to define a catalog except a file?
+
+14. What is a catalog and what is a conenctor and how do I create a catalog?
+
+15. What's the term for running something again once it fails? What methods exist in Trino and how are they chosen?
+
+16. What are the usecases of view? Out of the two types, which fit Trino?
+
+17. What is the name of the concept of giving flags to Trino for queries and what can you do with them?
+
+18. Who is responsible for acting on the predicate pushdown in the data source? In Hive for example
+
+19. What type of pushdowns are there?
+
+20. In the trino gateway is there something more sophisticated for load balancing besides number of queries in a cluster?
+
+21. Can a query potentially reach several groups? Is there load balancing between them?
+
+22. According to what rules do we decide where the query runs besides load balancing and source. What is the name for these rules and how are they defined?
+
+
 
 
 ---
