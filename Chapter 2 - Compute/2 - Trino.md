@@ -93,10 +93,12 @@ A:
 ### Skila Questions
 
 1. What is the SQL language of Trino?
+סוג שפת הSQL שTrino עובד איתו הוא סטנדרט הANSI.
 
 2. Can you turn Trino into a DB?
 
 3. What's the name of queries you run interactively and of ones you run in the background?
+
 
 4. Is Trino fit for ETL?
 
