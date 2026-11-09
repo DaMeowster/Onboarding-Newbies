@@ -182,6 +182,28 @@ predicate pushdown, projection pushdown, dereference pushdown, aggregation pushd
 
 לפי הrouting roles. אפשר להגדיר חוקים לדוגמה בקובץ או לפי אובייקט חיצוני. אם הגדרת לפי קובץ אז זה בקובץ yaml שלכל חוק יש שם, תיאור, תנאי והפעולה של לאיזה קבוצה זה שולח. בכללי אפשר לחפש דברים בheaderים ולהחליט לפיהם. 
 
+
+
+### Skila 2 Questions
+
+1. How is ANSI SWL different from other SQLs?
+
+2. Why is spark preferable in high batch processing?
+
+3. What is the difference between odbc and c# clients?
+
+4. What UI SQL programs allow connection to Trino?
+
+5. What is an operator?
+
+6. What defines a stage? 
+
+7. What makes a task retry have more latency?
+
+8. How does Trino run a view in Hive if it can't read HiveSQL?
+
+
+
 ---
 
 ### 🔄 Alternatives
