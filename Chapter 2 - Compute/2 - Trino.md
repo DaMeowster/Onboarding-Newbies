@@ -121,18 +121,24 @@ A:
 הרכיבים הם parser and analyzer, הplanner והscheduler.
 
 8. What is the meaning of a stage? and of a task? Are tasks divided to things?
-הstageים זה הדברים שהqueries מחולקים אליהם. כל stage מסמן שלב לוגי של אגרגציה בין stageים אחרים. כל stage מבחינה עיבודית הוא אוסף של taskים כך שכל task מתאים לsplit כמו שבSpark יש התאמה לpartition. הtask מכיל driverים מקבילים שרצים ומעבדים מידע, הtask מאחד את התוצאות של הdriverים ומעביר אותו לtask אחר. 
 
+הstageים זה הדברים שהqueries מחולקים אליהם. כל stage מסמן שלב לוגי של אגרגציה בין stageים אחרים. כל stage מבחינה עיבודית הוא אוסף של taskים כך שכל task מתאים לsplit כמו שבSpark יש התאמה לpartition. הtask מכיל driverים מקבילים שרצים ומעבדים מידע, הtask מאחד את התוצאות של הdriverים ומעביר אותו לtask אחר. הsplit זה בדיוק מידע שמעובד ומוחזר על ידי worker. 
 9. How do coordinators know workers exist?
 
-
-
+בעזרת הdiscovery service, הtrino נרשם אצל הdiscovery service ושולח heartbeats. אם הworker לא שולח heartbeats אז הdiscovery service מזהה את זה ולא ישלחו לworkerים taskים. מי שמריץ את הdiscovery server זה הcoordinator וככה הוא תמיד ידע מי קיים ועובד מהworkerים.
 
 10. How does a message in the response of the worker node to the coordinator with the result look like?
+בתצורת pages, אוסף של שורות בפורמט עמודתי. 
+
 
 11. How does the message the coordinator returns to the client look like? What are the two methods and pros and cons?
 
+יש את הגישה של לקרוא מbuffer רציף וכשהוא מתרוקן אז הcoordinator מבקש מהworkerים שיכתבו אליו עוד. 
+
+
 12. What's the name of the standard connector that needs to be implemented?
+
+הוא נקרא SPI, שזה Service Providor Interface. 
 
 13. What option do I have to define a catalog except a file?
 
