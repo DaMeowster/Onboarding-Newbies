@@ -141,13 +141,24 @@ A:
 
 13. What option do I have to define a catalog except a file?
 
+אפשר בעזרת dynamic catalog management להוסיף קטלוגים עם CREATE CATALOG בהינתן חיבור כלשהו. האם זה ישמר בתור קובץ או לא נקבע האם הcatalog-store הוא על file או memory, דיפולטית כן קובץ.
+
 14. What is a catalog and what is a conenctor and how do I create a catalog?
+
+קטלוג הוא אוסף של קונפיגורציות שאני משתמש בהן כדי לגשת לdata source, זה מכיל את הconnector שהוא הדרך תקשורת עצמה ועוד דברים כמו הURL ופרטי התחברות. אפשר ליצור קטלוג בשני דרכים, או על ידי קובץ properties או עם CREATE CATALOG. 
 
 15. What's the term for running something again once it fails? What methods exist in Trino and how are they chosen?
 
+המונח הוא fault tolerant execution. באופן דיפולטי זה לא קורה בTrino. יש שני סוגים של retry policies, אחד זה QUERY ואחד זה TASK, נבחרים לפי הערך של retry-policy. הQUERY אומר לנסות את כל הquery מחדש והtask לנסות רק את הtask מחדש. זה מאוד משתלם אם יש לנו queries מאוד גדולים ואז יותר ישתלם לנו להריץ task קטן מחדש מהכל. מצד שני, הוא כן יכול ליצור יותר latency מretry כללי אם מדובר בqueries קטנים, ואז כבר נרצה QUERY. 
+
 16. What are the usecases of view? Out of the two types, which fit Trino?
 
+יש שני סוגים של views
+יש view וmaterialized view. בSQL המונח view מתאר לנו שאילתא שאפשר לעשות לה רפרנס כאילו היא טבלה, אם נעשה לה select זה יריץ את הquery ויתן לנו את התוצאה. בmaterialized view השאילתא רצה פעם אחת ובפעמים הבאות שנפעל על הview נקבל את התוצאה שבאמת נשמרה. החיסרון הוא שצריך לרפרש כל פעם שיש עדכון במידע כי המידע ששמור הוא מה שקיבלנו בתוצאה ויכול להיות שזה השתנה. התוצאה נשמרת בדיסק. בTrino יש אפשרות לליצור ולעבוד עם views וmaterialized views. 
+
 17. What is the name of the concept of giving flags to Trino for queries and what can you do with them?
+
+
 
 18. Who is responsible for acting on the predicate pushdown in the data source? In Hive for example
 
