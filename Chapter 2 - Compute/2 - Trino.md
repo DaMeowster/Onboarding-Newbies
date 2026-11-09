@@ -186,9 +186,13 @@ predicate pushdown, projection pushdown, dereference pushdown, aggregation pushd
 
 ### Skila 2 Questions
 
-1. How is ANSI SWL different from other SQLs?
+1. How is ANSI SQL different from other SQLs?
+
+בזכות העובדה שANSI הוא סטנדרט אז אם לומדים אותו ניתן לעבוד עם הרבה מערכות במקום ללמוד כל פעם שפה שונה. בנוסף לכך, הוא גם מנוהל בצורה טובה, ככה שכל פעם שיוצאים פיצ'רים עדכניים ומהותיים בSQL הם בסוף יגיעו גם לANSI. עוד עניין הוא שאם אנחנו מחליפים מערכת המעבר יכול להיות אוטומטי. 
 
 2. Why is spark preferable in high batch processing?
+
+
 
 3. What is the difference between odbc and c# clients?
 
