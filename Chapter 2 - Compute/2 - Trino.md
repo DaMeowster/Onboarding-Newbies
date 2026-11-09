@@ -133,8 +133,7 @@ A:
 
 11. How does the message the coordinator returns to the client look like? What are the two methods and pros and cons?
 
-יש את הגישה של לקרוא מbuffer רציף וכשהוא מתרוקן אז הcoordinator מבקש מהworkerים שיכתבו אליו עוד. 
-
+יש את הגישה של לקרוא מbuffer רציף וכשהוא מתרוקן אז הcoordinator מבקש מהworkerים שיכתבו אליו עוד. היתרון זה שהפרוטוקול פשוט ולא דורש רכיבים נוספים לתפעול. מוגבל לJSON. הפרוטוקול בעיקר טוב לקצת מידע, אבל לא אידיאלי ללהוציא הרבה מידע. מאוד קשה לשנות אותו מבחינת המימוש ולהוסיף עדכונים. זה נקרא direct. הפתרון האחר נקרא spooling, שנותן לך throughput גבוה יותר, קל למימוש ואפשר לעבוד עם כמה פורמטים. הרעיון הוא לשמור את המידע בobject storage שכל הworkerים והcoordinator יכולים לכתוב אליו במקביליות. הcoordinator נותן URLים למידע בobject storage שהclient ניגש אליהם.
 
 12. What's the name of the standard connector that needs to be implemented?
 
