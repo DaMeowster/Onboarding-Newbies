@@ -158,11 +158,17 @@ A:
 
 17. What is the name of the concept of giving flags to Trino for queries and what can you do with them?
 
-
+יש configuration properties שאפשר להגדיר על cluster ויש session properties שהם ברמת הsession עם הcluster ויכולים להיות על כל הcluster או ברמת קטלוג. דוגמאות לsession properties שרלוונטים לquery זה max-writer-task-count, max-execution-time, max-length, max-planning-time, max-run-time, max-write-physical-size.
 
 18. Who is responsible for acting on the predicate pushdown in the data source? In Hive for example
 
+מי שניגש זה עדיין הquery engine. אם מדובר בHive נגיד ששומר קבצי Parquet אז אפשר לפי הmetadata לדעת האם צריך לקרוא את הקובץ או לא לפי סטטיסטיקות של עמודים. 
+
 19. What type of pushdowns are there?
+יש 
+predicate pushdown, projection pushdown, dereference pushdown, aggregation pushdown, join pushdown, limit pushdown, top n pushdown
+
+בprojection pushdown זה אותו הרעיון אבל עם סינון על קבוצת עמודות במקום קבוצת שורות. בdereference pushdown אנחנו אפילו לא קוראים את כל העמודה לאחר מכן אלא רק את החלק הרלוונטי ממנה. יש גם aggregation pushdown, join pushdown, limit pushdown top n pushdown שאינדיקטיביים מהשם.
 
 20. In the trino gateway is there something more sophisticated for load balancing besides number of queries in a cluster?
 
