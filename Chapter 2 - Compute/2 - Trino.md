@@ -93,24 +93,40 @@ A:
 ### Skila Questions
 
 1. What is the SQL language of Trino?
+
 סוג שפת הSQL שTrino עובד איתו הוא סטנדרט הANSI.
 
 2. Can you turn Trino into a DB?
 
+לא
+
 3. What's the name of queries you run interactively and of ones you run in the background?
 
+המונחים הם interactive processing וbatch processing.
 
 4. Is Trino fit for ETL?
 
+כביכול אפשר אבל כשמדובר על ETL ועיבוד הרבה מידע עדיף לעשות את העיבוד עצמו עם Spark ולבצע עם Trino את השליפות לאחר מכן. 
+
 5. What clients do I have to connect to Trino?
+
+יש את jdbc,odbchttp, python וc#.
 
 6. What's the difference between a query and a statement?
 
+הstatement זה הקוד הSQLי שהTrino מקבל, השאילתא זה הדבר שהוא מעבד את הstatement אליה. הquery מכיל את הstages, tasks, splits ושאר הרכיבים שרלוונטים על מנת שהשאילתא תתבצע. 
+
+
 7. What are the subcomponents of the coordinator?
+הרכיבים הם parser and analyzer, הplanner והscheduler.
 
 8. What is the meaning of a stage? and of a task? Are tasks divided to things?
+הstageים זה הדברים שהqueries מחולקים אליהם. כל stage מסמן שלב לוגי של אגרגציה בין stageים אחרים. כל stage מבחינה עיבודית הוא אוסף של taskים כך שכל task מתאים לsplit כמו שבSpark יש התאמה לpartition. הtask מכיל driverים מקבילים שרצים ומעבדים מידע, הtask מאחד את התוצאות של הdriverים ומעביר אותו לtask אחר. 
 
 9. How do coordinators know workers exist?
+
+
+
 
 10. How does a message in the response of the worker node to the coordinator with the result look like?
 
