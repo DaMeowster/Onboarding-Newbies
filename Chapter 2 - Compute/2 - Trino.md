@@ -172,12 +172,15 @@ predicate pushdown, projection pushdown, dereference pushdown, aggregation pushd
 
 20. In the trino gateway is there something more sophisticated for load balancing besides number of queries in a cluster?
 
+כן, יש את הclusterstats. כמה queries רצים, כמה בהמתנה, כמה workerים יש, והסטטוס. 
+
 21. Can a query potentially reach several groups? Is there load balancing between them?
+
+לא, הוא נבחר לפי חוק ששולח אותו. יש עדיפות לחוקים ולכן החוק עם המשקל עדיפות הנמוך יותר יקרה קודם.
 
 22. According to what rules do we decide where the query runs besides load balancing and source. What is the name for these rules and how are they defined?
 
-
-
+לפי הrouting roles. אפשר להגדיר חוקים לדוגמה בקובץ או לפי אובייקט חיצוני. אם הגדרת לפי קובץ אז זה בקובץ yaml שלכל חוק יש שם, תיאור, תנאי והפעולה של לאיזה קבוצה זה שולח. בכללי אפשר לחפש דברים בheaderים ולהחליט לפיהם. 
 
 ---
 
