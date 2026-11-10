@@ -30,6 +30,11 @@ A:
 
 2. **Scheduling Algorithms & Types:** Compare First-In-First-Out (FIFO), Shortest Job First (SJF) and Round Robin (RR), how do they handle varying workflows? Define Preemptive vs. Non-preemptive scheduling, If a "Critical" job enters the queue while a "Low" priority job is already running, what happens in both scenarios? What is "Starvation" in priority scheduling, and how does the concept of Aging fix it? what are other common algorithms to fix starvation?
 
+A:
+
+ראשית יש FIFO, ממש מתזמנים את המשימות לפי הסדר שלהן. אם כרגע אי אפשר, אז יש המתנה וסדר העדיפויות הוא סדר ההגעה. יש את SJF שלוקחים את העבודה עם זמן הריצה המשוערך הכי נמוך שתרוץ. יש את ROUND ROBIN שמריצים את כל המשימות לפי הסדר כך שלכל אחד מהם יש quantum קבוע, ממשיך באופן מעגלי. לכל אחד יש את החולשות שלו. FIFO הכי הוגן אבל מאוד פגיע כי יכול להיות לנו את הconvoy effect כך שמשימה אחת גדולה תאט אחרות. חיסרון של SJF זה שיכולות להגיע כל הזמן משימות קצרות מאוד שיגרמו להרעבה של משימות ארוכות יותר. יתרון של RR זה פשטות והוא באמת יכול להבטיח לכולם זמן ריצה, אבל מצד שני אי אפשר לתעדף פה משימות והכל נורא בסיסי. 
+
+
 3. **Resource Allocation & Scheduling:** Explain Dominant Resource Fairness (DRF). Why is it more "fair" to look at CPU and RAM usage rather than just task count? Compare Static Allocation to Dynamic Allocation. Which one is safer for the system, and which one is more efficient for the cluster? What is Capacity Scheduling, and how does it provide "guaranteed lanes" for different departments?
 
 4. **Cluster Utilization:** What are idle resources in a cluster, and why are they considered a problem from a utilization perspective? What are our options when we want to improve cluster resource usage on job based or non job based clusters (at least provide 3)? what are the advantages and disadvantages of each option (at least 2)?
