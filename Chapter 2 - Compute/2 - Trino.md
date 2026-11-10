@@ -235,13 +235,16 @@ predicate pushdown, projection pushdown, dereference pushdown, aggregation pushd
 
 4. What are the query states: finishing, abandoned query?
 
-
+הfinishing הוא בדיוק השלב הסופי של סיום התהליך וקבלת המידע ממנו. הוא בדיוק במעבר בין ריצת התהליך לכך שהתהליך סיים לרוץ והתוצאה שלו נאסף. כשמדובר על abandoned query זה לא נחשב state אבל הכוונה שאילתא שעזבו אותה ולא תבוצע. 
 
 5. What is the difference between input blocked, output blocked and queue?
 
+דברים בQUEUE הם שאילתות שאושרו ומחכות לריצה
+ואז יש שאילתות BLOCKED שמחכות למשאבים. יש סוגים שונים, חוסר בזיכרון, מחסור בworkerים ודברים פנימיים כאלו, ודברים חיצוניים שהלקוח לא אוסף את המידע מספיק מהר. 
+
 6. What is the difference between runtime and walltime?
 
-
+זמן הריצה הוא הwalltime, הזמן הפרקטי שהכל לוקח. הruntime זה הזמן שלוקח לשאילתא על הCPU, העיבוד עצמו.
 
 
 
