@@ -192,17 +192,27 @@ predicate pushdown, projection pushdown, dereference pushdown, aggregation pushd
 
 2. Why is spark preferable in high batch processing?
 
-
+זה לא באמת נכון, זו סטיגמה שהייתה נכונה לפני project tardigrade כשלtrino לא הייתה שרידות גבוהה ולא היה task retries וqueries לא היו מצליחים אם ברגע לא היה מספיק זיכרון לבצע אותם. היום Trino מתאים ומסוגל לעבוד עם ETL. 
 
 3. What is the difference between odbc and c# clients?
 
+הc# client מאפשר תמיכה בחיבור עם תוכנות על ממשק .NET. 
+הODBC Driver מאפשר תמיכה בחיבור עם אפליקציות שתומכות בODBC. 
+
 4. What UI SQL programs allow connection to Trino?
+
+יש כמה כמו Superset וTrino Query UI שמאפשרים עבודה עם מטריקות גרפים ועוד. 
 
 5. What is an operator?
 
+פעולה שמקבלת מידע, עושה עליו פעולה ומחזירה מידע. כמו table scan, פילטור ועוד. 
 6. What defines a stage? 
 
+חלק מהquery plan שיכול לרוץ ביחד. לרוב מה שיגדיר לי את הגבולות שלstage זה shuffleים שצריכים לקרות. כלומר אגרגציות, JOINים, ORDER BY, ועוד. 
+
 7. What makes a task retry have more latency?
+
+כשיש spooling ע"י הexchange manager יש את התקורה של הspooling לS3 לדוגמה.
 
 8. How does Trino run a view in Hive if it can't read HiveSQL?
 
