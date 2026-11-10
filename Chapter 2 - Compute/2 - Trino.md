@@ -216,7 +216,7 @@ predicate pushdown, projection pushdown, dereference pushdown, aggregation pushd
 
 8. How does Trino run a view in Hive if it can't read HiveSQL?
 
-
+אין אופציה ליזור Materialized hive views בTrino. יש תרגום של הHIVESQL לANSI בעזרת Coral. הוא מתרגם את הHIVEQL לייצור פנימי עם Apache calcite ומשם לTrino SQL. 
 
 ---
 
