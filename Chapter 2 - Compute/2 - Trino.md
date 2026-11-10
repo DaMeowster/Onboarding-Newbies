@@ -218,6 +218,33 @@ predicate pushdown, projection pushdown, dereference pushdown, aggregation pushd
 
 אין אופציה ליזור Materialized hive views בTrino. יש תרגום של הHIVESQL לANSI בעזרת Coral. הוא מתרגם את הHIVEQL לייצור פנימי עם Apache calcite ומשם לTrino SQL. 
 
+### Last questions
+
+
+1. What are the limits in cpu limiting in resource groups? What condition do I need for this?
+
+כמות CPU מקסימלית שהresource group יכולה להשתמש בו בפרק זמן. בשביל זה צריך להגדיר גם מה פרק הזמן, נקרא cpuQuotaPeriod.
+
+2. What is file based access control?
+
+חוקי הגישה מוגדרים בקבצי JSON. יש system level access control שיש לנו קובץ JSON אחד שקובע הרשאות כלל מערכתיות. בנוסף, יש catalog level access control שמשתמש בJSON לכל קטלוג שונה. הרשאות המערכת תמיד יותר חזקות, כלומר אם יש לי הרשאות לקטלוג מסוים אבל אין לי הרשאות כלליות אז לא אוכל לגשת אליו. צריך לכתוב בקובץ properties את כך שזה לפי קובץ ואז את המיקום של הקובץ. 
+
+3. What is EXPLAIN, ANALYZE, EXPLAIN ANALYZE?
+
+מראה את הexecution plan של השאילתא. לעומת זאת, EXPLAIN ANALYZE גם מריצה את השאילתא ומראה לנו את הזמנים שכל שלב לקח ומראה תת-שלבים. הפעולה ANALYZE נותנת סטטיסטיקות על טבלה.
+
+4. What are the query states: finishing, abandoned query?
+
+
+
+5. What is the difference between input blocked, output blocked and queue?
+
+6. What is the difference between runtime and walltime?
+
+
+
+
+
 ---
 
 ### 🔄 Alternatives
