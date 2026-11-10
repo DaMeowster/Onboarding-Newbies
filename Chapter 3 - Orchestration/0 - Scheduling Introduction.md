@@ -23,6 +23,11 @@ Think through the following questions; by answering them you’ll touch every ma
 
 1. **Scheduling Basics:** Why can’t we just use a simple sleep() command or a basic cron job to manage a modern data workflows? What is the difference between a Time-based trigger and an Event-based trigger? Give a real-world data example for each, In general scheduling, why do we use a DAG to represent a workflow instead of just a simple list of instructions?
 
+A:
+
+תזמנון הוא עניין שצריך להיות גמיש אבל מאוד עדין באותו הזמן. אי אפשר פשוט לעשות sleep למשך זמן כלשהו או להפעיל משהו באופן קבוע בזמן כלשהו, צריך ממש תכנון אחיד ולחשוב על איך תוכנות אחרות עובדות אחת עם השנייה על מנת להבטיח נכונות. דברים חדשים תמיד יכולים לצוץ וצריך שהתזמון שלנו יהיה מותאם למקרה. יש לנו time based trigger שבזמן מסוים קורה תזמון ויש לנו event based trigger שמתחיל תזמון. לדוגמה, אפשר תהליך ירוץ כל יום ב16:00 ותהליך ירוץ כל פעם שאני אלחץ על כפתור. העבודה עם DAGים מאוד מאפטמת לנו את ההצגה של מה שאנחנו צריכים לעשות ומה ניתן. אם יש לנו סתם רשימה של משימות קשה לדעת איך לבצע את זה בצורה הנכונה, אבל המבנה של DAG עם התלויות דרך קשתות מציג לנו בצורה מתמטית את התמונה המלאה. כך נוכל למקבל את מה שצריך ולא לגרום להמתנות מיותרות. 
+
+
 2. **Scheduling Algorithms & Types:** Compare First-In-First-Out (FIFO), Shortest Job First (SJF) and Round Robin (RR), how do they handle varying workflows? Define Preemptive vs. Non-preemptive scheduling, If a "Critical" job enters the queue while a "Low" priority job is already running, what happens in both scenarios? What is "Starvation" in priority scheduling, and how does the concept of Aging fix it? what are other common algorithms to fix starvation?
 
 3. **Resource Allocation & Scheduling:** Explain Dominant Resource Fairness (DRF). Why is it more "fair" to look at CPU and RAM usage rather than just task count? Compare Static Allocation to Dynamic Allocation. Which one is safer for the system, and which one is more efficient for the cluster? What is Capacity Scheduling, and how does it provide "guaranteed lanes" for different departments?
