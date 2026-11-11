@@ -27,6 +27,7 @@ Think through the following questions; by answering them you’ll touch every ma
 
 A:
 
+הDagRun הוא בעצם מופע של DAG שנוצר כל פעם שDAG מתוזמן או מותרג. הוא גם מכיל data interval שמגדיר את חלון הריצה שלו. לרוב הוא יתחיל לרוץ דווקא בול אחרי שהdata interval מסתיים. הtasks חולקים metadata בעזרת כך שהוא נשמר בDB מיועד לזה, הכי פופולארי זה Postgres. הקונפיגורציה נשמרת בקובץ airflow.cfg. בפרויקטי פייתון ניתן להשתמש בJinja כtemplate engine. בעקרון ככה אפשר להזריק משתנים אל תוך הbash. יש הבדל בין להשתמש בין ds לdatetime.now, הds מתאר את הזמן הלוגי ולכן בעצם datetime.now יהיה יום אחריו. 
 
 
 2. **Airflow Backend & Architecture:** What are the different components in the Airflow architecture? Define the roles of each component. Why is the `Executor` considered a mechanism/logic rather than a standalone service? Explain the `Deferrable Operator`. Which component makes these possible, and how do they save money/resources in a Big Data stack? What are `Airflow Providers`? and what are the main changes between Airflow 3 and Airflow 2?
