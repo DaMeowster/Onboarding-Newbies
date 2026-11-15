@@ -34,13 +34,38 @@ A:
 
 A:
 
-הארכיטקטורה של Airflow מכילה כמה חלקים. יש את המתזמן, שאחראי על לטרגר עבודות ולהגיש taskים לworkerים שיריצו. יש את המעבד DAG שמעבד DAGים מקבצים, הוא מחולק לשני חלקים, חלק שרץ כל הזמן ומכריע איזה קבצים צריכים לעבור עיבוד וחלק שמעבד אותם לDAGים. הוא שומר את הDAGים המסורלזים בmetadata db. יש את הDAG bundles שהם אוספים של קבצי DAGים והקבצים הרלוונטים אליהם כגון קבצי קונפיגורציה, מהם מהprocessor מסרלז. דוגמה פשוטה לDAG bundle זו פשוט תיקייה במחשב שלנו שמכילה קבצי DAG. יש את השרת API שנותן למשתמש ממשק שדרכו הוא יכול לטרגר DAGים, לדבג, לראות מטריקות וכו'. גם הtaskים משתמשים בו לפעמים כדי לדבר ישירות לתקשורת לא דרך הmetadata db. לבסוף, יש את הmetadata DB שמכיל את המצבים של הtaskים, DAGים ועוד משתנים. יש לנו את הworkerים שמריצים taskים שהם מקבלים מהמתזמן. בנוסף יש את הtrigger שמאפשר לנו שtaskים שכרגע מחכים לדברים יוכלו להפסיק לעבוד ויצרו trigger שישלח סיגנל לתזמן אותם מחדש בסוף וכך בזמן הזה הworker יתפנה. הסיבה שהexecutor נחשב לוגי ולא רכיב נפרד הוא שהוא יותר קונפיגורציה אצל המתזמן, מכניזם לוגי. הdeferrable operator זה בדיוק מה שתיארנו, והרכיב שמאפשר הוא הtrigger. החיסכון משאבים נובע מכך שהworker מתפנה כפי שאמרנו. 
+הארכיטקטורה של Airflow מכילה כמה חלקים. יש את המתזמן, שאחראי על לטרגר עבודות ולהגיש taskים לworkerים שיריצו. יש את המעבד DAG שמעבד DAGים מקבצים, הוא מחולק לשני חלקים, חלק שרץ כל הזמן ומכריע איזה קבצים צריכים לעבור עיבוד וחלק שמעבד אותם לDAGים. הוא שומר את הDAGים המסורלזים בmetadata db. יש את הDAG bundles שהם אוספים של קבצי DAGים והקבצים הרלוונטים אליהם כגון קבצי קונפיגורציה, מהם מהprocessor מסרלז. דוגמה פשוטה לDAG bundle זו פשוט תיקייה במחשב שלנו שמכילה קבצי DAG. יש את השרת API שנותן למשתמש ממשק שדרכו הוא יכול לטרגר DAGים, לדבג, לראות מטריקות וכו'. גם הtaskים משתמשים בו לפעמים כדי לדבר ישירות לתקשורת לא דרך הmetadata db. לבסוף, יש את הmetadata DB שמכיל את המצבים של הtaskים, DAGים ועוד משתנים. יש לנו את הworkerים שמריצים taskים שהם מקבלים מהמתזמן. בנוסף יש את הtrigger שמאפשר לנו שtaskים שכרגע מחכים לדברים יוכלו להפסיק לעבוד ויצרו trigger שישלח סיגנל לתזמן אותם מחדש בסוף וכך בזמן הזה הworker יתפנה. הסיבה שהexecutor נחשב לוגי ולא רכיב נפרד הוא שהוא יותר קונפיגורציה אצל המתזמן, מכניזם לוגי. הdeferrable operator זה בדיוק מה שתיארנו, והרכיב שמאפשר הוא הtrigger. החיסכון משאבים נובע מכך שהworker מתפנה כפי שאמרנו. הAirflow Providers
+
 
 3. **Airflow Security:** How does the airflow security model look like? both arcihtecture-wise and client-wise? how can I integrate airflow with different authentication backends and types? (as if LDAP or SSO), what are the available permissions that exist in airflow (find place in docs)?
 
 4. **Airflow Task Lifecycle:** What is the full flow of a Dag from being written to being run? What happens when the `Dag Processor` encounters your file? How is `Jinja` parsing different in Dag processing than execution time? At which state does the `Scheduler` stop managing the task, and hand it over to the `Executor`? What is the flow when a task gets to a `Worker`? When does it start running?
 
 5. **Airflow Critical Sections:** What is the `'Critical Section'` of the `Scheduler`? Describe the 4 primary `Critical Sections` (`Dag Run` Creation, `Dag Run` Scheduling, `TaskInstance` Creation, `Task` Scheduling).
+
+
+
+### Sync Questions
+
+1. What is a python operator? bash operator? kubernetes pod operator?
+הpython operator זה פעולה שהיא פשוט כוללת בתוכה פונקציה פייטונית. יש גם bash operator כדי להריץ פקודות bash. אם בא לנו להשתמש בtemplating אז נגדיר את הערך כמשתנה שאליו נקרא בbash כי אין תמיכה בשימוש ישיר בtemplating. הkubernetes pod operator מאפשר ליצור ולהרים podים בkubernetes cluster בעזרת אופרטור. נותנים את הקישור לתמונה וכמה פקודות נוספות, והוא משתמש בלקוח kubernetes פייתוני ליצור בקשת API שמתחילה את הpodים. אפשר לתת קובץ קונפיגורציה וקובץ YAML. 
+
+2. What is a task group? is it physical or logical?
+
+הtaskgroups הם נטו לוגיים בUI. זה מאפשר לנו לאחד taskים בהיררכיה בתצוגה גרפית. ניתן לעשות ככה פעולות במכה על כל הtaskים בקבוצה. הids שלהם מסודרים לפי הid של הקבוצת אם ועוד סיומת, ככה יש ייחודיות. 
+
+3. What type of executors are there?
+
+יש אפשרות להריץ לוקאלית תחת התהליך של הscheduler, זה מאוד קל לשימוש ומהיר אבל פוגע בביצועים של הscheduler. יש גם executors מרוחקים והם מחולקים ל2 קטגוריות: ראשית, יש queue executors. הtaskים נשלחים לqueue שמשם workerים מושכים אותם ומבצעים אותם, לרוב יכול כמה במקביל. היתרון זה שיש לנו הפרדה בין הscheduler לtaskים, הם יכולים להתמודד עם הרבה taskים במקביל. חיסרון זה חלוקת משאבים נכונה בין workerים ולוודא שהworkerים שהם יקרים באמת מנוצלים טוב ואין לנו בזבוז משאבים. יכול להיות הרבה רעש ביניהם. דוגמה קלאסית זה CeleryExecutor, יש גם batch וedge. בCelery משתמשים נגיד בRABBITMQ או REDIS. מבחינת חסרונות צריך לנהל queue וdependency manager חיצוני. גם צריך לוודא שהworkerים יהיו מסונכרנים. מבחינת יתרונות, יש לנו scalability מאוד טוב כי אפשר להמשיך לגדול באופן רוחבי. מצד שני, יש גם containerized executors. שם הtaskים בpodים וכל task מבודד. היתרון זה בגלל שכל task מבודד לגמרי בcontainer משלו אין רעש בין השכנים ואפשר להתאים את הסביבה אליו, גם הworker קיים רק בזמן הריצה של הtask. החיסרון זה שיש את התקורה של לעשות deploy שלוקח זמן, נהיה גרוע יותר אם המשימות קצרות והמהירות חשובה. דוגמה זה kubernetes cluster. החל מairflow 2 אפשר לעבוד עם כמה executors במקביל ולחלק את המשימות אליהם לפי מה חכם. הexecutor הראשון ברשימה יהיה הדיפולטי. אפשר ליצור executor בעצמך. 
+
+4. How does airflow connect to the DB?
+
+החיבור כולל את הhost שצריך להתחבר אליו, שם הDB וקישור לסוד עם פרטי משתמש וסיסמה. 
+
+5. What are DB encryptions?
+
+באופן דיפולטי Airflow שומר את הסיסמאות לחיבור בDB. אפשר להצפין אותם, לדוגמה עם fernet key. צריך לעדכן את ההצפנות כשמוסיפים key חדש כדי שהם יהיו ניתנים לפענוח. 
+
 
 ### Real-World Context
 Rather than focusing on one technology, think about how data workflows are scheduled, and think about when running and orchestrating data workflows.
