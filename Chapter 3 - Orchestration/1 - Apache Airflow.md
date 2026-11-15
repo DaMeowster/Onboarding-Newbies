@@ -67,6 +67,45 @@ A:
 באופן דיפולטי Airflow שומר את הסיסמאות לחיבור בDB. אפשר להצפין אותם, לדוגמה עם fernet key. צריך לעדכן את ההצפנות כשמוסיפים key חדש כדי שהם יהיו ניתנים לפענוח. 
 
 
+### Skila 1 Questions
+
+1. What is an operator? What is the relation between an operator and a task?
+
+2. What is celery?
+
+3. Where is the task run stored in the metadata db? What is stored with it except the logical and start,end times?
+
+4. How does the worker get the task instance it runs?
+
+5. How is the DAG stored in the DB?
+
+6. Where are logs stored such that the web server can see them?
+
+7. What is the job table in the DB?
+
+8. What is logical date?
+
+9. What is data interval start and data interval end?
+
+10. Why doesn't a dag run at the start date?
+
+11. What is catch up?
+
+12. What is backfill?
+
+13. What is a timetable?
+
+14. What is a hook?
+
+15. What is the difference between a hook and an operator?
+
+16. What is dynamic task mapping?
+
+17. What is jinja templating?
+
+18. What's a zombie task?
+
+
 ### Real-World Context
 Rather than focusing on one technology, think about how data workflows are scheduled, and think about when running and orchestrating data workflows.
 
