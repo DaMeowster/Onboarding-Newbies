@@ -87,8 +87,7 @@ A:
 
 6. Where are logs stored such that the web server can see them?
 
-הFileTaskHandler כותב logים של taskים לקבצים. אפשר לבחור בקובץ config איפה לשמור את קבצי הlog. באופן דיפולטי הם נשמרים בתיקייה AIRFLOW_HOME. בנוסף לכך אפשר לבחור מקום מרוחק לשמור אותם בנוסף.
-
+הFileTaskHandler כותב logים של taskים לקבצים באחסון חיצוני. אפשר לבחור בקובץ config איפה לשמור את קבצי הlog. באופן דיפולטי הם נשמרים בתיקייה AIRFLOW_HOME.
 7. What is the job table in the DB?
 
 8. What is logical date?
