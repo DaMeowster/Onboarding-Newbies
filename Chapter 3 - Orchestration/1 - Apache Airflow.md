@@ -79,30 +79,39 @@ A:
 
 3. Where is the task run stored in the metadata db? What is stored with it except the logical and start,end times?
 
-
-
-
+בtask state store. שומר dag id, run id, task id, region id וmap index. 
 4. How does the worker get the task instance it runs?
+
 
 5. How is the DAG stored in the DB?
 
 6. Where are logs stored such that the web server can see them?
 
-בtask_log handler
+הFileTaskHandler כותב logים של taskים לקבצים. אפשר לבחור בקובץ config איפה לשמור את קבצי הlog. באופן דיפולטי הם נשמרים בתיקייה AIRFLOW_HOME. בנוסף לכך אפשר לבחור מקום מרוחק לשמור אותם בנוסף.
 
 7. What is the job table in the DB?
 
 8. What is logical date?
 
+הזמן שהdag run רץ עבורו, נגיד אם אני מריץ DAG ב16.11 עבור מידע שנאסף לאורך ה15.11, הlogical date הוא ה15.11.
 9. What is data interval start and data interval end?
 
+מסמנים את ההתחלה של הריצה בlogical date והסוף שלה לאחר הוספת אינטרוול הריצה.
 10. Why doesn't a dag run at the start date?
+
+בגלל שהריצה אמורה להיות על המידע שנאסף על אותו הטווח, היא תתחיל ישר אחרי כדי לוודא שכל המידע הרלוונטי קיים. 
 
 11. What is catch up?
 
+העקרון אומר שאם יש לי data intervals שפספסתי מהזמן האחרון של הinterval שרץ (או שהרגע הגדרתי עם start_date שהיה) אז הוא ישלים ריצות עבור הintervals האלו. דלוק דיפולטית, אפשר לכבות. 
+
 12. What is backfill?
 
+אפשר להריץ DAGים לפי תאריכים שכבר היו בעבר, לתת start date וend date וairflow יתזמן את הDAG באינטרוולים לפי הצורך. 
+
 13. What is a timetable?
+
+
 
 14. What is a hook?
 
@@ -114,6 +123,7 @@ A:
 
 18. What's a zombie task?
 
+מדובר בtaskinstances שתקועים על מצב running למרות שהתהליכים שלהם לא פעילים. יכול להיות שהworker נהרג בגלל חוסר זיכרון, הזיזו את הworker לnode אחר, הוא קיבל ריסטרט וכו'. לאורך הזמן Airflow ימצא אותם ויהרוג אותם. הקוד ממש מחפש taskים על running שהjob או לא רץ או שלא שלח heartbeat מלא זמן. 
 
 ### Real-World Context
 Rather than focusing on one technology, think about how data workflows are scheduled, and think about when running and orchestrating data workflows.
