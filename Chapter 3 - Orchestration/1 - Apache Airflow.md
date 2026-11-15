@@ -71,15 +71,24 @@ A:
 
 1. What is an operator? What is the relation between an operator and a task?
 
+הTask הוא יחידת ריצה עם task instance שפיזית רץ. לעומת זאת, אופרטור הוא סוג של טמפלייט שעוטף task, הוא מאוד נוח ומוכן ורק נותנים לו פרמטרים ומריצים. 
+
 2. What is celery?
 
+אחד מהדרכים להריץ taskים. יש לנו queue של taskים והworkerים אוסף taskים ומבצע אותם. יכול להיות שworkerים מופרדים למכשירים שונים ויכול להיות שלא. 
+
 3. Where is the task run stored in the metadata db? What is stored with it except the logical and start,end times?
+
+
+
 
 4. How does the worker get the task instance it runs?
 
 5. How is the DAG stored in the DB?
 
 6. Where are logs stored such that the web server can see them?
+
+בtask_log handler
 
 7. What is the job table in the DB?
 
