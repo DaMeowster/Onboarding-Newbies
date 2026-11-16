@@ -53,7 +53,9 @@ A:
 
 5. **Airflow Critical Sections:** What is the `'Critical Section'` of the `Scheduler`? Describe the 4 primary `Critical Sections` (`Dag Run` Creation, `Dag Run` Scheduling, `TaskInstance` Creation, `Task` Scheduling).
 
+A:
 
+בAirflow יש את הקונספט של high availiabity mode שיש לנו כמה schedulers. הschedulers בודקים בצורה יעילה אילו פעולות ניתן לעשות ואם הוא מתחיל בדיקה האם לעשות את אחת מהפעולות (ליצור dag run, לשלוח dag run לתזמון, ליצור task instance ולשלוח אותו לexecutor) הוא נועל את השורות הרלוונטיות. ככה אין התנגשויות או מעבר כפול בין המתזמנים. בנוסף לכך, זה מאוד חשוב לנכונות, אם אני רוצה לדעת האם אני יכול לשלוח task לworkerים שלי לפי מי פנוי מהworker pool, אני צריך לנעול את המקום בDB על הworker pool בזמן שאני בודק איזה task instances אפשר לשלוח, כדי שהמידע ישאר עדכני וגם לא יגנבו לי את המקום הזה.
 
 ### Sync Questions
 
