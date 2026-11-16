@@ -95,6 +95,7 @@ A:
 הFileTaskHandler כותב logים של taskים לקבצים באחסון חיצוני. אפשר לבחור בקובץ config איפה לשמור את קבצי הlog. באופן דיפולטי הם נשמרים בתיקייה AIRFLOW_HOME.
 7. What is the job table in the DB?
 
+טבלה בDB ששומרת מידע על jobים בשביל תזמון, כמו המצב של הJobים, האם הם running או failed וכו'.
 8. What is logical date?
 
 הזמן שהdag run רץ עבורו, נגיד אם אני מריץ DAG ב16.11 עבור מידע שנאסף לאורך ה15.11, הlogical date הוא ה15.11.
