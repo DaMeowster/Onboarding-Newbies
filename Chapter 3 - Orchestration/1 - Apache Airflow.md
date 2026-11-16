@@ -46,7 +46,9 @@ A:
 
 4. **Airflow Task Lifecycle:** What is the full flow of a Dag from being written to being run? What happens when the `Dag Processor` encounters your file? How is `Jinja` parsing different in Dag processing than execution time? At which state does the `Scheduler` stop managing the task, and hand it over to the `Executor`? What is the flow when a task gets to a `Worker`? When does it start running?
 
+A:
 
+הDAGים נכתבים בDAG Files. לאחר מכן הdag processor פוגש את הdag file. הוא מעבד אותו ושומר אותו כdagbag מסורלז בDB. הscheduler מתזמן את הDAG ונוצר DAG run ואז הexecutor מתחיל לשלוח taskים להרצה. לדוגמה אם אנחנו עובדים עם celery, אז הtaskים ישלחו לטור. הworkerים יבחרו את הtaskים שהם רוצים להריץ וכך בסוף הם ירוצו. ההבדל בjinja parsing בין זמן עיבוד לזמן ריצה זה שהערך עצמו מחושב רק בזמן ריצה, ולכן בזמן העיבוד הערך לא צריך להבדק והגישה לDB תהיה רק בריצה. הtask עובר לexecutor אחרי שהscheduler מחליט שהtask עומד בתנאים לרוץ (נגיד הtaskים הקודמים שהוא תלוי בהם סיימו ואפשר מבחינת מגבלת הtaskים) ואז הtask עובר למצב scheduled. כשהtask מגיע לworker, תהליך הsupervisor שלו יוצר לו תת תהליך, הtask runner, שיריץ את הtask. לאחר מכן הsupervisor שולח POST לAPI של הExecution כדי לסמן את הtask כrunning. 
 
 
 5. **Airflow Critical Sections:** What is the `'Critical Section'` of the `Scheduler`? Describe the 4 primary `Critical Sections` (`Dag Run` Creation, `Dag Run` Scheduling, `TaskInstance` Creation, `Task` Scheduling).
