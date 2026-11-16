@@ -80,10 +80,15 @@ A:
 3. Where is the task run stored in the metadata db? What is stored with it except the logical and start,end times?
 
 בtask state store. שומר dag id, run id, task id, region id וmap index. 
+
+
 4. How does the worker get the task instance it runs?
 
+דרך הmetadata DB.
 
 5. How is the DAG stored in the DB?
+
+מסורלז בתוך Dagbag. הdagbag מכיל את הdagים, מתי הdagbag שונה לאחרונה וwarnings וerrors. הprocessor לרוב יקרא את הDAGים מהקבצים כדי לוודא שהdagbag מסונכרן אבל הscheduler והwebserver יקראו מהdagbag למען האחידות.
 
 6. Where are logs stored such that the web server can see them?
 
