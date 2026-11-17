@@ -194,13 +194,16 @@ A:
 
 11. Does dag runtime have a default value?
 
-
+# רתם אמר לא לעשות
 
 12. What is execution timeout?
 
 זמן ריצה מקסימלי שמאושר לtask instance, אם היא חורגת ממנו היא נכשלת. 
 
 13. What are subdags?
+
+אם יש לנו DAG שמכיל הרבה משימות שיכולות לרוץ במקביל שאפשר לוגית לחבר ביחד מבחינת הflow, אז אפשר לאגד את כולן לוגית כsubDAG. 
+# רתם אמר לא לעשות
 
 ### Real-World Context
 Rather than focusing on one technology, think about how data workflows are scheduled, and think about when running and orchestrating data workflows.
