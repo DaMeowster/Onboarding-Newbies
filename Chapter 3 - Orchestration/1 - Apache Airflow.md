@@ -186,11 +186,19 @@ A:
 
 9. What is an external task sensor?
 
+נגיד אנחנו רוצים ליצור תלויות בין taskים בDAGים שונים. אז אני יכול להגדיר בDAG שלי external task sensor שיקבל dag id וtask id שלו על מנת לזהות את הtask שאני מחכה לו, לאחר שהtask שמחכים לו יסיים אז הוא יבצע success ואז הtaskים שאחריו יוכלו להמשיך. ניתן להגדיר לאיזה states הוא מחכה מהtask שהוא מחכה עבורו, באופן דיפולטי זה success.
+
 10. What is a trigger dag run operator?
+
+זה operator שמתריג ריצה של DAG כלשהו שמתקבל. 
 
 11. Does dag runtime have a default value?
 
+
+
 12. What is execution timeout?
+
+זמן ריצה מקסימלי שמאושר לtask instance, אם היא חורגת ממנו היא נכשלת. 
 
 13. What are subdags?
 
