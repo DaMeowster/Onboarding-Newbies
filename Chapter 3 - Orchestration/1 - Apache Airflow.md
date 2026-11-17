@@ -149,6 +149,35 @@ A:
 
 מדובר בtaskinstances שתקועים על מצב running למרות שהתהליכים שלהם לא פעילים. יכול להיות שהworker נהרג בגלל חוסר זיכרון, הזיזו את הworker לnode אחר, הוא קיבל ריסטרט וכו'. לאורך הזמן Airflow ימצא אותם ויהרוג אותם. הקוד ממש מחפש taskים על running שהjob או לא רץ או שלא שלח heartbeat מלא זמן. 
 
+### Skila 2 Questions
+
+
+1. What is statd?
+
+2. Where are logs stored?
+
+3. Simply speaking, what is a time table?
+
+4. What problem a client has can be solved by jinja templating? How would you explain it in one sentence?
+
+5. How does it look like when I store a large xcom and what is configured?
+
+6. Can you define a variable in runtime?
+
+7. What are connections?
+
+8. What is the flag depends on past?
+
+9. What is an external task sensor?
+
+10. What is a trigger dag run operator?
+
+11. Does dag runtime have a default value?
+
+12. What is execution timeout?
+
+13. What are subdags?
+
 ### Real-World Context
 Rather than focusing on one technology, think about how data workflows are scheduled, and think about when running and orchestrating data workflows.
 
