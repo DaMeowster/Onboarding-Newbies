@@ -152,21 +152,37 @@ A:
 ### Skila 2 Questions
 
 
-1. What is statd?
+1. What is stastd?
+
+תהליך שרץ ומקשיב לסטטיסטיקות/מטריקות מעל UDP וTCP ומאגד אותן ושולח אותן למקום אחר שנחבר שיכול לשמור אותן, כגון Graphite.
 
 2. Where are logs stored?
 
+במקום אחסון חיצוני, לדוגמה Google Cloud Storage, S3 וכו'.
+
 3. Simply speaking, what is a time table?
 
-4. What problem a client has can be solved by jinja templating? How would you explain it in one sentence?
+אבסטרקציה כשמדובר בתזמון על פי זמן, מגדיר לי לי מתי DAG RUNS נוצרים ומה הlogical date והinterval של כל אחד. 
+
+4. What problem that a client has can be solved by jinja templating? How would you explain it in one sentence?
+
+הלקוח מריץ קוד bash ורוצה שבקוד bash תהיה לו גישה לrun_id של הDAG RUN בשביל איזשהו חישוב. jinja templating מאפשר לנו להזריק ערכים לtask בזמן ריצה לפי מה שבטמפלייט.
 
 5. How does it look like when I store a large xcom and what is configured?
 
+אפשר לשנות את הbackend מהBaseXCom ששומר את הXComs בDB באחד אחר ששומר בobject storage. משנים את הקונפיגורציה של xcom_backend אל airflow.providers.common.io.xcom.backend.XComObjectStorageBackend ונותנים לxcom_objectstorage_path את המיקום שלו. אפשר לתת threshold שאם xcom גדול ממנו הוא נשמר בobject storage ואחרת בDB כרגיל. נשמר בDB רפרנס לxcom בobject storage. אפשר גם לבחור סוג compression לפני ששומרים בobject storage.
+
 6. Can you define a variable in runtime?
+
+כן בעזרת environmental variables. ככה אפשר לשנות את ההתנהגות של DAGים בזמן ריצה בעזרת שינוי הערכים. 
 
 7. What are connections?
 
+אובייקטי קונפיגורציה ששומרים פרטי חיבור עבור מערכות חיצוניות. כמו connection id, connection type, host name, port, username, password וכו'. אפשר להשתמש באותו connection בכמה DAGים שונים, מאוד נוח לבצע שינויים.
+
 8. What is the flag depends on past?
+
+דגל שמוגדר ברמת הtask שקובע האם הtask שלי ירוץ לפי האם הtask instance האחרון שלו סיים לרוץ בהצלחה. באופן דיפולטי מכובה.
 
 9. What is an external task sensor?
 
