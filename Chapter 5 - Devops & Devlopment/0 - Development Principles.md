@@ -106,21 +106,41 @@ A:
    and **Design Review (DR)**.  
    Why are these processes important in team development?
 
+A:
+
+הpull request זו הצעה לאחד קוד מbranch אחד לשני. לדוגמה, אם עכשיו תרמתי קודם ואני רוצה שהוא יופיע בbranch שנקרא dev, אעשה לשם pull request. הcode review זה הבדיקה של הקוד, נכונות שלו ונקיות שלו לפני שמאשרים את הבקשה ומכניסים אותו לקוד הראשי. לעומת זאת, הdesign review נועד על מנת לוודא נכונות של העיצוב עוד לפני שהפיתוח מתחיל, להבין שהעיצוב הזה אכן פותר את הבעיה שלנו כמו שצריך ובא לנו להמשיך איתו. כולם חשובים בפיתוח צוותי, הpr חשוב על מנת שאנשים יוכלו לאחד את הקוד שלהם לbranch הראשי אבל יהיה ניתן לעשות להם cr לפני כן שיוודא נכונות ורצון צוותי של הקוד הזה להיות שם, מעבר לפרספקטיבה של אדם אחד. לבסוף, לפני שמשקיעים משאבים וזמן בפיתוח, חשוב לבצע dr ולוודא שהעיצוב אכן פותר את הבעיה שלנו כמו שאנחנו רוצים.
+
+
 2. Define the role of a **Pull Request (PR) / Merge Request**.
 What is **squshing**? Why is it common practice to squash commits before the final merge?
 Find how can you **apply specific fixes** from one branch to another without merging the entire history?
 What is the process for **safely undoing** a merged PR using git revert?
 
+A:
+
+המטרה של merge request זה לאחד את הקוד שכתבנו עם קוד בbranch אחר על מנת שכל אחד יוכל לתרום את העבודה שלו למקום משותף בסופו של דבר שכולם עובדים עליו, אבל יהיה ניתן לעבוד לפני כן בסביבה סטרילית אישית. לבסוף, שהמעבר הזה לbranch יהיה תחת בקשה ולא אוטומטי ואנשים יוכלו לעבור עליו. בgit כשמדובר על squashing הכוונה לאחד כמה commitים ביחד. זה יכול לקרות לפני merge סופי אם ההיסטוריית commitים שלנו מבולגנת ואנחנו רוצים לסדר אותה לפני שהקוד והיא תתרם לbranch המרכזי. ככה גם ניתן לאגד commitים ולתת שם יותר אינדקטיבי לאיגוד. אפשר להפעיל שינויים ספציפיים מbranch אחד לשני בעזרת cherry pick. הפעולה היא reverting a pull request, יוצרים pull request חדש שמוריד את השינויים. זה הרבה יותר בטיחותי מאשר למחוק את הpr הקודם בגלל שככה אנחנו לא מאבדים את הקונטקסט של הpr שיכול לבלבל בעתיד וגם זה הרבה יותר קל מבחינת הrebasing ולהעביר דברים שעובדים עליהם לשם. 
+
 3. Explain the difference between **CLI (Command Line Interface)** and
    **UI (User Interface)** applications.  
    What are the benefits of each?
 
+A:
+
+בCLI אנחנו מתקשרים עם האפליקציה בכך שאנחנו כותבים טקסט בתוך חלון ומאוד מוגבלים בפעולות שלנו. לעומת זאת באפליקציות עם UI יש לנו הרבה יותר אפשרויות לתקשר עם האפליקציה בדרכים מגוונות כתלות בUI כגון כפתורים וכו'. היתרון בCLI זה שזה מאוד מתאים ונוח להרצת פקודות קוד ואחיד. היתרון של הUI זה שהוא יכול להיות יותר אלגנטי ונוח למשתמש ולהכיל מגוון דרכי תקשורת.
+
 4. What is the difference between a **compiler** and an **interpreter**?  
    Provide examples of languages that use each approach.
+
+A:
+
+בקומפיילר יש לנו תרגום מלא של שפת הקוד שלנו לשפת מכונה לפני הריצה, תהליך זה נקרא הקמפול. לאחר מכן יש הרצה של קוד המכונה. לעןומת זאת, בinterpreter, הקוד מתרגם לשפת מכונה שורה-שורה בזמן שהוא רץ. בC השפה היא compiled ובpython יש לנו interpreter. 
 
 5. What is **event-driven programming**?  
    Explain how it differs from procedural execution and where it is commonly used.
 
+A:
+
+שיטת תכנות שהflow של התוכנה מוחלט לפי אירועים חיצוניים. לדוגמה, אם דיברנו קודם בUI אז לפי לחיצת כפתור או קבלת הודעה. זה משתנה מprocedural programming ששלבי הפעולות שלי לא ממופים לגמרי אצלי אלא מושפעים גם מדבר חיצוני. זה נפוץ אם האפליקציה שלי קשורה לאירועים חיצוניים וצריכה לפעול לפיהם, לדוגמה כמו אפליקציית התכתבויות, שאני רוצה לראות את ההודעה שלי כשאני מקבל אותה ולא לעשות ריפרש כל זמן קבוע של הודעות.
 
 > ⚠️ **Recommended exercise**  Please organzie your time and consider trying this git exercise [https://learngitbranching.js.org/]()
 ---
