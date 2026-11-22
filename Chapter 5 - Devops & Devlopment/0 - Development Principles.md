@@ -68,9 +68,19 @@ A:
 Why does simple and intuitive software scale well?  
    Why do overly complex systems tend to fail over time?
 
+A:
+
+עקרון הKISS, שמתורגם לKeep it simple stupid אומר שפתרון טוב הוא גם פתרון פשוט ככל האפשר. זה משמעותי מבחינת עיצוב תוכנה בגלל שאנחנו לא רוצים מחלקות ויחסים מסובכים בתוכנה שגם יהיו יותר קשים לקריאה וגם יהיו יותר קשים להרחבה ושימור. בטווח הארוך, זה יגרום לחוסר הבנה ויווצר סרבול. אם הכל מההתחלה פשוט אז נוח לרכב על הפשטות הזו ולשמר אותה.
 
 
 4. What are the most common **paradigms / programming** (ex. Object Orianted) styles, what are the differences and when should each be used
+
+A:
+
+Imperative programming - 
+אני מתעסק באיך אני עושה משהו מאשר מה אני עושה, ממש מבצע את הפעולות שלב שלב ונכנס לעומק ולא משאיר מקום לגמישות. 
+Procedural programming - 
+
 
 5. What is **Test Driven Development (TDD)**?  
    Explain the development cycle and how it improves code reliability.
