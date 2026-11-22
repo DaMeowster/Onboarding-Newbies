@@ -154,9 +154,17 @@ A:
    Discuss readability, ecosystem, and runtime behavior.
 compare python uniuqe data type like Tuple vs. List.
 
+A:
+
+פייתון היא שפת תכנות high level  שהיא שפת התכנות הפופולארית ביותר עם הקהילה הכי גדולה. לא רק בקרב מפתחים אלא בקרב מתמטיקאים מדענים ועוד. מה שבעיקר מייחד אותו זה הסינטקס הברור והנורא קריא וקצר, האפשרות להשתמש במלא ספריות עם קהילה ענקית שמאוד תורמת לספריות. השפה היא גם interpreted. הlist זה רשימה סופית של איברים שלכל אחד יש אינדקס שמתאים למיקום שלו ברשימה. יש להם סדר מוגר ואפשר לשנות את הרשימה. בtuple זה מאוד דומה אבל אי אפשר לשנות אותו בעתיד. מבחינת הסינטקס, סוגריים מרובעות זה list ועגולות זה tuple. יש גם את הset שמכיל איברים וניתן לעשות עליו פעולות כלשהן כמו לבדוק שייכות איבר לקבוצה, וfrozenset שהוא set שלא ניתן לשינוי. 
 
 2. What is a **REST API**?  
    Explain the core concepts such as resources, HTTP methods, and stateless communication.
+
+A:
+
+ממשק שדרכו שני מכשירים יכולים לתקשר אחד עם השני שחייב לקיים חוקים מסוימים. כל תוכן שאפשר לגשת אליו נקרא resource. מדובר באובייקט עם סוג, מידע, מתודות ויחס לresources אחרים. הresources מחולקים לפי URIים שונים. הלקוח עובד עם הresources בכך שהוא פונה לendpoint שמותאם לresource בעזרת בקשת HTTP. הבקשה מכיל הURI ולפני כן את הפועל הHTTPי שמתבצע. לדוגמה POST, GET, DELETE. בstateless communication אנחנו לא שומרים מצב לפי הבקשות שלנו, כלומר זה לא שפעולות שונות מעבירות אותנו בין מצבים. ואכן, בrest api, אנחנו לא משמרים את הבקשות הקודמות או מושפעים מהן חוץ ממה שהן עשו על המידע שזה כבר לא בתוכנו בתור הAPI. 
+
 
 3. **What is the Global Interpreter Lock (GIL) in Python?**  
    Explain:
@@ -165,6 +173,11 @@ compare python uniuqe data type like Tuple vs. List.
    - Differences (if any) in how the GIL behaves across Python versions  
    - What Python 3.14 introduces regarding optionally disabling the GIL and why this is significant  
    - Common strategies to work around its limitations (e.g., multiprocessing)
+
+A:
+
+מנעול שמגביל את התוכנת פייתון שלי ככה שכל תהליך יכול להריץ רק thread אחד כל פעם. הסיבה היא שלא יהיו שגיאות מבחינת מספר ההצבעות שיש על אובייקטים מסוימים לאור בעיות תזמון. לכן בעיות CPU-Bound לא יכולות להיות מנוצלות עם multi threading. מבחינת I/O, הנזק פחות חמור בגלל שכשמחכים לI/O אז הthreadים לא מחזיקים את המנעול. 
+
 
 4. What is a linter? read and explain about Ruff.
 
