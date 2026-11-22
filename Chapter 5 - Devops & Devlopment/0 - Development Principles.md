@@ -181,6 +181,10 @@ A:
 
 4. What is a linter? read and explain about Ruff.
 
+A:
+
+כלי סטטי לאנליזת קוד בלי הרצה שלו, אפשר לבדוק איתו שגיאות וסכמת קוד כמו bad practices וסטייל מסוים. נגיד אם אני רוצה להגדיר שכל שורה תסתיים בנקודה פסיק או שיש לי משתנה לא בשימוש. מאפשר למפתח להתרכז יותר בפיתוח ולא בחיפוש ניואנסים כאלו. גם הרבה יותר קל שהקונבנציות יהיו עקביות ולאנשים חדשים להבין מהן. הוא ממיר את הקוד לAST ואז מריץ את החוקים שלו. יש קובץ קונפיגורציה שמכריע את החוקים הללו. הruff הוא python linter נורא מהיר שכתוב בrust. אפשר להוריד אותו עם pip, הוא מעודכן עם גרסת python 3.15 וכל הזמן עובר עדכונים, יש בו יותר מ900 חוקים דיפולטיביים והוא עובד עם caching כדי לא לבדוק מחדש קבצים שלא השתנו ונבדקו כבר. אפשר להשתמש בו כextension בvscode. אפשר להגדיר אותו לפי הruffl.toml 
+
 5. What are e2e testings? What are **tests** in software development, and why are they important?  
    Explain unit tests, integration tests, and the role of automated testing. What are **mocks**, and why are they used in testing?  
    Compare **pytest** with other Python testing frameworks and explain its advantages.
