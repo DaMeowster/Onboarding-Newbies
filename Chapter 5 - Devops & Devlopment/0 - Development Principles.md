@@ -212,6 +212,36 @@ A:
 
 למרות שפייתון היא שפה interpreted, היא כן עוברת קמפול לשפת אמצע, והקובץ .py נהיה קובץ .pyc. מכיל את הבייטקוד האמצעי הזה.
 
+### Skila Questions
+
+1. What's the name of the two other folders inside of venv beside script?
+
+2. Are privates really enforced in python by default?
+
+3. How does else work in try,catch,finally?
+
+4. What's the difference between error and exception in python?
+
+5. How do you create a module in python?
+
+6. Name of python interpreter in python, is there caching?
+
+7. What is metaclass and dataclass?
+
+8. What's the difference between a callable and a function?
+
+9. Name the staga states
+
+10. Give an example of the factory design
+
+11. What are uv, uvlock?
+
+12. How does the py4j work?
+
+13. What are args and the one with ** and what's the difference?
+
+
+
 
 ---
 
