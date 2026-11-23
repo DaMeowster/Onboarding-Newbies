@@ -216,12 +216,19 @@ A:
 
 1. What's the name of the two other folders inside of venv beside script?
 
+יש את include ואת lib/pythonX.Y/site-packages. 
+
 2. Are privates really enforced in python by default?
+
+לא, זה סמנטי.
 
 3. How does else work in try,catch,finally?
 
+קוד שרץ במקרה שלא היה exception.
+
 4. What's the difference between error and exception in python?
 
+הerrors זה דברים רעים שקרו בזמן ריצת קוד או שגיאות בקוד. אין באמת ממש error כאובייקט פייתוני. לעומת זאת, exception זה אובייקט שיורש מהBaseException והוא מחלקה שנותנת הודעת שגיאה.
 5. How do you create a module in python?
 
 6. Name of python interpreter in python, is there caching?
