@@ -231,24 +231,40 @@ A:
 הerrors זה דברים רעים שקרו בזמן ריצת קוד או שגיאות בקוד. אין באמת ממש error כאובייקט פייתוני. לעומת זאת, exception זה אובייקט שיורש מהBaseException והוא מחלקה שנותנת הודעת שגיאה.
 5. How do you create a module in python?
 
+יוצרים קובץ פייתון חדש. 
+
 6. Name of python interpreter in python, is there caching?
+
+ השם של הinterpreter הוא Cpython. יש caching למספרים קטנים לפי רשימה של מספרים בטווח קטן. 
 
 7. What is metaclass and dataclass?
 
+הmetaclass זה סוגי הclassים השונים. כמו שclass מגדיר מופע שלו, אז metaclass מגדיר את הclassים שהם מהסוג שלו. באופן דיפולטי זה type, ובעזרת הפונקציה type אפשר לבדוק את הtype של דברים וגם ליצור classes באופן דינאמי. אפשר למממש מעל type ככה metaclassים חדשים. הdataclass הוא דקורטור שחוסך את הכתיבה של init ועוד דברים במחלקה. אפשר לעשות __post__init שירוץ ישר אחרי זה ויבצע את הבדיקות שאנחנו רוצים ושאר פעולות שחשובות לנו. אפשר להשתמש גם בInitvar כדי שיהיה לנו משתנה שיופיע בinit כמשתנה חשוב אבל יעלם אחרי זה, כי אנחנו לא רוצים אותו כחלק מהמחלקה. 
+
 8. What's the difference between a callable and a function?
 
-9. Name the staga states
+אפשר להגדיר על אובייקטים __call__ ולהפוך אותם לcallable ואז זו תהיה מתודה ספציפית שתקרא. לעומת זאת, יש מחלקה של פונקציות.
+
+9. Name the saga states
+
+יש happy path שהכל הצליח
+אם משהו נכשל, אז הפעולה שמחזירה את הפעולות האחרות אחורה נקראות compensation
 
 10. Give an example of the factory design
 
+יש לי מחלקה Creator שיוצרת חיה על ידי מתודה שמחזירה חיה חדשה. אני יורש ממנה ויש לי 2 מחלקות שכל אחת מהן יש לה מימוש שונה של הפונקציה, באחד זה יוצר לי כלב ובשני חתול. 
+
 11. What are uv, uvlock?
+
+הuv זה python package manager נורא מהיר. הפעולה uvlock נועדה כדי לעדכן את הlockfile, יש כמה אופציות.
 
 12. How does the py4j work?
 
-13. What are args and the one with ** and what's the difference?
+בעזרת תקשורת TCP בין הJava Virtual Machine לPython interpreter.
 
+13. What are args and kwargs and what's the difference?
 
-
+משתמשים בargs כדי לשלוח מספר כלשהו של משתנים שמתקבלים כtupke. לעומת זאת עם kwargs, זה מתקבל כמילון. 
 
 ---
 
